@@ -1,0 +1,8 @@
+Acción -> Comando
+Comprobar estado -> git status
+Preparar todo -> git add .
+Guardar cambios -> "git commit -m ""mensaje"""
+Ver historia -> git log
+Crear rama -> git branch <nombre>
+Cambiar rama -> git checkout <nombre>
+Subir a internet -> git push
