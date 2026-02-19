@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,43 +9,148 @@
     <link rel="stylesheet" href="./bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
-<body>
+
+<body class="text-white">
+
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">Rojales Premier Luxury Car</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inventory</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
+        <div class="bg-black py-3 border-bottom border-secondary border-opacity-25 d-none d-lg-block">
+            <div class="container-fluid">
+                <div class="row align-items-center position-relative">
+                    
+                    <div class="col-2"></div> 
+                    
+                    <div class="col-8 text-center">
+                        <a href="index.html" class="d-inline-block">
+                            <img src="./img/PaginaIndex/logo.png" alt="DA1 Motors Logo" class="img-fluid" style="max-height: 40px;">
+                        </a>
+                    </div>
+
+                    <div class="col-2 d-flex justify-content-end align-items-center">
+                        <button class="btn border-0 text-white p-0 me-5">
+                            <i class="bi bi-moon fs-6"></i>
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black py-2">
+            <div class="container-fluid px-3 px-lg-4 position-relative">
+
+                <button class="navbar-toggler border-0 p-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarContent">
+                    <i class="bi bi-list fs-1 text-white"></i>
+                </button>
+
+                <a class="navbar-brand d-lg-none position-absolute top-50 start-50 translate-middle p-0" href="index.html">
+                    <img src="./img/PaginaIndex/logo.png" alt="Logo" style="height: 25px;">
+                </a>
+
+                <a class="text-white d-lg-none" href="#">
+                    <div class="icon-box-mobile rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-search fs-5"></i>
+                    </div>
+                </a>
+
+
+                <div class="offcanvas offcanvas-start text-bg-dark bg-black border-end border-secondary border-opacity-25" tabindex="-1" id="navbarContent">
+                    
+                    <div class="offcanvas-header border-bottom border-secondary border-opacity-25 p-0">
+                        <div class="container-fluid">
+                            <div class="row w-100 m-0 py-3 align-items-center">
+                                
+                                <div class="col-3 d-flex justify-content-start p-0 ps-3">
+                                    <button type="button" class="btn-close btn-close-white opacity-100" data-bs-dismiss="offcanvas"></button>
+                                </div>
+
+                                <div class="col-6 d-flex justify-content-center p-0">
+                                    <img src="./img/PaginaIndex/logo.png" alt="Logo" style="height: 20px;">
+                                </div>
+
+                                <div class="col-3 d-flex justify-content-end p-0 pe-3">
+                                    <a href="#" class="text-white">
+                                        <i class="bi bi-search fs-5"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offcanvas-body d-flex flex-column flex-lg-row p-0 p-lg-0">
+
+                        <div class="w-100 d-lg-flex align-items-center justify-content-center flex-grow-1 p-4 p-lg-0">
+                            
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-lg-block">
+                                <li class="nav-item">
+                                    <a class="nav-link p-0" href="#">
+                                        <div class="icon-box border border-secondary border-opacity-75 rounded-circle d-flex align-items-center justify-content-center text-white opacity-75 hover-opacity-100">
+                                            <i class="bi bi-search"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-bolder text-uppercase gap-lg-4 gap-0 align-items-lg-center w-100 w-lg-auto">
+                                <li class="nav-item dropdown w-100 w-lg-auto border-bottom border-secondary border-opacity-10 border-lg-0">
+                                    <a class="nav-link dropdown-toggle text-white d-flex justify-content-between align-items-center py-3 py-lg-2" href="#" role="button" data-bs-toggle="dropdown">
+                                        Cars
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark border-secondary border-opacity-25 bg-black border-0 ps-3 ps-lg-0 position-static position-lg-absolute">
+                                        <li><a class="dropdown-item fw-bold text-secondary text-lg-white" href="#">Stock</a></li>
+                                        <li><a class="dropdown-item fw-bold text-secondary text-lg-white" href="#">Sell your car</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item w-100 w-lg-auto border-bottom border-secondary border-opacity-10 border-lg-0">
+                                    <a class="nav-link text-white py-3 py-lg-2" href="#">Shop</a>
+                                </li>
+                                <li class="nav-item dropdown w-100 w-lg-auto border-bottom border-secondary border-opacity-10 border-lg-0">
+                                    <a class="nav-link dropdown-toggle text-white d-flex justify-content-between align-items-center py-3 py-lg-2" href="#" role="button" data-bs-toggle="dropdown">Media</a>
+                                </li>
+                                <li class="nav-item dropdown w-100 w-lg-auto border-bottom border-secondary border-opacity-10 border-lg-0">
+                                    <a class="nav-link dropdown-toggle text-white d-flex justify-content-between align-items-center py-3 py-lg-2" href="#" role="button" data-bs-toggle="dropdown">News</a>
+                                </li>
+                                <li class="nav-item dropdown w-100 w-lg-auto border-bottom border-secondary border-opacity-10 border-lg-0">
+                                    <a class="nav-link dropdown-toggle text-white d-flex justify-content-between align-items-center py-3 py-lg-2" href="#" role="button" data-bs-toggle="dropdown">About</a>
+                                </li>
+                                <li class="nav-item w-100 w-lg-auto border-bottom border-secondary border-opacity-10 border-lg-0">
+                                    <a class="nav-link text-white py-3 py-lg-2" href="#">Contact</a>
+                                </li>
+                            </ul>
+
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-none d-lg-block">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white p-0" href="#">
+                                        <div class="d-flex align-items-center justify-content-end" style="height: 40px;">
+                                            <i class="bi bi-person-circle fs-5"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-auto d-lg-none p-4">
+                            <ul class="navbar-nav fw-bold text-uppercase gap-3">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="#">Account</a>
+                                </li>
+                                <li class="nav-item d-flex justify-content-between align-items-center">
+                                    <span class="text-white">Light Mode</span>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input bg-secondary border-0" type="checkbox" role="switch">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div> 
+                </div> 
             </div>
         </nav>
     </header>
 
-    <main>
+    <main></main>
+    <footer></footer>
 
-    </main>
-
-    <footer>
-
-    </footer>
-
-    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./js/index.js"></script>
 </body>
 </html>

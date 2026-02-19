@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif !important;
+    font-feature-settings: "zero" 1; 
+}
+
+/* --- ESTILOS LUPA DESKTOP --- */
+.icon-box {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.icon-box:hover {
+    border-color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- ESTILOS LUPA MÓVIL (BARRA) --- */
+.icon-box-mobile {
+    width: 40px;
+    height: 40px;
+    background-color: #212529;
+}
+
+/* --- TIPOGRAFÍA Y HOVER --- */
+.navbar-nav .nav-link {
+    letter-spacing: 0.5px; 
+    font-size: 0.95rem;
+}
+
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link:focus,
+.icon-box:hover {
+    color: #dc3545 !important;
+}
+
+/* --- AJUSTES MÓVIL ESPECÍFICOS --- */
+@media (max-width: 991px) {
+    /* Ajuste para que las opciones del menú móvil tengan altura cómoda */
+    .nav-link {
+        font-size: 0.9rem; /* Un poco más pequeño y elegante en móvil */
+    }
+    
+    .dropdown-toggle::after {
+        margin-left: auto; /* Flecha a la derecha del todo */
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+    /* Limpiar bordes en móvil para items internos */
+    .border-lg-0 {
+        border: none !important;
+    }
+}
+
+/* --- AJUSTES DESKTOP --- */
+@media (min-width: 992px) {
+    /* Quitar los bordes inferiores que pusimos para móvil */
+    .border-lg-0 {
+        border-bottom: none !important;
+    }
+    
+    /* Quitar padding extra del menú en desktop */
+    .p-lg-0 {
+        padding: 0 !important;
+    }
+}
