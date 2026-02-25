@@ -1,19 +1,621 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./css/cars.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="./bootstrap-icons/bootstrap-icons.min.css" rel="stylesheet">
   <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="./css/carsNav.css" rel="stylesheet">
+  <link href="./css/carsMain.css" rel="stylesheet">
+  <link href="./css/carsGrid.css" rel="stylesheet">
   <title>Cars DA1MOTORS</title>
 </head>
 
+<body>
+  <nav class="navbar navbar-expand-lg da1-navbar">
+    <div class="container-fluid px-4">
 
+      <a class="navbar-brand da1-brand" href="#">
+        <span class="da1-brand-accent">DA1</span>MOTORS
+      </a>
 
+      <button class="navbar-toggler da1-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDA1"
+        aria-controls="navbarDA1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <div class="collapse navbar-collapse" id="navbarDA1">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
 
+          <li class="nav-item da1-mega-parent">
+            <a class="nav-link da1-link active" href="#" aria-current="page">
+              Cars <i class="bi bi-chevron-down da1-chevron"></i>
+            </a>
 
+            <div class="da1-mega-menu">
+              <div class="da1-mega-inner">
+
+                <div class="da1-mega-col">
+                  <p class="da1-mega-title">Explorar</p>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-grid-3x3-gap"></i></span>
+                    <span><strong>Explore Inventory</strong><small>Todos los vehículos</small></span>
+                  </a>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-cpu"></i></span>
+                    <span><strong>Specs</strong><small>Discover the cars specs</small></span>
+                  </a>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-arrow-left-right"></i></span>
+                    <span><strong>Compare</strong><small>Compare car models</small></span>
+                  </a>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-key"></i></span>
+                    <span><strong>Sell My Car</strong><small>Vende tu vehículo</small></span>
+                  </a>
+                </div>
+
+                <div class="da1-mega-divider"></div>
+
+                <div class="da1-mega-col">
+                  <p class="da1-mega-title">Available Cars</p>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Mercedes-Benz<span
+                      class="da1-badge">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston Martin<span
+                      class="da1-badge">2</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span
+                      class="da1-badge">22</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span
+                      class="da1-badge">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span
+                      class="da1-badge">3</span></a>
+                </div>
+
+                <div class="da1-mega-divider"></div>
+
+                <div class="da1-mega-col">
+                  <p class="da1-mega-title">Sold Cars</p>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Ford<span
+                      class="da1-badge da1-badge--sold">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Lamborghini<span
+                      class="da1-badge da1-badge--sold">11</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>McLaren<span
+                      class="da1-badge da1-badge--sold">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Porsche<span
+                      class="da1-badge da1-badge--sold">7</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Rolls-Royce<span
+                      class="da1-badge da1-badge--sold">4</span></a>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link da1-link" href="#">MarketPlace</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link da1-link" href="#">Nosotros</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link da1-link" href="#">Contacto</a>
+          </li>
+
+          <li class="nav-item d-flex align-items-center">
+            <button class="da1-theme-toggle" id="themeToggle" title="Cambiar modo">
+              <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+            </button>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link da1-link da1-user-btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" title="Perfil">
+              <i class="bi bi-person-circle"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end da1-dropdown">
+              <li><a class="dropdown-item da1-dropdown-item" href="#">Mi cuenta</a></li>
+              <li><a class="dropdown-item da1-dropdown-item" href="#">Mis vehículos</a></li>
+              <li>
+                <hr class="dropdown-divider da1-divider">
+              </li>
+              <li><a class="dropdown-item da1-dropdown-item" href="#">Cerrar sesión</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+<main class="da1-main">
+  <section class="da1-hero">
+    <div class="da1-hero-bg-wrap">
+      <img src="./img/PaginaCars/banner.png" alt="DA1MOTORS hero car" class="da1-hero-bg">
+      <div class="da1-hero-overlay"></div>
+    </div>
+    <div class="da1-hero-content">
+      <p class="da1-breadcrumb">
+        <a href="#">Home</a>
+        <span class="da1-breadcrumb-sep">/</span>
+        <strong>Available Cars</strong>
+      </p>
+      <h1 class="da1-hero-title">
+        <span class="da1-hero-underline">No frenarás.</span><br>
+        <span class="da1-hero-sub">Solo los mejores coches del planeta.</span>
+      </h1>
+    </div>
+    <div class="da1-filters-bar">
+      <div class="da1-filter-item">
+        <button class="da1-filter-btn" data-target="filter-marca">
+          <span class="da1-filter-label">MARCA</span>
+          <span class="da1-filter-val">All Brands</span>
+          <i class="bi bi-chevron-down da1-filter-chevron"></i>
+        </button>
+        <div class="da1-filter-panel" id="filter-marca">
+          <label><input type="checkbox"> Ferrari</label>
+          <label><input type="checkbox"> Lamborghini</label>
+          <label><input type="checkbox"> McLaren</label>
+          <label><input type="checkbox"> Bugatti</label>
+          <label><input type="checkbox"> Mercedes-Benz</label>
+          <label><input type="checkbox"> Aston Martin</label>
+          <label><input type="checkbox"> Porsche</label>
+          <label><input type="checkbox"> Rolls-Royce</label>
+        </div>
+      </div>
+      <div class="da1-filter-item">
+        <button class="da1-filter-btn" data-target="filter-year">
+          <span class="da1-filter-label">AÑO</span>
+          <span class="da1-filter-val">1947 – 2026</span>
+          <i class="bi bi-chevron-down da1-filter-chevron"></i>
+        </button>
+        <div class="da1-filter-panel" id="filter-year">
+          <label><input type="checkbox"> 2020 – 2026</label>
+          <label><input type="checkbox"> 2015 – 2019</label>
+          <label><input type="checkbox"> 2010 – 2014</label>
+          <label><input type="checkbox"> 2000 – 2009</label>
+          <label><input type="checkbox"> Clásicos</label>
+        </div>
+      </div>
+      <div class="da1-filter-item">
+        <button class="da1-filter-btn" data-target="filter-price">
+          <span class="da1-filter-label">PRECIO</span>
+          <span class="da1-filter-val">All price options</span>
+          <i class="bi bi-chevron-down da1-filter-chevron"></i>
+        </button>
+        <div class="da1-filter-panel" id="filter-price">
+          <label><input type="checkbox"> Hasta 100K</label>
+          <label><input type="checkbox"> 100K – 500K</label>
+          <label><input type="checkbox"> 500K – 1M</label>
+          <label><input type="checkbox"> +1M</label>
+        </div>
+      </div>
+      <div class="da1-filter-item">
+        <button class="da1-filter-btn" data-target="filter-type">
+          <span class="da1-filter-label">TIPO</span>
+          <span class="da1-filter-val">All body types</span>
+          <i class="bi bi-chevron-down da1-filter-chevron"></i>
+        </button>
+        <div class="da1-filter-panel" id="filter-type">
+          <label><input type="checkbox"> Coupé</label>
+          <label><input type="checkbox"> Roadster</label>
+          <label><input type="checkbox"> SUV Sport</label>
+          <label><input type="checkbox"> Convertible</label>
+          <label><input type="checkbox"> Hypercar</label>
+        </div>
+      </div>
+      <div class="da1-filter-item">
+        <button class="da1-filter-btn" data-target="filter-specs">
+          <span class="da1-filter-label">ESPECIFICACIONES</span>
+          <span class="da1-filter-val">All specifications</span>
+          <i class="bi bi-chevron-down da1-filter-chevron"></i>
+        </button>
+        <div class="da1-filter-panel" id="filter-specs">
+          <label><input type="checkbox"> +500 CV</label>
+          <label><input type="checkbox"> +800 CV</label>
+          <label><input type="checkbox"> +1000 CV</label>
+          <label><input type="checkbox"> AWD</label>
+          <label><input type="checkbox"> RWD</label>
+          <label><input type="checkbox"> Eléctrico</label>
+        </div>
+      </div>
+      <button class="da1-filter-search">
+        <i class="bi bi-search"></i> Search
+      </button>
+    </div>
+  </section>
+  <section class="da1-cars-section" id="cars-grid">
+    <div class="da1-cars-toolbar">
+      <div class="da1-toolbar-left">
+        <button class="da1-tab-btn active" data-tab="available">Available</button>
+        <button class="da1-tab-btn" data-tab="sold">Sold</button>
+      </div>
+      <div class="da1-toolbar-right">
+        <button class="da1-compare-btn">
+          <i class="bi bi-arrows-angle-expand"></i> Compare
+        </button>
+        <div class="da1-sort-wrap">
+          <button class="da1-sort-btn" id="sortBtn">
+            Recommended <i class="bi bi-chevron-down"></i>
+          </button>
+          <div class="da1-sort-panel" id="sortPanel">
+            <button class="da1-sort-opt active">Recommended</button>
+            <button class="da1-sort-opt">Price: Low to High</button>
+            <button class="da1-sort-opt">Price: High to Low</button>
+            <button class="da1-sort-opt">Year: Newest</button>
+            <button class="da1-sort-opt">Mileage: Lowest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="da1-grid">
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/MclarenP1/full.png" alt="McLaren P1">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/MclarenP1/side.png" data-pos="side" alt="McLaren P1 — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/MclarenP1/interior.png" alt="McLaren P1 — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag">Available</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-pentagon-fill da1-brand-icon"></i>
+            <span>McLaren</span>
+            <span class="da1-card-badge da1-badge-new">-34%</span>
+          </div>
+          <h3 class="da1-card-name">P1 Carbon Series</h3>
+          <p class="da1-card-year">2015</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 0 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Híbrido</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="11.500.000" data-eur="2.875.000" data-usd="3.133.515">2.875.000</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Porsche 918 Spyder/full.png" alt="Porsche 918 Spyder">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Porsche 918 Spyder/side.png" data-pos="side" alt="Porsche 918 — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Porsche 918 Spyder/interior.png" alt="Porsche 918 — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag">Available</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-shield-fill da1-brand-icon"></i>
+            <span>Porsche</span>
+          </div>
+          <h3 class="da1-card-name">918 Spyder</h3>
+          <p class="da1-card-year">2015</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 9.285 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Híbrido</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="5.250.000" data-eur="1.312.500" data-usd="1.430.518">1.312.500</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Ferrari 812 Competizione/full.png" alt="Ferrari 812 Competizione">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Ferrari 812 Competizione/side.png" data-pos="side" alt="Ferrari 812 — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Ferrari 812 Competizione/interior.png" alt="Ferrari 812 — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag">Available</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-shield-fill da1-brand-icon" style="color:#e8001c"></i>
+            <span>Ferrari</span>
+          </div>
+          <h3 class="da1-card-name">812 Competizione</h3>
+          <p class="da1-card-year">2022</p>          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 1.155 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Gasolina</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="5.450.000" data-eur="1.362.500" data-usd="1.485.014">1.362.500</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Chiron/full.png" alt="Bugatti Chiron 2019">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Chiron/side.png" data-pos="side" alt="Bugatti Chiron — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Chiron/interiror.png" alt="Bugatti Chiron — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag">Available</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-circle-fill da1-brand-icon"></i>
+            <span>Bugatti</span>
+          </div>
+          <h3 class="da1-card-name">Chiron</h3>
+          <p class="da1-card-year">2019</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 6.700 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Gasolina</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="12.900.000" data-eur="3.225.000" data-usd="3.514.986">3.225.000</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Lamborghini Aventador SVJ/full.png" alt="Lamborghini Aventador SVJ">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Lamborghini Aventador SVJ/side.png" data-pos="side" alt="Aventador SVJ — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Lamborghini Aventador SVJ/interior.png" alt="Aventador SVJ — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag da1-tag-sold">Sold</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-trophy-fill da1-brand-icon"></i>
+            <span>Lamborghini</span>
+          </div>
+          <h3 class="da1-card-name">Aventador SVJ</h3>
+          <p class="da1-card-year">2021</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 3.200 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Gasolina</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="8.750.000" data-eur="2.187.500" data-usd="2.384.196">2.187.500</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Rolls-Royce Phantom VIII/full.png" alt="Rolls-Royce Phantom">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Rolls-Royce Phantom VIII/side.png" data-pos="side" alt="Phantom — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Rolls-Royce Phantom VIII/interiro.png" alt="Phantom — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag">Available</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-gem da1-brand-icon"></i>
+            <span>Rolls-Royce</span>
+          </div>
+          <h3 class="da1-card-name">Phantom VIII</h3>
+          <p class="da1-card-year">2023</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 800 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Gasolina</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="4.200.000" data-eur="1.050.000" data-usd="1.144.414">1.050.000</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Aston Martin Valkyrie/full.png" alt="Aston Martin Valkyrie">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Aston Martin Valkyrie/side.png" data-pos="side" alt="Valkyrie — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Aston Martin Valkyrie/interior.png" alt="Valkyrie — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag">Available</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-award-fill da1-brand-icon"></i>
+            <span>Aston Martin</span>
+          </div>
+          <h3 class="da1-card-name">Valkyrie AMR Pro</h3>
+          <p class="da1-card-year">2022</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 120 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Híbrido</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="22.000.000" data-eur="5.500.000" data-usd="5.994.550">5.500.000</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="da1-card" data-reveal>
+        <div class="da1-card-carousel">
+          <div class="da1-carousel-track">
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Mercedes-AMG One/full.png" alt="Mercedes-AMG One">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Mercedes-AMG One/side.png" data-pos="side" alt="AMG One — Lateral">
+            </div>
+            <div class="da1-carousel-slide">
+              <img src="./img/PaginaCars/coches/Mercedes-AMG One/interior.png" alt="AMG One — Interior">
+            </div>
+          </div>
+          <button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>
+          <button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>
+          <div class="da1-dots">
+            <span class="da1-dot-item active"></span>
+            <span class="da1-dot-item"></span>
+            <span class="da1-dot-item"></span>
+          </div>
+          <span class="da1-card-tag da1-tag-sold">Sold</span>
+        </div>
+        <div class="da1-card-body">
+          <div class="da1-card-brand">
+            <i class="bi bi-stars da1-brand-icon"></i>
+            <span>Mercedes-Benz</span>
+          </div>
+          <h3 class="da1-card-name">AMG One</h3>
+          <p class="da1-card-year">2023</p>
+          <div class="da1-card-meta">
+            <span><i class="bi bi-speedometer2"></i> 500 km</span>
+            <span><i class="bi bi-fuel-pump"></i> Híbrido F1</span>
+          </div>
+          <div class="da1-card-footer">
+            <div class="da1-card-price">
+              <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+              <span class="da1-amount" data-aed="11.000.000" data-eur="2.750.000" data-usd="2.997.275">2.750.000</span>
+            </div>
+            <div class="da1-card-actions">
+              <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+              <button class="da1-card-buy">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+  <script src="./js/cars.js"></script>
   <script src="./bootstrap/js/bootstrap.js"></script>
 </body>
 
