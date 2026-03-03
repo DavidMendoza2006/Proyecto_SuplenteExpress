@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DA1MOTORS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./bootstrap-icons/bootstrap-icons.min.css">
+
+  <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/defaultNav.css">
+  <link rel="stylesheet" href="./css/user.css">
+  <link rel="stylesheet" href="./css/defaultFooter.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg da1-navbar">
+    <div class="container-fluid px-4">
+
+      <a class="navbar-brand da1-brand" href="index.html">
+        <span class="da1-brand-accent">DA1</span>MOTORS
+      </a>
+
+      <button class="navbar-toggler da1-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDA1">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarDA1">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+
+          <li class="nav-item da1-mega-parent">
+            <a class="nav-link da1-link active" href="#" aria-current="page">
+              CARS <i class="bi bi-chevron-down da1-chevron"></i>
+            </a>
+
+            <div class="da1-mega-menu">
+              <div class="da1-mega-inner">
+
+                <div class="da1-mega-col">
+                  <p class="da1-mega-title">Explorar</p>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-grid-3x3-gap"></i></span>
+                    <span><strong>Explore Inventory</strong><small>Todos los vehículos</small></span>
+                  </a>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-cpu"></i></span>
+                    <span><strong>Specs</strong><small>Discover the cars specs</small></span>
+                  </a>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-arrow-left-right"></i></span>
+                    <span><strong>Compare</strong><small>Compare car models</small></span>
+                  </a>
+                  <a href="#" class="da1-mega-item">
+                    <span class="da1-mega-icon"><i class="bi bi-key"></i></span>
+                    <span><strong>Sell My Car</strong><small>Vende tu vehículo</small></span>
+                  </a>
+                </div>
+
+                <div class="da1-mega-divider"></div>
+
+                <div class="da1-mega-col">
+                  <p class="da1-mega-title">Available Cars</p>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Mercedes-Benz<span
+                      class="da1-badge">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston Martin<span
+                      class="da1-badge">2</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span
+                      class="da1-badge">22</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span
+                      class="da1-badge">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span
+                      class="da1-badge">3</span></a>
+                </div>
+
+                <div class="da1-mega-divider"></div>
+
+                <div class="da1-mega-col">
+                  <p class="da1-mega-title">Sold Cars</p>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Ford<span
+                      class="da1-badge da1-badge--sold">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Lamborghini<span
+                      class="da1-badge da1-badge--sold">11</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>McLaren<span
+                      class="da1-badge da1-badge--sold">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Porsche<span
+                      class="da1-badge da1-badge--sold">7</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Rolls-Royce<span
+                      class="da1-badge da1-badge--sold">4</span></a>
+                </div>
+
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link da1-link" href="#">MarketPlace</a></li>
+          <li class="nav-item"><a class="nav-link da1-link" href="#">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link da1-link" href="#">Contacto</a></li>
+
+          <li class="nav-item d-flex align-items-center">
+            <button class="da1-theme-toggle" id="themeToggle" title="Cambiar modo">
+              <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+            </button>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link da1-link da1-user-btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-person-circle"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end da1-dropdown">
+              <li><a class="dropdown-item da1-dropdown-item" href="#">Mi cuenta</a></li>
+              <li><a class="dropdown-item da1-dropdown-item" href="#">Mis vehículos</a></li>
+              <li>
+                <hr class="dropdown-divider da1-divider">
+              </li>
+              <li><a class="dropdown-item da1-dropdown-item" href="#">Cerrar sesión</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="profileView">
+    <header class="da1-profile-hero">
+      <div class="da1-hero-glow"></div>
+      <div class="da1-hero-sup">Panel de cliente</div>
+      <h1 class="da1-hero-title">Mi <span>Perfil</span></h1>
+      <div class="da1-hero-ref" id="heroRef">DA1 — CLIENT PORTAL</div>
+    </header>
+
+    <main class="da1-profile-wrap">
+
+      <section class="da1-avatar-block">
+        <div class="da1-avatar-ring"><i class="bi bi-person-fill"></i></div>
+        <div class="da1-avatar-info">
+          <div class="da1-avatar-name" id="profileName">—</div>
+          <div class="da1-avatar-role" id="profileRole">CLIENTE PREMIUM</div>
+          <div class="da1-avatar-since" id="profileSince">Miembro desde —</div>
+        </div>
+        <div class="da1-avatar-actions">
+          <button class="da1-btn da1-btn-ghost" onclick="handleLogout()">
+            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+          </button>
+          <button class="da1-btn da1-btn-red" onclick="switchTab('config')">
+            <i class="bi bi-pencil-fill"></i> Editar perfil
+          </button>
+        </div>
+      </section>
+
+      <nav class="da1-profile-tabs">
+        <button class="da1-ptab active" data-tab="dashboard" onclick="switchTab('dashboard')"><i
+            class="bi bi-grid-1x2"></i> Resumen</button>
+        <button class="da1-ptab" data-tab="pedidos" onclick="switchTab('pedidos')"><i class="bi bi-bag-check"></i> Mis
+          pedidos <span class="da1-ptab-badge" id="pedidosBadge">2</span></button>
+        <button class="da1-ptab" data-tab="favoritos" onclick="switchTab('favoritos')"><i class="bi bi-heart"></i>
+          Favoritos <span class="da1-ptab-badge" id="favBadge">4</span></button>
+        <button class="da1-ptab" data-tab="config" onclick="switchTab('config')"><i class="bi bi-sliders"></i>
+          Configuración</button>
+      </nav>
+
+      <section class="da1-panel active" id="panel-dashboard">
+        <div class="da1-dashboard-grid">
+          <article class="da1-dash-kpi">
+            <div class="da1-kpi-icon"><i class="bi bi-bag-check-fill"></i></div>
+            <div class="da1-kpi-label">Pedidos activos</div>
+            <div class="da1-kpi-val" id="kpi-pedidos">0</div>
+            <div class="da1-kpi-sub">1 reservado · 1 entregado</div>
+          </article>
+          <article class="da1-dash-kpi">
+            <div class="da1-kpi-icon"><i class="bi bi-heart-fill"></i></div>
+            <div class="da1-kpi-label">Favoritos</div>
+            <div class="da1-kpi-val" id="kpi-favs">0</div>
+            <div class="da1-kpi-sub">Vehículos guardados</div>
+          </article>
+          <article class="da1-dash-kpi">
+            <div class="da1-kpi-icon"><i class="bi bi-currency-euro"></i></div>
+            <div class="da1-kpi-label">Invertido total</div>
+            <div class="da1-kpi-val" style="font-size:20px;letter-spacing:.5px;" id="kpi-total">€ 0</div>
+            <div class="da1-kpi-sub">En 2 vehículos</div>
+          </article>
+          <article class="da1-dash-kpi">
+            <div class="da1-kpi-icon"><i class="bi bi-patch-check-fill"></i></div>
+            <div class="da1-kpi-label">Estado cuenta</div>
+            <div class="da1-kpi-val" style="font-size:18px;color:var(--red);">PREMIUM</div>
+            <div class="da1-kpi-sub">Desde finales de 2025</div>
+          </article>
+        </div>
+
+        <div class="da1-section-head">
+          <h2 class="da1-section-title">Actividad reciente</h2>
+          <div class="da1-section-line"></div>
+          <a class="da1-section-link" onclick="switchTab('pedidos')">Ver todo →</a>
+        </div>
+
+        <div class="da1-activity">
+          <article class="da1-activity-item">
+            <div class="da1-act-icon"><i class="bi bi-bag-check-fill"></i></div>
+            <div>
+              <div class="da1-act-title">Reserva confirmada — Ferrari 812 Competizione 2022</div>
+              <div class="da1-act-sub">Ref. DA1-1735200001 <span
+                  class="da1-status da1-status-reservado">Reservado</span></div>
+            </div>
+            <div class="da1-act-right">
+              <div class="da1-act-amount">€ 5.450.000</div>
+              <div class="da1-act-date">12 Feb 2026</div>
+            </div>
+          </article>
+          <article class="da1-activity-item">
+            <div class="da1-act-icon"><i class="bi bi-heart-fill"></i></div>
+            <div>
+              <div class="da1-act-title">Añadido a favoritos — McLaren P1 Carbon Series</div>
+              <div class="da1-act-sub">Guardado para más tarde</div>
+            </div>
+            <div class="da1-act-right">
+              <div class="da1-act-amount">AED 11.500.000</div>
+              <div class="da1-act-date">05 Feb 2026</div>
+            </div>
+          </article>
+          <article class="da1-activity-item">
+            <div class="da1-act-icon"
+              style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);color:#10B981;">
+              <i class="bi bi-box-seam-fill"></i>
+            </div>
+            <div>
+              <div class="da1-act-title">Entregado — Porsche 918 Spyder 2015</div>
+              <div class="da1-act-sub">Ref. DA1-1720100002 <span
+                  class="da1-status da1-status-entregado">Entregado</span></div>
+            </div>
+            <div class="da1-act-right">
+              <div class="da1-act-amount">€ 2.675.000</div>
+              <div class="da1-act-date">15 Dic 2025</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="da1-panel" id="panel-pedidos">
+        <div class="da1-section-head" style="margin-bottom:24px;">
+          <h2 class="da1-section-title">Historial de pedidos</h2>
+          <div class="da1-section-line"></div>
+          <span style="font-size:11px;color:var(--gray);">2 pedidos</span>
+        </div>
+
+        <div class="da1-orders-list">
+          <article class="da1-order-card">
+            <div class="da1-order-header">
+              <div>
+                <div class="da1-order-ref">REF. DA1-1735200001</div>
+                <h3 class="da1-order-model">Ferrari 812 Competizione</h3>
+                <div class="da1-order-year">2022 · Rojo Scuderia · V12 Atmosférico · 830 CV</div>
+              </div>
+              <span class="da1-status da1-status-reservado">Reservado</span>
+            </div>
+            <div class="da1-order-progress">
+              <div class="da1-prog-label">Progreso del pedido</div>
+              <div class="da1-progress-steps">
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Pedido</span>
+                </div>
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Señal</span>
+                </div>
+                <div class="da1-ps current">
+                  <div class="da1-ps-dot"><i class="bi bi-clock"></i></div><span class="da1-ps-lbl">Verificación</span>
+                </div>
+                <div class="da1-ps">
+                  <div class="da1-ps-dot">4</div><span class="da1-ps-lbl">Tránsito</span>
+                </div>
+                <div class="da1-ps">
+                  <div class="da1-ps-dot">5</div><span class="da1-ps-lbl">Entregado</span>
+                </div>
+              </div>
+            </div>
+            <div class="da1-order-body">
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Precio total</div>
+                <div class="da1-order-field-val">€ 5.450.000</div>
+              </div>
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Señal pagada (10%)</div>
+                <div class="da1-order-field-val">€ 545.000</div>
+              </div>
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Fecha pedido</div>
+                <div class="da1-order-field-val">12 Feb 2026</div>
+              </div>
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Entrega est.</div>
+                <div class="da1-order-field-val">Marzo 2026</div>
+              </div>
+            </div>
+            <div class="da1-order-actions">
+              <button class="da1-btn da1-btn-ghost" onclick="showToast('Documento de reserva descargado')"><i
+                  class="bi bi-file-pdf"></i> Descargar reserva</button>
+              <button class="da1-btn da1-btn-ghost" onclick="showToast('Contactando con tu asesor...')"><i
+                  class="bi bi-telephone"></i> Contactar asesor</button>
+              <button class="da1-btn da1-btn-red" style="margin-left:auto;"
+                onclick="showToast('Redirigiendo a pago final...')"><i class="bi bi-credit-card-fill"></i> Completar
+                pago</button>
+            </div>
+          </article>
+
+          <article class="da1-order-card">
+            <div class="da1-order-header">
+              <div>
+                <div class="da1-order-ref">REF. DA1-1720100002</div>
+                <h3 class="da1-order-model">Porsche 918 Spyder</h3>
+                <div class="da1-order-year">2015 · GT Silver · Híbrido · 887 CV</div>
+              </div>
+              <span class="da1-status da1-status-entregado">Entregado</span>
+            </div>
+            <div class="da1-order-progress">
+              <div class="da1-prog-label">Progreso del pedido</div>
+              <div class="da1-progress-steps">
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Pedido</span>
+                </div>
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Señal</span>
+                </div>
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Verificación</span>
+                </div>
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Tránsito</span>
+                </div>
+                <div class="da1-ps done">
+                  <div class="da1-ps-dot"><i class="bi bi-check"></i></div><span class="da1-ps-lbl">Entregado</span>
+                </div>
+              </div>
+            </div>
+            <div class="da1-order-body">
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Precio total</div>
+                <div class="da1-order-field-val">€ 2.675.000</div>
+              </div>
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Estado de pago</div>
+                <div class="da1-order-field-val">Completado</div>
+              </div>
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Fecha entrega</div>
+                <div class="da1-order-field-val">15 Dic 2025</div>
+              </div>
+              <div class="da1-order-field">
+                <div class="da1-order-field-label">Garantía</div>
+                <div class="da1-order-field-val" style="color:#10B981;">Activa (2 años)</div>
+              </div>
+            </div>
+            <div class="da1-order-actions">
+              <button class="da1-btn da1-btn-ghost" onclick="showToast('Factura descargada')"><i
+                  class="bi bi-file-earmark-text"></i> Factura PDF</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="da1-panel" id="panel-favoritos">
+        <div class="da1-section-head" style="margin-bottom:24px;">
+          <h2 class="da1-section-title">Vehículos guardados</h2>
+          <div class="da1-section-line"></div>
+          <span style="font-size:11px;color:var(--gray);" id="favCount">4 favoritos</span>
+        </div>
+
+        <div class="da1-favorites-grid" id="favsGrid">
+          <article class="da1-fav-card">
+            <div class="da1-fav-img">
+              <span class="da1-fav-placeholder">MCLAREN P1</span>
+              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="da1-fav-body">
+              <div class="da1-fav-brand">McLaren</div>
+              <h3 class="da1-fav-model">P1 Carbon Series 2015</h3>
+              <div class="da1-fav-price">AED <strong>11.500.000</strong></div>
+            </div>
+          </article>
+          <article class="da1-fav-card">
+            <div class="da1-fav-img">
+              <span class="da1-fav-placeholder">BUGATTI CHIRON</span>
+              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="da1-fav-body">
+              <div class="da1-fav-brand">Bugatti</div>
+              <h3 class="da1-fav-model">Chiron Pur Sport 2021</h3>
+              <div class="da1-fav-price">AED <strong>16.900.000</strong></div>
+            </div>
+          </article>
+          <article class="da1-fav-card">
+            <div class="da1-fav-img">
+              <span class="da1-fav-placeholder">ASTON VALKYRIE</span>
+              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="da1-fav-body">
+              <div class="da1-fav-brand">Aston Martin</div>
+              <h3 class="da1-fav-model">Valkyrie AMR Pro 2022</h3>
+              <div class="da1-fav-price">AED <strong>22.000.000</strong></div>
+            </div>
+          </article>
+          <article class="da1-fav-card">
+            <div class="da1-fav-img">
+              <span class="da1-fav-placeholder">ROLLS PHANTOM</span>
+              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="da1-fav-body">
+              <div class="da1-fav-brand">Rolls-Royce</div>
+              <h3 class="da1-fav-model">Phantom VIII 2025</h3>
+              <div class="da1-fav-price">AED <strong>4.200.000</strong></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="da1-panel" id="panel-config">
+        <div class="da1-settings-grid">
+
+          <article class="da1-settings-block">
+            <h2 class="da1-sblock-title"><i class="bi bi-person-fill"></i> Datos personales</h2>
+            <div class="da1-form-row">
+              <div class="da1-field"><label>Nombre</label><input type="text" id="cfgNombre" value="John"></div>
+              <div class="da1-field"><label>Apellidos</label><input type="text" id="cfgApellidos" value="Doe"></div>
+            </div>
+            <div class="da1-form-row single">
+              <div class="da1-field"><label>Email</label><input type="email" id="cfgEmail" value="john.doe@example.com">
+              </div>
+            </div>
+            <button class="da1-btn da1-btn-red" onclick="saveProfile()" style="margin-top:8px;">
+              <i class="bi bi-floppy-fill"></i> Guardar cambios
+            </button>
+          </article>
+
+          <article class="da1-settings-block">
+            <h2 class="da1-sblock-title"><i class="bi bi-wallet2"></i> Billetera y Pagos</h2>
+            <div class="da1-wallet-list">
+              <div class="da1-wallet-item">
+                <i class="bi bi-credit-card-fill" style="color:var(--white); font-size:24px;"></i>
+                <div class="da1-wallet-info">
+                  <strong>Visa Terminada en 4242</strong>
+                  <span>Expira 12/28</span>
+                </div>
+                <span class="da1-badge">Predeterminada</span>
+              </div>
+              <div class="da1-wallet-item">
+                <i class="bi bi-bank" style="color:var(--gray); font-size:24px;"></i>
+                <div class="da1-wallet-info">
+                  <strong>Transferencia Bancaria SEPA</strong>
+                  <span>ES91 **** **** 1234</span>
+                </div>
+              </div>
+            </div>
+            <button class="da1-btn da1-btn-ghost" style="margin-top:16px; width: 100%; justify-content: center;"
+              onclick="showToast('Abriendo pasarela segura...')">
+              <i class="bi bi-plus-lg"></i> Añadir método de pago
+            </button>
+          </article>
+
+          <article class="da1-settings-block">
+            <h2 class="da1-sblock-title"><i class="bi bi-sliders"></i> Preferencias</h2>
+            <div style="margin-bottom:20px;">
+              <div
+                style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:10px;">
+                Moneda por defecto</div>
+              <div class="da1-cur-opts">
+                <div class="da1-cur-opt active" onclick="selectCurrency(this)">€ EUR</div>
+                <div class="da1-cur-opt" onclick="selectCurrency(this)">$ USD</div>
+                <div class="da1-cur-opt" onclick="selectCurrency(this)">AED</div>
+              </div>
+            </div>
+            <div class="da1-toggle-row">
+              <div>
+                <div class="da1-toggle-name">Notificaciones de precio</div>
+                <div class="da1-toggle-desc">Alertas cuando baje el precio de un favorito</div>
+              </div>
+              <label class="da1-toggle"><input type="checkbox" checked><span class="da1-toggle-slider"></span></label>
+            </div>
+            <div class="da1-toggle-row">
+              <div>
+                <div class="da1-toggle-name">Actualizaciones de pedidos</div>
+                <div class="da1-toggle-desc">SMS y Email sobre el estado de la entrega</div>
+              </div>
+              <label class="da1-toggle"><input type="checkbox" checked><span class="da1-toggle-slider"></span></label>
+            </div>
+          </article>
+
+          <article class="da1-settings-block">
+            <h2 class="da1-sblock-title"><i class="bi bi-shield-lock-fill"></i> Seguridad</h2>
+            <div class="da1-toggle-row" style="margin-bottom: 16px;">
+              <div>
+                <div class="da1-toggle-name">Autenticación 2FA</div>
+                <div class="da1-toggle-desc">Capa extra de seguridad con Google Authenticator</div>
+              </div>
+              <label class="da1-toggle"><input type="checkbox"><span class="da1-toggle-slider"></span></label>
+            </div>
+            <div class="da1-form-row single">
+              <div class="da1-field"><label>Nueva contraseña</label><input type="password"
+                  placeholder="Mínimo 8 caracteres"></div>
+            </div>
+            <button class="da1-btn da1-btn-ghost" style="margin-top:8px;"
+              onclick="showToast('Contraseña actualizada correctamente')">
+              <i class="bi bi-lock-fill"></i> Actualizar contraseña
+            </button>
+          </article>
+
+          <article class="da1-settings-block full" style="padding:24px;">
+            <h2 class="da1-sblock-title" style="color:#EF4444;border-bottom-color:rgba(239,68,68,.2);">
+              <i class="bi bi-exclamation-triangle-fill" style="color:#EF4444;"></i> Zona de peligro
+            </h2>
+            <div class="da1-danger-zone">
+              <div>
+                <h3 class="da1-danger-title">Eliminar cuenta permanentemente</h3>
+                <div class="da1-danger-desc">Acción irreversible. Se borrarán todos tus datos, pedidos y métodos de pago
+                  guardados.</div>
+              </div>
+              <button class="da1-btn-danger" onclick="confirmDelete()">Eliminar cuenta</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer id="da1-footer">
+
+    <div class="footer-newsletter">
+      <div class="newsletter-copy">
+        <span class="newsletter-tag">Newsletter exclusivo</span>
+        <h3 class="newsletter-title">Primero en saber. Primero en comprar.</h3>
+        <p class="newsletter-subtitle">Nuevas llegadas, subastas privadas y ofertas solo para suscriptores.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="tu@email.com">
+        <button class="newsletter-btn">Suscribirme</button>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <a href="#" class="footer-brand"><span>DA1</span>MOTORS</a>
+        <p class="footer-desc">
+          Especialistas en vehículos de alta gama y superdeportivos.
+          Más de 847 vehículos vendidos en 38 países desde 2018.
+          Autenticidad, discreción y resultados.
+        </p>
+        <div class="footer-seals">
+          <span class="footer-seal"><i class="bi bi-shield-fill-check"></i> Verificado</span>
+          <span class="footer-seal"><i class="bi bi-award-fill"></i> Premium</span>
+          <span class="footer-seal"><i class="bi bi-globe2"></i> Internacional</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title"><i class="bi bi-car-front-fill"></i> Vehículos</p>
+        <ul class="footer-links">
+          <li><a href="#">Coches disponibles <span class="link-badge">New</span></a></li>
+          <li><a href="#">Coches vendidos</a></li>
+          <li><a href="#">MarketPlace</a></li>
+          <li><a href="#">Comparador</a></li>
+          <li><a href="#">Fichas técnicas</a></li>
+          <li><a href="#">Vender mi coche</a></li>
+          <li><a href="#">Matrículas privadas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title"><i class="bi bi-building-fill"></i> Empresa</p>
+        <ul class="footer-links">
+          <li><a href="#">Sobre DA1MOTORS</a></li>
+          <li><a href="#">Resultados & Stats</a></li>
+          <li><a href="#">Nuestro equipo</a></li>
+          <li><a href="#">Prensa & Media</a></li>
+          <li><a href="#">Trabaja con nosotros <span class="link-badge">+3</span></a></li>
+          <li><a href="#">Partners & Marcas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title"><i class="bi bi-headset"></i> Contacto</p>
+
+        <div class="footer-contact-item">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span>Calle Gran Vía 42, 28013 Madrid, España</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-telephone-fill"></i>
+          <a href="tel:+34900000000">+34 900 000 000</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-envelope-fill"></i>
+          <a href="mailto:info@da1motors.com">info@da1motors.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-clock-fill"></i>
+          <span>Lun–Sáb · 09:00 – 20:00</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-whatsapp"></i>
+          <a href="#">WhatsApp directo 24/7</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-social">
+      <span class="social-label">Síguenos</span>
+      <div class="social-links">
+        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+        <a href="#" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a href="#" class="social-btn" title="X / Twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+      </div>
+      <span class="social-tagline">"Where performance meets perfection."</span>
+    </div>
+
+    <div class="footer-legal">
+      <span class="footer-copy">
+        © 2026 <span>DA1MOTORS</span> · Todos los derechos reservados.
+      </span>
+      <div class="footer-legal-links">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+        <a href="#">Cookies</a>
+        <a href="#">Términos de uso</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="./bootstrap/css/bootstrap.bundle.min.js"></script>
+  <script src="./js/user.js"></script>
+</body>
+
+</html>
