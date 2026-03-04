@@ -1,13 +1,6 @@
-/* ══════════════════════════════════════════════════
-   DA1MOTORS — user.js
-══════════════════════════════════════════════════ */
-
 let currentUser = null;
 
-
-// === INICIO Y AUTH ===
 function initPage() {
-  // ── 1. CERRAR SESIÓN DESDE EL NAV ──
   const navLogout = document.getElementById('navLogoutBtn');
   if (navLogout) {
     navLogout.addEventListener('click', function(e) {
@@ -16,7 +9,6 @@ function initPage() {
     });
   }
 
-  // ── 2. LÓGICA DEL BOTÓN MODO CLARO / OSCURO ──
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
   const htmlEl = document.documentElement;
@@ -29,7 +21,6 @@ function initPage() {
     });
   }
 
-  // ── 3. LECTURA DE PESTAÑAS (URL) ──
   const urlParams = new URLSearchParams(window.location.search);
   const requestedTab = urlParams.get('tab');
 
@@ -37,7 +28,6 @@ function initPage() {
     sessionStorage.removeItem('da1_user');
   }
 
-  // ── 4. REDIRECCIÓN MODO DESARROLLADOR ──
   const demoRedirect = sessionStorage.getItem('da1_demo_redirect');
   if (demoRedirect) {
     sessionStorage.removeItem('da1_demo_redirect');
@@ -45,7 +35,6 @@ function initPage() {
     return;
   }
 
-  // ── 5. CARGA DE SESIÓN ──
   const saved = sessionStorage.getItem('da1_user');
   if (saved) {
     currentUser = JSON.parse(saved);
@@ -69,21 +58,18 @@ function switchAuthTab(tab) {
   document.getElementById('formLogin').classList.toggle('active', tab === 'login');
   document.getElementById('formRegister').classList.toggle('active', tab !== 'login');
   
-  // SOLUCIÓN AL BUG LOCAL (file:///): Lo envolvemos en un bloque Try-Catch
   try {
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?tab=" + tab;
     window.history.pushState({path:newUrl}, '', newUrl);
   } catch (error) {
-    // Si lo abrimos como archivo local (file://), ignoramos este paso para que no se congele el código
-    console.warn("Modo local detectado. Omitiendo actualización de URL en barra superior.");
+    console.warn("Modo local detectado.");
   }
 }
 
 function handleLogin() {
   const email = document.getElementById('loginEmail').value.trim();
-  const pass  = document.getElementById('loginPass').value;
+  const pass = document.getElementById('loginPass').value;
   if (!email || !pass) { showToast('Completa todos los campos', true); return; }
-  
   loginDemo();
 }
 
@@ -104,17 +90,16 @@ function handleRegister() {
 
 function loginDemo() {
   const u = {
-    nombre:    'John',
+    nombre: 'John',
     apellidos: 'Doe',
-    email:     'john.doe@da1motors.com',
-    rol:       'CLIENTE PREMIUM',
-    desde:     'Diciembre 2024'
+    email: 'john.doe@da1motors.com',
+    rol: 'CLIENTE PREMIUM',
+    desde: 'Diciembre 2024'
   };
   sessionStorage.setItem('da1_user', JSON.stringify(u));
   currentUser = u;
   renderProfile(u);
   
-  // SOLUCIÓN AL BUG LOCAL (file:///)
   try {
     const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
     window.history.pushState({}, document.title, cleanUrl);
@@ -130,18 +115,17 @@ function handleLogout() {
   setTimeout(() => { window.location.href = 'index.html'; }, 800);
 }
 
-// === PERFIL Y PESTAÑAS ===
 function renderProfile(u) {
-  document.getElementById('authView').style.display    = 'none';
+  document.getElementById('authView').style.display = 'none';
   document.getElementById('profileView').style.display = 'block';
-  document.getElementById('profileName').textContent   = u.nombre + ' ' + u.apellidos;
-  document.getElementById('profileRole').textContent   = u.rol || 'CLIENTE';
-  document.getElementById('profileSince').textContent  = 'Miembro desde ' + u.desde;
-  document.getElementById('heroRef').textContent       = 'DA1 — ' + u.nombre.toUpperCase();
+  document.getElementById('profileName').textContent = u.nombre + ' ' + u.apellidos;
+  document.getElementById('profileRole').textContent = u.rol || 'CLIENTE';
+  document.getElementById('profileSince').textContent = 'Miembro desde ' + u.desde;
+  document.getElementById('heroRef').textContent = 'DA1 — ' + u.nombre.toUpperCase();
 
-  if (document.getElementById('cfgNombre'))    document.getElementById('cfgNombre').value    = u.nombre;
+  if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = u.nombre;
   if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = u.apellidos;
-  if (document.getElementById('cfgEmail'))     document.getElementById('cfgEmail').value     = u.email;
+  if (document.getElementById('cfgEmail')) document.getElementById('cfgEmail').value = u.email;
 
   switchTab('dashboard');
   updatePrices();
@@ -157,10 +141,9 @@ function switchTab(tab) {
   if (tab === 'dashboard') setTimeout(animateKPIs, 100);
 }
 
-// === CONVERSOR DE MONEDAS ===
-const EXCHANGE_RATES   = { EUR: 1, USD: 1.09, AED: 4.00 };
+const EXCHANGE_RATES = { EUR: 1, USD: 1.09, AED: 4.00 };
 const CURRENCY_SYMBOLS = { EUR: '€', USD: '$', AED: 'AED' };
-let currentCurrency    = 'EUR';
+let currentCurrency = 'EUR';
 const baseTotalInvested = 2187500;
 
 function toggleCurrency() {
@@ -173,7 +156,7 @@ function selectCurrency(el) {
   document.querySelectorAll('.da1-cur-opt').forEach(o => o.classList.remove('active'));
   el.classList.add('active');
   const txt = el.textContent.trim();
-  if (txt.includes('EUR'))      currentCurrency = 'EUR';
+  if (txt.includes('EUR')) currentCurrency = 'EUR';
   else if (txt.includes('USD')) currentCurrency = 'USD';
   else if (txt.includes('AED')) currentCurrency = 'AED';
   updatePrices();
@@ -186,21 +169,20 @@ function updatePrices() {
   const formatted = converted.toLocaleString('es-ES', { maximumFractionDigits: 0 });
   kpiTotal.style.opacity = '0';
   setTimeout(() => {
-    kpiTotal.textContent   = CURRENCY_SYMBOLS[currentCurrency] + ' ' + formatted;
+    kpiTotal.textContent = CURRENCY_SYMBOLS[currentCurrency] + ' ' + formatted;
     kpiTotal.style.opacity = '1';
   }, 150);
 }
 
-// === FAVORITOS Y UI ===
 function removeFav(btn) {
   const card = btn.closest('.da1-fav-card');
   card.style.cssText += 'transition:opacity .3s,transform .3s;opacity:0;transform:scale(.9)';
   setTimeout(() => {
     card.remove();
     const n = document.querySelectorAll('.da1-fav-card').length;
-    document.getElementById('favBadge').textContent  = n;
-    document.getElementById('kpi-favs').textContent  = n;
-    document.getElementById('favCount').textContent  = n + ' favoritos';
+    document.getElementById('favBadge').textContent = n;
+    document.getElementById('kpi-favs').textContent = n;
+    document.getElementById('favCount').textContent = n + ' favoritos';
     showToast('Vehículo eliminado de favoritos');
   }, 320);
 }
@@ -233,12 +215,11 @@ function showToast(msg, isError = false) {
   const i = t.querySelector('i');
   document.getElementById('toastMsg').textContent = msg;
   t.style.borderLeftColor = isError ? '#EF4444' : 'var(--red)';
-  i.className  = isError ? 'bi bi-exclamation-circle-fill' : 'bi bi-check-circle-fill';
+  i.className = isError ? 'bi bi-exclamation-circle-fill' : 'bi bi-check-circle-fill';
   i.style.color = isError ? '#EF4444' : 'var(--red)';
   t.classList.add('show');
   clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-// Arrancar scripts al cargar
 document.addEventListener('DOMContentLoaded', initPage);

@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-  // ── Theme Toggle (igual que cars.js) ─────────────────────────
   const toggle = document.getElementById('themeToggle');
-  const icon   = document.getElementById('themeIcon');
+  const icon = document.getElementById('themeIcon');
   const htmlEl = document.documentElement;
+  
   if (toggle) {
     toggle.addEventListener('click', () => {
       const isDark = htmlEl.getAttribute('data-theme') === 'dark';
@@ -12,14 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ── Carrusel interno de imágenes (COPIADO EXACTO de cars.js) ─
   document.querySelectorAll('.da1-card').forEach(card => {
-    const track  = card.querySelector('.da1-carousel-track');
+    const track = card.querySelector('.da1-carousel-track');
     const slides = card.querySelectorAll('.da1-carousel-slide');
-    const dots   = card.querySelectorAll('.da1-dot-item');
-    const prev   = card.querySelector('.da1-car-prev');
-    const next   = card.querySelector('.da1-car-next');
-    let current  = 0;
+    const dots = card.querySelectorAll('.da1-dot-item');
+    const prev = card.querySelector('.da1-car-prev');
+    const next = card.querySelector('.da1-car-next');
+    let current = 0;
 
     function goTo(n) {
       current = (n + slides.length) % slides.length;
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
   });
 
-  // ── Cambio de divisa (COPIADO EXACTO de cars.js) ─────────────
   const currencyOrder = ['eur', 'usd', 'aed'];
   document.querySelectorAll('.da1-card-cur').forEach(btn => {
     const card = btn.closest('.da1-card');
@@ -40,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       idx = (idx + 1) % currencyOrder.length;
-      const cur      = currencyOrder[idx];
+      const cur = currencyOrder[idx];
       const amountEl = card.querySelector('.da1-amount');
       const symbolEl = card.querySelector('.da1-currency');
       amountEl.classList.add('switching');
@@ -52,22 +49,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ── Carrusel externo Featured Stock ──────────────────────────
-  const fsTrack    = document.getElementById('fsTrack');
-  const fsClip     = document.querySelector('.fs-track-clip');
-  const prevBtn    = document.getElementById('fsPrev');
-  const nextBtn    = document.getElementById('fsNext');
+  const fsTrack = document.getElementById('fsTrack');
+  const fsClip = document.querySelector('.fs-track-clip');
+  const prevBtn = document.getElementById('fsPrev');
+  const nextBtn = document.getElementById('fsNext');
   const indicators = document.getElementById('fsIndicators');
 
   if (!fsTrack || !fsClip || !prevBtn || !nextBtn || !indicators) return;
 
-  const fsCards     = Array.from(fsTrack.querySelectorAll('.fs-card'));
-  let   currentPage = 0;
+  const fsCards = Array.from(fsTrack.querySelectorAll('.fs-card'));
+  let currentPage = 0;
 
   function getVisible() {
     const w = window.innerWidth;
-    if (w <= 540)  return 1;
-    if (w <= 860)  return 2;
+    if (w <= 540) return 1;
+    if (w <= 860) return 2;
     if (w <= 1200) return 3;
     return 4;
   }
@@ -88,13 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function goToPage(page) {
-    const pages   = totalPages();
-    currentPage   = Math.max(0, Math.min(page, pages - 1));
+    const pages = totalPages();
+    currentPage = Math.max(0, Math.min(page, pages - 1));
     const visible = getVisible();
-    const gap     = 20;
-    const clipW   = fsClip.offsetWidth;
-    const cardW   = (clipW - gap * (visible - 1)) / visible;
-    const offset  = currentPage * visible * (cardW + gap);
+    const gap = 20;
+    const clipW = fsClip.offsetWidth;
+    const cardW = (clipW - gap * (visible - 1)) / visible;
+    const offset = currentPage * visible * (cardW + gap);
 
     fsTrack.style.transform = `translateX(-${offset}px)`;
 
@@ -111,7 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { currentPage = 0; buildIndicators(); goToPage(0); }, 150);
+    resizeTimer = setTimeout(() => { 
+      currentPage = 0; 
+      buildIndicators(); 
+      goToPage(0); 
+    }, 150);
   });
 
   buildIndicators();
