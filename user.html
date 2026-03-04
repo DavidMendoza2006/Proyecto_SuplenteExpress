@@ -4,17 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DA1MOTORS</title>
-
+  <title>Mi Perfil | DA1MOTORS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./bootstrap-icons/bootstrap-icons.min.css">
-
-  <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="./bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/defaultNav.css">
   <link rel="stylesheet" href="./css/user.css">
   <link rel="stylesheet" href="./css/defaultFooter.css">
@@ -22,14 +19,14 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg da1-navbar">
+<nav class="navbar navbar-expand-lg da1-navbar">
     <div class="container-fluid px-4">
 
       <a class="navbar-brand da1-brand" href="index.html">
         <span class="da1-brand-accent">DA1</span>MOTORS
       </a>
 
-      <button class="navbar-toggler da1-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDA1">
+      <button class="navbar-toggler da1-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDA1" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -37,72 +34,46 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
 
           <li class="nav-item da1-mega-parent">
-            <a class="nav-link da1-link active" href="#" aria-current="page">
+            <a class="nav-link da1-link" href="cars.html">
               CARS <i class="bi bi-chevron-down da1-chevron"></i>
             </a>
 
             <div class="da1-mega-menu">
               <div class="da1-mega-inner">
-
                 <div class="da1-mega-col">
                   <p class="da1-mega-title">Explorar</p>
-                  <a href="#" class="da1-mega-item">
-                    <span class="da1-mega-icon"><i class="bi bi-grid-3x3-gap"></i></span>
-                    <span><strong>Explore Inventory</strong><small>Todos los vehículos</small></span>
-                  </a>
-                  <a href="#" class="da1-mega-item">
-                    <span class="da1-mega-icon"><i class="bi bi-cpu"></i></span>
-                    <span><strong>Specs</strong><small>Discover the cars specs</small></span>
-                  </a>
-                  <a href="#" class="da1-mega-item">
-                    <span class="da1-mega-icon"><i class="bi bi-arrow-left-right"></i></span>
-                    <span><strong>Compare</strong><small>Compare car models</small></span>
-                  </a>
-                  <a href="#" class="da1-mega-item">
-                    <span class="da1-mega-icon"><i class="bi bi-key"></i></span>
-                    <span><strong>Sell My Car</strong><small>Vende tu vehículo</small></span>
-                  </a>
+                  <a href="cars.html" class="da1-mega-item"><span class="da1-mega-icon"><i class="bi bi-grid-3x3-gap"></i></span><span><strong>Explore Inventory</strong><small>Todos los vehículos</small></span></a>
+                  <a href="specs.html" class="da1-mega-item"><span class="da1-mega-icon"><i class="bi bi-cpu"></i></span><span><strong>Specs</strong><small>Discover the cars specs</small></span></a>
+                  <a href="compare.html" class="da1-mega-item"><span class="da1-mega-icon"><i class="bi bi-arrow-left-right"></i></span><span><strong>Compare</strong><small>Compare car models</small></span></a>
+                  <a href="#" class="da1-mega-item"><span class="da1-mega-icon"><i class="bi bi-key"></i></span><span><strong>Sell My Car</strong><small>Vende tu vehículo</small></span></a>
                 </div>
-
                 <div class="da1-mega-divider"></div>
-
                 <div class="da1-mega-col">
                   <p class="da1-mega-title">Available Cars</p>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Mercedes-Benz<span
-                      class="da1-badge">4</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston Martin<span
-                      class="da1-badge">2</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span
-                      class="da1-badge">22</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span
-                      class="da1-badge">3</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span
-                      class="da1-badge">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Mercedes-Benz<span class="da1-badge">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston Martin<span class="da1-badge">2</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span class="da1-badge">22</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span class="da1-badge">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span class="da1-badge">3</span></a>
                 </div>
-
                 <div class="da1-mega-divider"></div>
-
                 <div class="da1-mega-col">
                   <p class="da1-mega-title">Sold Cars</p>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Ford<span
-                      class="da1-badge da1-badge--sold">3</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Lamborghini<span
-                      class="da1-badge da1-badge--sold">11</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>McLaren<span
-                      class="da1-badge da1-badge--sold">4</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Porsche<span
-                      class="da1-badge da1-badge--sold">7</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Rolls-Royce<span
-                      class="da1-badge da1-badge--sold">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Ford<span class="da1-badge da1-badge--sold">3</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Lamborghini<span class="da1-badge da1-badge--sold">11</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>McLaren<span class="da1-badge da1-badge--sold">4</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Porsche<span class="da1-badge da1-badge--sold">7</span></a>
+                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Rolls-Royce<span class="da1-badge da1-badge--sold">4</span></a>
                 </div>
-
               </div>
             </div>
           </li>
 
-          <li class="nav-item"><a class="nav-link da1-link" href="#">MarketPlace</a></li>
-          <li class="nav-item"><a class="nav-link da1-link" href="#">Nosotros</a></li>
-          <li class="nav-item"><a class="nav-link da1-link" href="#">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link da1-link" href="marketplace.html">MarketPlace</a></li>
+          
+          <li class="nav-item"><a class="nav-link da1-link" href="nosotros.html">Nosotros</a></li>
+          
+          <li class="nav-item"><a class="nav-link da1-link" href="contacto.html">Contacto</a></li>
 
           <li class="nav-item d-flex align-items-center">
             <button class="da1-theme-toggle" id="themeToggle" title="Cambiar modo">
@@ -110,19 +81,31 @@
             </button>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link da1-link da1-user-btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
+          <li class="nav-item da1-user-parent">
+            <a class="nav-link da1-link da1-user-btn" href="user.html">
               <i class="bi bi-person-circle"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end da1-dropdown">
-              <li><a class="dropdown-item da1-dropdown-item" href="#">Mi cuenta</a></li>
-              <li><a class="dropdown-item da1-dropdown-item" href="#">Mis vehículos</a></li>
-              <li>
-                <hr class="dropdown-divider da1-divider">
-              </li>
-              <li><a class="dropdown-item da1-dropdown-item" href="#">Cerrar sesión</a></li>
-            </ul>
+            
+            <div class="da1-user-menu">
+              <a class="da1-user-item" href="user.html?tab=login">
+                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
+              </a>
+              <a class="da1-user-item" href="user.html?tab=register">
+                <i class="bi bi-person-plus"></i> Registrarse
+              </a>
+              <div class="da1-user-divider"></div>
+              <a class="da1-user-item" href="user.html" onclick="sessionStorage.setItem('da1_demo_redirect','1')">
+                <i class="bi bi-person-circle"></i> Mi Perfil
+              </a>
+              <div class="da1-user-divider"></div>
+              <a class="da1-user-item dev-mode-btn" href="user.html" onclick="sessionStorage.setItem('da1_demo_redirect','1')">
+                <i class="bi bi-code-slash"></i> Modo Desarrollador
+              </a>
+              <div class="da1-user-divider"></div>
+              <a class="da1-user-item" href="#" onclick="sessionStorage.removeItem('da1_user'); window.location.href='index.html';">
+                <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+              </a>
+            </div>
           </li>
 
         </ul>
@@ -130,7 +113,44 @@
     </div>
   </nav>
 
-  <div id="profileView">
+  <div class="da1-auth-wrap" id="authView">
+    <div class="da1-auth-glow"></div>
+    <div class="da1-auth-card">
+      <div class="da1-auth-logo">DA1<span>MOTORS</span></div>
+      <div class="da1-auth-subtitle">Accede a tu cuenta</div>
+      <div class="da1-auth-tabs">
+        <button class="da1-auth-tab active" onclick="switchAuthTab('login')">Iniciar sesión</button>
+        <button class="da1-auth-tab" onclick="switchAuthTab('register')">Crear cuenta</button>
+      </div>
+      <div class="da1-auth-form active" id="formLogin">
+        <div class="da1-field">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="tu@email.com">
+        </div>
+        <div class="da1-field">
+          <label>Contraseña</label>
+          <input type="password" id="loginPass" placeholder="••••••••">
+        </div>
+        <button class="da1-auth-btn" onclick="handleLogin()">Iniciar sesión</button>
+        <div class="da1-auth-divider">— o entra como demo —</div>
+        <button class="da1-btn da1-btn-ghost" style="width:100%;justify-content:center;" onclick="loginDemo()">
+          <i class="bi bi-person-circle"></i> Modo demostración
+        </button>
+      </div>
+      <div class="da1-auth-form" id="formRegister">
+        <div class="da1-form-row">
+          <div class="da1-field"><label>Nombre</label><input type="text" id="regNombre" placeholder="John"></div>
+          <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Doe"></div>
+        </div>
+        <div class="da1-field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
+        <div class="da1-field"><label>Contraseña</label><input type="password" id="regPass"
+            placeholder="Mínimo 8 caracteres"></div>
+        <button class="da1-auth-btn" onclick="handleRegister()">Crear cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="profileView" style="display:none;">
     <header class="da1-profile-hero">
       <div class="da1-hero-glow"></div>
       <div class="da1-hero-sup">Panel de cliente</div>
@@ -139,7 +159,6 @@
     </header>
 
     <main class="da1-profile-wrap">
-
       <section class="da1-avatar-block">
         <div class="da1-avatar-ring"><i class="bi bi-person-fill"></i></div>
         <div class="da1-avatar-info">
@@ -158,14 +177,20 @@
       </section>
 
       <nav class="da1-profile-tabs">
-        <button class="da1-ptab active" data-tab="dashboard" onclick="switchTab('dashboard')"><i
-            class="bi bi-grid-1x2"></i> Resumen</button>
-        <button class="da1-ptab" data-tab="pedidos" onclick="switchTab('pedidos')"><i class="bi bi-bag-check"></i> Mis
-          pedidos <span class="da1-ptab-badge" id="pedidosBadge">2</span></button>
-        <button class="da1-ptab" data-tab="favoritos" onclick="switchTab('favoritos')"><i class="bi bi-heart"></i>
-          Favoritos <span class="da1-ptab-badge" id="favBadge">4</span></button>
-        <button class="da1-ptab" data-tab="config" onclick="switchTab('config')"><i class="bi bi-sliders"></i>
-          Configuración</button>
+        <button class="da1-ptab active" data-tab="dashboard" onclick="switchTab('dashboard')">
+          <i class="bi bi-grid-1x2"></i> Resumen
+        </button>
+        <button class="da1-ptab" data-tab="pedidos" onclick="switchTab('pedidos')">
+          <i class="bi bi-bag-check"></i> Solicitudes
+          <span class="da1-ptab-badge" id="pedidosBadge">2</span>
+        </button>
+        <button class="da1-ptab" data-tab="favoritos" onclick="switchTab('favoritos')">
+          <i class="bi bi-heart"></i> Favoritos
+          <span class="da1-ptab-badge" id="favBadge">4</span>
+        </button>
+        <button class="da1-ptab" data-tab="config" onclick="switchTab('config')">
+          <i class="bi bi-sliders"></i> Configuración
+        </button>
       </nav>
 
       <section class="da1-panel active" id="panel-dashboard">
@@ -183,10 +208,16 @@
             <div class="da1-kpi-sub">Vehículos guardados</div>
           </article>
           <article class="da1-dash-kpi">
-            <div class="da1-kpi-icon"><i class="bi bi-currency-euro"></i></div>
+            <div class="da1-kpi-icon"><i class="bi bi-cash-stack"></i></div>
             <div class="da1-kpi-label">Invertido total</div>
-            <div class="da1-kpi-val" style="font-size:20px;letter-spacing:.5px;" id="kpi-total">€ 0</div>
-            <div class="da1-kpi-sub">En 2 vehículos</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+              <div class="da1-kpi-val" style="font-size:26px;letter-spacing:0.5px;transition:opacity 0.2s;"
+                id="kpi-total">€ 0</div>
+              <button class="da1-currency-swap" onclick="toggleCurrency()" title="Cambiar divisa">
+                <i class="bi bi-arrow-left-right"></i>
+              </button>
+            </div>
+            <div class="da1-kpi-sub">En 2 vehículos de alta gama</div>
           </article>
           <article class="da1-dash-kpi">
             <div class="da1-kpi-icon"><i class="bi bi-patch-check-fill"></i></div>
@@ -216,17 +247,6 @@
             </div>
           </article>
           <article class="da1-activity-item">
-            <div class="da1-act-icon"><i class="bi bi-heart-fill"></i></div>
-            <div>
-              <div class="da1-act-title">Añadido a favoritos — McLaren P1 Carbon Series</div>
-              <div class="da1-act-sub">Guardado para más tarde</div>
-            </div>
-            <div class="da1-act-right">
-              <div class="da1-act-amount">AED 11.500.000</div>
-              <div class="da1-act-date">05 Feb 2026</div>
-            </div>
-          </article>
-          <article class="da1-activity-item">
             <div class="da1-act-icon"
               style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);color:#10B981;">
               <i class="bi bi-box-seam-fill"></i>
@@ -250,7 +270,6 @@
           <div class="da1-section-line"></div>
           <span style="font-size:11px;color:var(--gray);">2 pedidos</span>
         </div>
-
         <div class="da1-orders-list">
           <article class="da1-order-card">
             <div class="da1-order-header">
@@ -300,13 +319,12 @@
               </div>
             </div>
             <div class="da1-order-actions">
-              <button class="da1-btn da1-btn-ghost" onclick="showToast('Documento de reserva descargado')"><i
+              <button class="da1-btn da1-btn-ghost" onclick="showToast('Documento descargado')"><i
                   class="bi bi-file-pdf"></i> Descargar reserva</button>
-              <button class="da1-btn da1-btn-ghost" onclick="showToast('Contactando con tu asesor...')"><i
+              <button class="da1-btn da1-btn-ghost" onclick="showToast('Contactando asesor...')"><i
                   class="bi bi-telephone"></i> Contactar asesor</button>
-              <button class="da1-btn da1-btn-red" style="margin-left:auto;"
-                onclick="showToast('Redirigiendo a pago final...')"><i class="bi bi-credit-card-fill"></i> Completar
-                pago</button>
+              <button class="da1-btn da1-btn-red" style="margin-left:auto;"><i class="bi bi-credit-card-fill"></i>
+                Completar pago</button>
             </div>
           </article>
 
@@ -371,13 +389,10 @@
           <div class="da1-section-line"></div>
           <span style="font-size:11px;color:var(--gray);" id="favCount">4 favoritos</span>
         </div>
-
         <div class="da1-favorites-grid" id="favsGrid">
           <article class="da1-fav-card">
-            <div class="da1-fav-img">
-              <span class="da1-fav-placeholder">MCLAREN P1</span>
-              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
-            </div>
+            <div class="da1-fav-img"><span class="da1-fav-placeholder">MCLAREN P1</span><button class="da1-fav-remove"
+                onclick="removeFav(this)"><i class="bi bi-trash3"></i></button></div>
             <div class="da1-fav-body">
               <div class="da1-fav-brand">McLaren</div>
               <h3 class="da1-fav-model">P1 Carbon Series 2015</h3>
@@ -385,10 +400,8 @@
             </div>
           </article>
           <article class="da1-fav-card">
-            <div class="da1-fav-img">
-              <span class="da1-fav-placeholder">BUGATTI CHIRON</span>
-              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
-            </div>
+            <div class="da1-fav-img"><span class="da1-fav-placeholder">BUGATTI CHIRON</span><button
+                class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button></div>
             <div class="da1-fav-body">
               <div class="da1-fav-brand">Bugatti</div>
               <h3 class="da1-fav-model">Chiron Pur Sport 2021</h3>
@@ -396,10 +409,8 @@
             </div>
           </article>
           <article class="da1-fav-card">
-            <div class="da1-fav-img">
-              <span class="da1-fav-placeholder">ASTON VALKYRIE</span>
-              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
-            </div>
+            <div class="da1-fav-img"><span class="da1-fav-placeholder">ASTON VALKYRIE</span><button
+                class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button></div>
             <div class="da1-fav-body">
               <div class="da1-fav-brand">Aston Martin</div>
               <h3 class="da1-fav-model">Valkyrie AMR Pro 2022</h3>
@@ -407,10 +418,8 @@
             </div>
           </article>
           <article class="da1-fav-card">
-            <div class="da1-fav-img">
-              <span class="da1-fav-placeholder">ROLLS PHANTOM</span>
-              <button class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button>
-            </div>
+            <div class="da1-fav-img"><span class="da1-fav-placeholder">ROLLS PHANTOM</span><button
+                class="da1-fav-remove" onclick="removeFav(this)"><i class="bi bi-trash3"></i></button></div>
             <div class="da1-fav-body">
               <div class="da1-fav-brand">Rolls-Royce</div>
               <h3 class="da1-fav-model">Phantom VIII 2025</h3>
@@ -422,7 +431,6 @@
 
       <section class="da1-panel" id="panel-config">
         <div class="da1-settings-grid">
-
           <article class="da1-settings-block">
             <h2 class="da1-sblock-title"><i class="bi bi-person-fill"></i> Datos personales</h2>
             <div class="da1-form-row">
@@ -433,7 +441,7 @@
               <div class="da1-field"><label>Email</label><input type="email" id="cfgEmail" value="john.doe@example.com">
               </div>
             </div>
-            <button class="da1-btn da1-btn-red" onclick="saveProfile()" style="margin-top:8px;">
+            <button class="da1-btn da1-btn-red" onclick="showToast('Perfil actualizado')" style="margin-top:8px;">
               <i class="bi bi-floppy-fill"></i> Guardar cambios
             </button>
           </article>
@@ -442,23 +450,24 @@
             <h2 class="da1-sblock-title"><i class="bi bi-wallet2"></i> Billetera y Pagos</h2>
             <div class="da1-wallet-list">
               <div class="da1-wallet-item">
-                <i class="bi bi-credit-card-fill" style="color:var(--white); font-size:24px;"></i>
+                <i class="bi bi-credit-card-fill" style="color:var(--white);font-size:24px;"></i>
                 <div class="da1-wallet-info">
                   <strong>Visa Terminada en 4242</strong>
                   <span>Expira 12/28</span>
                 </div>
-                <span class="da1-badge">Predeterminada</span>
+                <span
+                  style="margin-left:auto;background:var(--red);color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;letter-spacing:1px;font-family:var(--font-head);font-weight:700;">Predeterminada</span>
               </div>
               <div class="da1-wallet-item">
-                <i class="bi bi-bank" style="color:var(--gray); font-size:24px;"></i>
+                <i class="bi bi-bank" style="color:var(--gray);font-size:24px;"></i>
                 <div class="da1-wallet-info">
                   <strong>Transferencia Bancaria SEPA</strong>
                   <span>ES91 **** **** 1234</span>
                 </div>
               </div>
             </div>
-            <button class="da1-btn da1-btn-ghost" style="margin-top:16px; width: 100%; justify-content: center;"
-              onclick="showToast('Abriendo pasarela segura...')">
+            <button class="da1-btn da1-btn-ghost" style="margin-top:16px;width:100%;justify-content:center;"
+              onclick="showToast('Abriendo pasarela...')">
               <i class="bi bi-plus-lg"></i> Añadir método de pago
             </button>
           </article>
@@ -485,7 +494,7 @@
             <div class="da1-toggle-row">
               <div>
                 <div class="da1-toggle-name">Actualizaciones de pedidos</div>
-                <div class="da1-toggle-desc">SMS y Email sobre el estado de la entrega</div>
+                <div class="da1-toggle-desc">SMS y Email sobre el estado de entrega</div>
               </div>
               <label class="da1-toggle"><input type="checkbox" checked><span class="da1-toggle-slider"></span></label>
             </div>
@@ -493,7 +502,7 @@
 
           <article class="da1-settings-block">
             <h2 class="da1-sblock-title"><i class="bi bi-shield-lock-fill"></i> Seguridad</h2>
-            <div class="da1-toggle-row" style="margin-bottom: 16px;">
+            <div class="da1-toggle-row" style="margin-bottom:16px;">
               <div>
                 <div class="da1-toggle-name">Autenticación 2FA</div>
                 <div class="da1-toggle-desc">Capa extra de seguridad con Google Authenticator</div>
@@ -504,8 +513,7 @@
               <div class="da1-field"><label>Nueva contraseña</label><input type="password"
                   placeholder="Mínimo 8 caracteres"></div>
             </div>
-            <button class="da1-btn da1-btn-ghost" style="margin-top:8px;"
-              onclick="showToast('Contraseña actualizada correctamente')">
+            <button class="da1-btn da1-btn-ghost" style="margin-top:8px;" onclick="showToast('Contraseña actualizada')">
               <i class="bi bi-lock-fill"></i> Actualizar contraseña
             </button>
           </article>
@@ -523,15 +531,17 @@
               <button class="da1-btn-danger" onclick="confirmDelete()">Eliminar cuenta</button>
             </div>
           </article>
-
         </div>
       </section>
-
     </main>
   </div>
 
-  <footer id="da1-footer">
+  <div class="da1-toast" id="toast">
+    <i class="bi bi-check-circle-fill"></i>
+    <span id="toastMsg">Acción completada</span>
+  </div>
 
+  <footer id="da1-footer">
     <div class="footer-newsletter">
       <div class="newsletter-copy">
         <span class="newsletter-tag">Newsletter exclusivo</span>
@@ -543,23 +553,17 @@
         <button class="newsletter-btn">Suscribirme</button>
       </div>
     </div>
-
     <div class="footer-grid">
-
       <div class="footer-col">
         <a href="#" class="footer-brand"><span>DA1</span>MOTORS</a>
-        <p class="footer-desc">
-          Especialistas en vehículos de alta gama y superdeportivos.
-          Más de 847 vehículos vendidos en 38 países desde 2018.
-          Autenticidad, discreción y resultados.
-        </p>
+        <p class="footer-desc">Especialistas en vehículos de alta gama y superdeportivos. Más de 847 vehículos vendidos
+          en 38 países desde 2018. Autenticidad, discreción y resultados.</p>
         <div class="footer-seals">
           <span class="footer-seal"><i class="bi bi-shield-fill-check"></i> Verificado</span>
           <span class="footer-seal"><i class="bi bi-award-fill"></i> Premium</span>
           <span class="footer-seal"><i class="bi bi-globe2"></i> Internacional</span>
         </div>
       </div>
-
       <div class="footer-col">
         <p class="footer-col-title"><i class="bi bi-car-front-fill"></i> Vehículos</p>
         <ul class="footer-links">
@@ -572,7 +576,6 @@
           <li><a href="#">Matrículas privadas</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <p class="footer-col-title"><i class="bi bi-building-fill"></i> Empresa</p>
         <ul class="footer-links">
@@ -584,51 +587,33 @@
           <li><a href="#">Partners & Marcas</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <p class="footer-col-title"><i class="bi bi-headset"></i> Contacto</p>
-
-        <div class="footer-contact-item">
-          <i class="bi bi-geo-alt-fill"></i>
-          <span>Calle Gran Vía 42, 28013 Madrid, España</span>
-        </div>
-        <div class="footer-contact-item">
-          <i class="bi bi-telephone-fill"></i>
-          <a href="tel:+34900000000">+34 900 000 000</a>
-        </div>
-        <div class="footer-contact-item">
-          <i class="bi bi-envelope-fill"></i>
-          <a href="mailto:info@da1motors.com">info@da1motors.com</a>
-        </div>
-        <div class="footer-contact-item">
-          <i class="bi bi-clock-fill"></i>
-          <span>Lun–Sáb · 09:00 – 20:00</span>
-        </div>
-        <div class="footer-contact-item">
-          <i class="bi bi-whatsapp"></i>
-          <a href="#">WhatsApp directo 24/7</a>
-        </div>
+        <div class="footer-contact-item"><i class="bi bi-geo-alt-fill"></i><span>Calle Gran Vía 42, 28013 Madrid,
+            España</span></div>
+        <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><a href="tel:+34900000000">+34 900 000
+            000</a></div>
+        <div class="footer-contact-item"><i class="bi bi-envelope-fill"></i><a
+            href="/cdn-cgi/l/email-protection#bed7d0d8d1fedadf8fd3d1cad1cccd90ddd1d3"><span class="__cf_email__"
+              data-cfemail="b9d0d7dfd6f9ddd888d4d6cdd6cbca97dad6d4">[email&#160;protected]</span></a></div>
+        <div class="footer-contact-item"><i class="bi bi-clock-fill"></i><span>Lun–Sáb · 09:00 – 20:00</span></div>
+        <div class="footer-contact-item"><i class="bi bi-whatsapp"></i><a href="#">WhatsApp directo 24/7</a></div>
       </div>
-
     </div>
-
     <div class="footer-social">
       <span class="social-label">Síguenos</span>
       <div class="social-links">
-        <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
-        <a href="#" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
-        <a href="#" class="social-btn" title="X / Twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-tiktok"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
       </div>
       <span class="social-tagline">"Where performance meets perfection."</span>
     </div>
-
     <div class="footer-legal">
-      <span class="footer-copy">
-        © 2026 <span>DA1MOTORS</span> · Todos los derechos reservados.
-      </span>
+      <span class="footer-copy">© 2026 <span>DA1MOTORS</span> · Todos los derechos reservados.</span>
       <div class="footer-legal-links">
         <a href="#">Política de privacidad</a>
         <a href="#">Aviso legal</a>
@@ -636,10 +621,9 @@
         <a href="#">Términos de uso</a>
       </div>
     </div>
-
+    </div>
   </footer>
-
-  <script src="./bootstrap/css/bootstrap.bundle.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="./js/user.js"></script>
 </body>
 
