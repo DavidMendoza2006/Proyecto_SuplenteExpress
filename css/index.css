@@ -1,17 +1,6 @@
-/* ═══════════════════════════════════════════════
-   index.css  —  DA1 MOTORS
-   Bootstrap gestiona layout, grid, spacing, flex.
-   Este archivo solo añade lo que Bootstrap no cubre.
-   ═══════════════════════════════════════════════ */
-
 body {
     background: #060606;
 }
-
-
-/* ───────────────────────────────────────────────
-   HERO SECTION
-   ─────────────────────────────────────────────── */
 
 .hero-section {
     height: 92vh;
@@ -102,9 +91,9 @@ body {
     pointer-events: none;
     background: linear-gradient(
         to bottom,
-        transparent            0%,
-        rgba(6, 6, 6, 0.55)   55%,
-        rgba(6, 6, 6, 1.00)  100%
+        transparent 0%,
+        rgba(6, 6, 6, 0.55) 55%,
+        rgba(6, 6, 6, 1.00) 100%
     );
 }
 
@@ -130,50 +119,41 @@ body {
     .hero-fog { height: 120px; }
 }
 
-
-/* ───────────────────────────────────────────────
-   ABOUT SECTION
-   ─────────────────────────────────────────────── */
-
 .about-section {
-    background-color: #060606; /* fallback mientras carga la imagen */
+    background-color: #060606;
     min-height: 480px;
 }
 
-/* Foto de fondo: cubre 100% de la sección sin deformarse */
 .about-img {
     object-fit: cover;
-    object-position: center right; /* el coche queda a la derecha */
+    object-position: center right;
     z-index: 0;
     pointer-events: none;
 }
 
-/* Neblina superior: funde con el negro del hero */
 .about-fog-top {
     height: 160px;
     z-index: 2;
     pointer-events: none;
     background: linear-gradient(
         to bottom,
-        rgba(6, 6, 6, 1.00)   0%,
-        rgba(6, 6, 6, 0.50)  50%,
-        transparent          100%
+        rgba(6, 6, 6, 1.00) 0%,
+        rgba(6, 6, 6, 0.50) 50%,
+        transparent 100%
     );
 }
 
-/* Overlay: oscuro a la izquierda (texto legible), abierto a la derecha (foto visible) */
 .about-overlay {
     z-index: 1;
     background: linear-gradient(
         to right,
-        rgba(6, 6, 6, 0.90)  0%,
+        rgba(6, 6, 6, 0.90) 0%,
         rgba(6, 6, 6, 0.70) 35%,
         rgba(6, 6, 6, 0.25) 60%,
         rgba(6, 6, 6, 0.00) 100%
     );
 }
 
-/* Texto por encima de todo */
 .about-content {
     z-index: 3;
 }
@@ -207,24 +187,21 @@ body {
     color: #ff3348;
 }
 
-/* Neblina inferior: transición a la siguiente sección */
 .about-fog-bottom {
     height: 160px;
     z-index: 2;
     pointer-events: none;
     background: linear-gradient(
         to bottom,
-        transparent          0%,
+        transparent 0%,
         rgba(6, 6, 6, 0.55) 50%,
         rgba(6, 6, 6, 1.00) 100%
     );
 }
 
 @media (max-width: 991px) {
-    /* En móvil la foto queda centrada */
     .about-img { object-position: center center; }
 
-    /* Overlay más oscuro en móvil para que el texto sea legible */
     .about-overlay {
         background: rgba(6, 6, 6, 0.70);
     }
@@ -232,19 +209,11 @@ body {
     .about-text { max-width: 100%; }
 }
 
-
-/* ───────────────────────────────────────────────
-   FEATURED STOCK SECTION
-   Las cards reutilizan carsGrid.css completo.
-   Aquí solo el layout externo del carrusel.
-   ─────────────────────────────────────────────── */
-
 .fs-section {
     background: var(--g-section-bg, #0a0a0a);
     padding: 64px 48px 72px;
 }
 
-/* Cabecera */
 .fs-header {
     margin-bottom: 32px;
 }
@@ -280,18 +249,15 @@ body {
     transform: translateX(4px);
 }
 
-/* Wrapper externo: da espacio lateral para las flechas, sin overflow hidden */
 .fs-track-wrap {
-    padding: 0 28px; /* espacio para las flechas a cada lado */
+    padding: 0 28px;
     position: relative;
 }
 
-/* Solo el clip corta el scroll horizontal */
 .fs-track-clip {
     overflow: hidden;
 }
 
-/* Pista: flex horizontal, las cards no se comprimen */
 .fs-track {
     display: flex;
     gap: 20px;
@@ -299,13 +265,11 @@ body {
     will-change: transform;
 }
 
-/* Cada card ocupa exactamente 1/4 de la pista menos los gaps */
 .fs-card {
     flex: 0 0 calc(25% - 15px);
     min-width: 0;
 }
 
-/* Botones prev / next — centrados verticalmente respecto al clip */
 .fs-ext-prev,
 .fs-ext-next {
     position: absolute;
@@ -326,7 +290,6 @@ body {
     transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
-/* Las flechas van dentro del padding lateral del wrapper */
 .fs-ext-prev { left: 0; }
 .fs-ext-next { right: 0; }
 
@@ -342,7 +305,6 @@ body {
     cursor: default;
 }
 
-/* Indicadores de página (puntos) */
 .fs-indicators {
     display: flex;
     gap: 8px;
@@ -365,7 +327,6 @@ body {
     width: 40px;
 }
 
-/* View All móvil: oculto en desktop (ya está arriba en el header) */
 .fs-viewall-mobile { display: none; }
 
 @media (max-width: 1200px) {
@@ -383,7 +344,6 @@ body {
     .fs-viewall-mobile { display: inline-flex; }
 }
 
-/* ── Light theme ──────────────────────────────── */
 [data-theme="light"] .fs-section {
     background: var(--g-section-bg, #f0f0f0);
 }
