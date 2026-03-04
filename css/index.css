@@ -280,8 +280,14 @@ body {
     transform: translateX(4px);
 }
 
-/* Wrapper de la pista con los botones prev/next a los lados */
+/* Wrapper externo: da espacio lateral para las flechas, sin overflow hidden */
 .fs-track-wrap {
+    padding: 0 28px; /* espacio para las flechas a cada lado */
+    position: relative;
+}
+
+/* Solo el clip corta el scroll horizontal */
+.fs-track-clip {
     overflow: hidden;
 }
 
@@ -299,7 +305,7 @@ body {
     min-width: 0;
 }
 
-/* Botones prev / next del carrusel externo */
+/* Botones prev / next — centrados verticalmente respecto al clip */
 .fs-ext-prev,
 .fs-ext-next {
     position: absolute;
@@ -320,8 +326,9 @@ body {
     transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
-.fs-ext-prev { left: -21px; }
-.fs-ext-next { right: -21px; }
+/* Las flechas van dentro del padding lateral del wrapper */
+.fs-ext-prev { left: 0; }
+.fs-ext-next { right: 0; }
 
 .fs-ext-prev:hover,
 .fs-ext-next:hover {
@@ -361,7 +368,6 @@ body {
 /* View All móvil: oculto en desktop (ya está arriba en el header) */
 .fs-viewall-mobile { display: none; }
 
-/* ── Responsive ───────────────────────────────── */
 @media (max-width: 1200px) {
     .fs-card { flex: 0 0 calc(33.333% - 14px); }
 }
@@ -369,13 +375,10 @@ body {
 @media (max-width: 860px) {
     .fs-section { padding: 48px 20px 56px; }
     .fs-card { flex: 0 0 calc(50% - 10px); }
-    .fs-ext-prev { left: -10px; }
-    .fs-ext-next { right: -10px; }
 }
 
 @media (max-width: 540px) {
-    .fs-card { flex: 0 0 calc(100%); }
-    /* En móvil ocultamos el View All del header y mostramos el del footer */
+    .fs-card { flex: 0 0 100%; }
     .fs-header .fs-viewall { display: none; }
     .fs-viewall-mobile { display: inline-flex; }
 }
