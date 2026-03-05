@@ -9,8 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link href="./bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <link href="./css/defaultNav.css" rel="stylesheet">
     <link href="./css/defaultFooter.css" rel="stylesheet">
     <link href="./css/carsMain.css" rel="stylesheet">
     <link href="./css/carsGrid.css" rel="stylesheet">
@@ -19,131 +17,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg da1-navbar">
-        <div class="container-fluid px-4">
-
-            <a class="navbar-brand da1-brand" href="index.html">
-                <span class="da1-brand-accent">DA1</span>MOTORS
-            </a>
-
-            <button class="navbar-toggler da1-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarDA1" aria-controls="navbarDA1" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarDA1">
-                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-
-                    <li class="nav-item da1-mega-parent">
-                        <a class="nav-link da1-link" href="cars.html">
-                            Cars <i class="bi bi-chevron-down da1-chevron"></i>
-                        </a>
-                        <div class="da1-mega-menu">
-                            <div class="da1-mega-inner">
-                                <div class="da1-mega-col">
-                                    <p class="da1-mega-title">Explorar</p>
-                                    <a href="#" class="da1-mega-item">
-                                        <span class="da1-mega-icon"><i class="bi bi-grid-3x3-gap"></i></span>
-                                        <span><strong>Explore Inventory</strong><small>Todos los
-                                                vehículos</small></span>
-                                    </a>
-                                    <a href="#" class="da1-mega-item">
-                                        <span class="da1-mega-icon"><i class="bi bi-cpu"></i></span>
-                                        <span><strong>Specs</strong><small>Discover the cars specs</small></span>
-                                    </a>
-                                    <a href="#" class="da1-mega-item">
-                                        <span class="da1-mega-icon"><i class="bi bi-arrow-left-right"></i></span>
-                                        <span><strong>Compare</strong><small>Compare car models</small></span>
-                                    </a>
-                                    <a href="#" class="da1-mega-item">
-                                        <span class="da1-mega-icon"><i class="bi bi-key"></i></span>
-                                        <span><strong>Sell My Car</strong><small>Vende tu vehículo</small></span>
-                                    </a>
-                                </div>
-                                <div class="da1-mega-divider"></div>
-                                <div class="da1-mega-col">
-                                    <p class="da1-mega-title">Available Cars</p>
-                                    <a href="#" class="da1-mega-brand-item"><span
-                                            class="da1-dot"></span>Mercedes-Benz<span class="da1-badge">4</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston
-                                        Martin<span class="da1-badge">2</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span
-                                            class="da1-badge">22</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span
-                                            class="da1-badge">3</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span
-                                            class="da1-badge">3</span></a>
-                                </div>
-                                <div class="da1-mega-divider"></div>
-                                <div class="da1-mega-col">
-                                    <p class="da1-mega-title">Sold Cars</p>
-                                    <a href="#" class="da1-mega-brand-item"><span
-                                            class="da1-dot da1-dot--sold"></span>Ford<span
-                                            class="da1-badge da1-badge--sold">3</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span
-                                            class="da1-dot da1-dot--sold"></span>Lamborghini<span
-                                            class="da1-badge da1-badge--sold">11</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span
-                                            class="da1-dot da1-dot--sold"></span>McLaren<span
-                                            class="da1-badge da1-badge--sold">4</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span
-                                            class="da1-dot da1-dot--sold"></span>Porsche<span
-                                            class="da1-badge da1-badge--sold">7</span></a>
-                                    <a href="#" class="da1-mega-brand-item"><span
-                                            class="da1-dot da1-dot--sold"></span>Rolls-Royce<span
-                                            class="da1-badge da1-badge--sold">4</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link da1-link active" href="marketplace.html">MarketPlace</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link da1-link" href="#">Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link da1-link" href="contacto.html">Contacto</a>
-                    </li>
-
-                    <li class="nav-item d-flex align-items-center">
-                        <button class="da1-theme-toggle" id="themeToggle" title="Cambiar modo">
-                            <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
-                        </button>
-                    </li>
-
-                    <li class="nav-item d-flex align-items-center ms-2">
-                        <button class="da1-cart-btn position-relative" title="Ver carrito">
-                            <i class="bi bi-bag-fill"></i>
-                            <span
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                                id="cartBadge">
-                                0
-                            </span>
-                        </button>
-                    </li>
-
-                    <li class="nav-item dropdown ms-2">
-                        <a class="nav-link da1-link da1-user-btn dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" title="Perfil">
-                            <i class="bi bi-person-circle"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end da1-dropdown">
-                            <li><a class="dropdown-item da1-dropdown-item" href="#">Mi cuenta</a></li>
-                            <li><a class="dropdown-item da1-dropdown-item" href="#">Mis pedidos</a></li>
-                            <li>
-                                <hr class="dropdown-divider da1-divider">
-                            </li>
-                            <li><a class="dropdown-item da1-dropdown-item" href="#">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include 'header.php'; ?>
     <main class="da1-main" style="padding-top: 0;">
 
         <section class="da1-hero" style="height: 380px;">

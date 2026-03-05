@@ -21,7 +21,9 @@ async function initPage() {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('tab') === 'login' || urlParams.get('tab') === 'register') {
+  const requestedTab = urlParams.get('tab');
+
+  if (requestedTab === 'login' || requestedTab === 'register') {
     await handleLogout(false);
   }
 
@@ -32,12 +34,17 @@ async function initPage() {
     } else {
       document.getElementById('authView').style.display = 'flex';
       document.getElementById('profileView').style.display = 'none';
+      
+      if (requestedTab === 'register') {
+        switchAuthTab('register');
+      } else {
+        switchAuthTab('login');
+      }
     }
   } catch (error) {
     console.warn("Error sesión", error);
   }
 }
-
 async function handleRegister() {
   const nombre = document.getElementById('regNombre')?.value.trim();
   const apellidos = document.getElementById('regApellidos')?.value.trim();
@@ -78,7 +85,7 @@ async function handleLogin() {
       });
     } catch (e) { }
     showToast('¡Bienvenido!');
-    setTimeout(() => window.location.href = 'user.html', 1000);
+    setTimeout(() => window.location.href = 'user.php', 1000);
   }
 }
 
@@ -88,26 +95,37 @@ async function handleLogout(redirect = true) {
   currentUser = null;
   if (redirect) {
     showToast('Cerrando sesión...');
-    setTimeout(() => { window.location.href = 'index.html'; }, 800);
+    setTimeout(() => { window.location.href = 'index.php'; }, 800);
   }
 }
 
 async function cargarPerfilReal() {
+  const cacheLocal = localStorage.getItem('da1_perfil_cache');
+  if (cacheLocal) {
+    const dataGuardada = JSON.parse(cacheLocal);
+    currentUser = dataGuardada.perfil;
+    userKpis = dataGuardada.kpis;
+    baseTotalInvested = Number(dataGuardada.kpis.gastado || 0);
+    renderProfileDynamic(); 
+  }
+
   try {
     const response = await fetch('api_perfil.php');
     if (!response.ok) throw new Error("Fallo PHP");
-
+    
     const data = await response.json();
     if (data.status === 'success') {
+      
+      localStorage.setItem('da1_perfil_cache', JSON.stringify(data));
+
       currentUser = data.perfil;
       userKpis = data.kpis;
       baseTotalInvested = Number(data.kpis.gastado || 0);
-      renderProfileDynamic();
-    } else {
-      console.warn("Aviso PHP:", data.message);
+      
+      renderProfileDynamic(); 
     }
   } catch (error) {
-    console.error("Error cargando perfil:", error);
+    console.error("Error comprobando novedades:", error);
   }
 }
 

@@ -12,122 +12,15 @@
     rel="stylesheet">
   <link rel="stylesheet" href="./bootstrap-icons/bootstrap-icons.css">
   <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/defaultNav.css">
   <link rel="stylesheet" href="./css/user.css">
   <link rel="stylesheet" href="./css/defaultFooter.css">
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg da1-navbar">
-    <div class="container-fluid px-4">
+    <?php include 'header.php'; ?>
 
-      <a class="navbar-brand da1-brand" href="index.html">
-        <span class="da1-brand-accent">DA1</span>MOTORS
-      </a>
-
-      <button class="navbar-toggler da1-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDA1"
-        aria-expanded="false">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarDA1">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-
-          <li class="nav-item da1-mega-parent">
-            <a class="nav-link da1-link" href="cars.html">
-              CARS <i class="bi bi-chevron-down da1-chevron"></i>
-            </a>
-
-            <div class="da1-mega-menu">
-              <div class="da1-mega-inner">
-                <div class="da1-mega-col">
-                  <p class="da1-mega-title">Explorar</p>
-                  <a href="cars.html" class="da1-mega-item"><span class="da1-mega-icon"><i
-                        class="bi bi-grid-3x3-gap"></i></span><span><strong>Explore Inventory</strong><small>Todos los
-                        vehículos</small></span></a>
-                  <a href="specs.html" class="da1-mega-item"><span class="da1-mega-icon"><i
-                        class="bi bi-cpu"></i></span><span><strong>Specs</strong><small>Discover the cars
-                        specs</small></span></a>
-                  <a href="compare.html" class="da1-mega-item"><span class="da1-mega-icon"><i
-                        class="bi bi-arrow-left-right"></i></span><span><strong>Compare</strong><small>Compare car
-                        models</small></span></a>
-                  <a href="#" class="da1-mega-item"><span class="da1-mega-icon"><i
-                        class="bi bi-key"></i></span><span><strong>Sell My Car</strong><small>Vende tu
-                        vehículo</small></span></a>
-                </div>
-                <div class="da1-mega-divider"></div>
-                <div class="da1-mega-col">
-                  <p class="da1-mega-title">Available Cars</p>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Mercedes-Benz<span
-                      class="da1-badge">4</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston Martin<span
-                      class="da1-badge">2</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span
-                      class="da1-badge">22</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span
-                      class="da1-badge">3</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span
-                      class="da1-badge">3</span></a>
-                </div>
-                <div class="da1-mega-divider"></div>
-                <div class="da1-mega-col">
-                  <p class="da1-mega-title">Sold Cars</p>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Ford<span
-                      class="da1-badge da1-badge--sold">3</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Lamborghini<span
-                      class="da1-badge da1-badge--sold">11</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>McLaren<span
-                      class="da1-badge da1-badge--sold">4</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Porsche<span
-                      class="da1-badge da1-badge--sold">7</span></a>
-                  <a href="#" class="da1-mega-brand-item"><span class="da1-dot da1-dot--sold"></span>Rolls-Royce<span
-                      class="da1-badge da1-badge--sold">4</span></a>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item"><a class="nav-link da1-link" href="marketplace.html">MarketPlace</a></li>
-
-          <li class="nav-item"><a class="nav-link da1-link" href="nosotros.html">Nosotros</a></li>
-
-          <li class="nav-item"><a class="nav-link da1-link" href="contacto.html">Contacto</a></li>
-
-          <li class="nav-item d-flex align-items-center">
-            <button class="da1-theme-toggle" id="themeToggle" title="Cambiar modo">
-              <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
-            </button>
-          </li>
-
-          <li class="nav-item da1-user-parent">
-            <a class="nav-link da1-link da1-user-btn" href="user.html">
-              <i class="bi bi-person-circle"></i>
-            </a>
-
-            <div class="da1-user-menu">
-              <a class="da1-user-item" href="user.html?tab=login">
-                <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
-              </a>
-              <a class="da1-user-item" href="user.html?tab=register">
-                <i class="bi bi-person-plus"></i> Registrarse
-              </a>
-              <div class="da1-user-divider"></div>
-              <a class="da1-user-item" href="user.html">
-                <i class="bi bi-person-circle"></i> Mi Perfil
-              </a>
-              <div class="da1-user-divider"></div>
-              <a class="da1-user-item" href="#" onclick="handleLogout(true); return false;">
-                <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-              </a>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="da1-auth-wrap" id="authView">
+  <div class="da1-auth-wrap" id="authView" style="display: none;">
     <div class="da1-auth-glow"></div>
     <div class="da1-auth-card">
       <div class="da1-auth-logo">DA1<span>MOTORS</span></div>
@@ -150,7 +43,8 @@
       <div class="da1-auth-form" id="formRegister">
         <div class="da1-form-row">
           <div class="da1-field"><label>Nombre</label><input type="text" id="regNombre" placeholder="Usuario"></div>
-          <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Contraseña"></div>
+          <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Contraseña">
+          </div>
         </div>
         <div class="da1-field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
         <div class="da1-field"><label>Contraseña</label><input type="password" id="regPass"
@@ -243,7 +137,7 @@
         </div>
 
         <div class="da1-activity"
-          style="display: flex; justify-content: center; padding: 40px 0; border: 1px dashed rgba(255,255,255,0.05); border-radius: 8px;">
+          style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; padding: 40px 20px; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px; box-sizing: border-box;">
           <span style="color: var(--gray); font-size: 14px;">No hay actividad reciente.</span>
         </div>
       </section>
@@ -254,7 +148,7 @@
           <div class="da1-section-line"></div>
         </div>
         <div class="da1-orders-list"
-          style="display: flex; justify-content: center; padding: 80px 0; border: 1px dashed rgba(255,255,255,0.05); border-radius: 8px;">
+          style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; padding: 80px 20px; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px; box-sizing: border-box;">
           <span style="color: var(--gray); font-size: 14px;">Aún no has realizado ningún pedido.</span>
         </div>
       </section>
@@ -265,7 +159,7 @@
           <div class="da1-section-line"></div>
         </div>
         <div class="da1-favorites-grid" id="favsGrid"
-          style="display: flex; justify-content: center; grid-column: 1 / -1; padding: 80px 0; border: 1px dashed rgba(255,255,255,0.05); border-radius: 8px;">
+          style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; grid-column: 1 / -1; padding: 80px 20px; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px; box-sizing: border-box;">
           <span style="color: var(--gray); font-size: 14px;">No tienes vehículos guardados en favoritos.</span>
         </div>
       </section>
