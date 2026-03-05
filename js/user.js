@@ -1,5 +1,5 @@
 const supabaseUrl = 'https://pmgliohbadapwffnixeu.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtZ2xpb2hiYWRhcHdmZm5peGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MzQwNTgsImV4cCI6MjA4ODIxMDA1OH0.b7xMDD9ZPJAaFOjW-bRstuPnkF-Mm7y9CCJ-F_Gzh8g'; 
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtZ2xpb2hiYWRhcHdmZm5peGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MzQwNTgsImV4cCI6MjA4ODIxMDA1OH0.b7xMDD9ZPJAaFOjW-bRstuPnkF-Mm7y9CCJ-F_Gzh8g';
 
 const supabaseApp = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -47,13 +47,13 @@ async function handleRegister() {
   if (!nombre || !apellidos || !email || !pass) {
     showToast('Rellena todos los campos', true); return;
   }
-  
+
   showToast('Creando cuenta...', false);
   const { data, error } = await supabaseApp.auth.signUp({
     email: email, password: pass, options: { data: { nombre: nombre, apellidos: apellidos } }
   });
 
-  if (error) { showToast(error.message, true); } 
+  if (error) { showToast(error.message, true); }
   else {
     showToast('¡Cuenta creada! Inicia sesión.', false);
     setTimeout(() => switchAuthTab('login'), 2000);
@@ -65,7 +65,7 @@ async function handleLogin() {
   const pass = document.getElementById('loginPass').value;
 
   if (!email || !pass) { showToast('Completa todos los campos', true); return; }
-  
+
   showToast('Verificando credenciales...', false);
   const { data, error } = await supabaseApp.auth.signInWithPassword({ email: email, password: pass });
 
@@ -96,7 +96,7 @@ async function cargarPerfilReal() {
   try {
     const response = await fetch('api_perfil.php');
     if (!response.ok) throw new Error("Fallo PHP");
-    
+
     const data = await response.json();
     if (data.status === 'success') {
       currentUser = data.perfil;
@@ -114,23 +114,21 @@ async function cargarPerfilReal() {
 function renderProfileDynamic() {
   document.getElementById('authView').style.display = 'none';
   document.getElementById('profileView').style.display = 'block';
-
-  // Pintar datos
-  if(currentUser) {
+  if (currentUser) {
     document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || '');
     document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase();
     if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre;
     if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || '';
-  }
 
-  // Pintar Email real desde Supabase
+    const fecha = new Date(currentUser.creado_en || Date.now());
+    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+  }
   if (document.getElementById('cfgEmail')) {
-    supabaseApp.auth.getSession().then(({data}) => {
+    supabaseApp.auth.getSession().then(({ data }) => {
       if (data.session) document.getElementById('cfgEmail').value = data.session.user.email;
     });
   }
 
-  // Actualizar contadores rojos (Badges) a 0
   if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0;
   if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0;
   if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0;
@@ -175,7 +173,7 @@ function updatePrices() {
   if (!kpiTotal) return;
   const converted = baseTotalInvested * EXCHANGE_RATES[currentCurrency];
   const formatted = converted.toLocaleString('es-ES', { maximumFractionDigits: 0 });
-  
+
   kpiTotal.style.opacity = '0';
   setTimeout(() => {
     kpiTotal.textContent = CURRENCY_SYMBOLS[currentCurrency] + ' ' + formatted;
