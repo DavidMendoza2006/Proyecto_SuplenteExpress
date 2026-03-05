@@ -108,7 +108,6 @@ async function cargarPerfilReal() {
     }
   } catch (error) {
     console.error("Error cargando perfil:", error);
-    // Hemos eliminado la alerta molesta que te salía de "Error de conexión"
   }
 }
 
