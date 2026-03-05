@@ -29,16 +29,26 @@ async function initPage() {
 
   try {
     const { data: { session } } = await supabaseApp.auth.getSession();
+    
+    const guestItems = document.querySelectorAll('.auth-guest');
+    const userItems = document.querySelectorAll('.auth-user');
+
     if (session) {
-      await cargarPerfilReal();
-    } else {
-      document.getElementById('authView').style.display = 'flex';
-      document.getElementById('profileView').style.display = 'none';
+      guestItems.forEach(el => el.style.display = 'none');
+      userItems.forEach(el => el.style.display = 'flex'); 
       
-      if (requestedTab === 'register') {
-        switchAuthTab('register');
-      } else {
-        switchAuthTab('login');
+      if (document.getElementById('profileView')) {
+        await cargarPerfilReal();
+      }
+    } else {
+      guestItems.forEach(el => el.style.display = 'flex');
+      userItems.forEach(el => el.style.display = 'none');
+      
+      if (document.getElementById('authView')) {
+        document.getElementById('authView').style.display = 'flex';
+        document.getElementById('profileView').style.display = 'none';
+        if (requestedTab === 'register') switchAuthTab('register');
+        else switchAuthTab('login');
       }
     }
   } catch (error) {
@@ -90,15 +100,28 @@ async function handleLogin() {
 }
 
 async function handleLogout(redirect = true) {
-  await supabaseApp.auth.signOut();
-  try { await fetch('iniciar_sesion_php.php', { method: 'POST', body: JSON.stringify({}) }); } catch (e) { }
-  currentUser = null;
-  if (redirect) {
-    showToast('Cerrando sesión...');
-    setTimeout(() => { window.location.href = 'index.php'; }, 800);
+  try {
+    if (redirect && typeof showToast === 'function') {
+      showToast('Cerrando sesión...');
+    }
+
+    await supabaseApp.auth.signOut();
+    localStorage.removeItem('da1_perfil_cache');
+    sessionStorage.removeItem('da1_user');
+
+    if (redirect) {
+      setTimeout(() => {
+        if (window.location.pathname.includes('index.php') || window.location.pathname === '/') {
+          window.location.reload();
+        } else {
+          window.location.href = 'index.php';
+        }
+      }, 1200);
+    }
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
   }
 }
-
 async function cargarPerfilReal() {
   const cacheLocal = localStorage.getItem('da1_perfil_cache');
   if (cacheLocal) {
@@ -201,15 +224,27 @@ function updatePrices() {
 
 let _toastTimer;
 function showToast(msg, isError = false) {
-  const t = document.getElementById('toast');
+  let t = document.getElementById('toast');
+  
+  if (!t) {
+    t = document.createElement('div');
+    t.className = 'da1-toast';
+    t.id = 'toast';
+    t.innerHTML = '<i class="bi bi-check-circle-fill"></i><span id="toastMsg"></span>';
+    document.body.appendChild(t);
+  }
+
   const i = t.querySelector('i');
   document.getElementById('toastMsg').textContent = msg;
   t.style.borderLeftColor = isError ? '#EF4444' : 'var(--da1-red, #e8001c)';
   i.className = isError ? 'bi bi-exclamation-circle-fill' : 'bi bi-check-circle-fill';
   i.style.color = isError ? '#EF4444' : 'var(--da1-red, #e8001c)';
-  t.classList.add('show');
+  
+  setTimeout(() => t.classList.add('show'), 10);
+  
   clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
 
 document.addEventListener('DOMContentLoaded', initPage);
+
