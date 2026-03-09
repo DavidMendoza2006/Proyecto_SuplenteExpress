@@ -1,0 +1,63 @@
+1. Restringir el CORS (La muralla exterior)
+Aunque tu llave es segura con RLS, ahora mismo cualquiera puede intentar usarla desde cualquier otra web.
+
+Qué hacer: Ve a Settings > API.
+
+Configuración: Busca el campo Allowed Origins. Borra el asterisco (*) y escribe tu dominio real (ej: https://da1motors.com).
+
+Por qué: Esto evita que un hacker copie tus llaves y monte una web falsa para intentar engañar a tus clientes o saturar tu base de datos.
+
+
+
+2. Blindar el Storage (Las imágenes de los coches)
+Tu script protege la tabla vehiculo_imagenes, pero no protege los archivos físicos (las fotos) que están en las carpetas (Buckets) de Supabase.
+
+Qué hacer: Ve a la sección Storage en el menú de la izquierda.
+
+Configuración: Selecciona tu Bucket (donde subes las fotos de los coches) y haz clic en Policies.
+
+Acción: Activa el RLS también ahí. Debes crear una política para que el público pueda VER (SELECT) pero solo tú o el admin pueda SUBIR (INSERT) o BORRAR.
+
+
+Asistente de programación
+Asistente de programación ha dicho
+¡Felicidades! Con ese script de SQL has blindado la lógica de tus datos al 95%. Ahora el "portero" (RLS) sabe exactamente a quién dejar pasar y a quién no cuando alguien intenta tocar las tablas desde el navegador.
+
+Para llegar al 100% de seguridad y que DA1MOTORS sea un búnker inexpugnable, te faltan estos 4 pasos que no se pueden hacer con código, sino configurándolos directamente en la web de Supabase:
+
+1. Restringir el CORS (La muralla exterior)
+Aunque tu llave es segura con RLS, ahora mismo cualquiera puede intentar usarla desde cualquier otra web.
+
+Qué hacer: Ve a Settings > API.
+
+Configuración: Busca el campo Allowed Origins. Borra el asterisco (*) y escribe tu dominio real (ej: https://da1motors.com).
+
+Por qué: Esto evita que un hacker copie tus llaves y monte una web falsa para intentar engañar a tus clientes o saturar tu base de datos.
+
+2. Blindar el Storage (Las imágenes de los coches)
+Tu script protege la tabla vehiculo_imagenes, pero no protege los archivos físicos (las fotos) que están en las carpetas (Buckets) de Supabase.
+
+Qué hacer: Ve a la sección Storage en el menú de la izquierda.
+
+Configuración: Selecciona tu Bucket (donde subes las fotos de los coches) y haz clic en Policies.
+
+Acción: Activa el RLS también ahí. Debes crear una política para que el público pueda VER (SELECT) pero solo tú o el admin pueda SUBIR (INSERT) o BORRAR.
+
+3. Seguridad de Autenticación (Email y Fuerza Bruta)
+Tienes una tabla de perfiles que depende de que los usuarios se registren correctamente.
+
+Confirmación de Email: Ve a Authentication > Providers > Email. Asegúrate de que Confirm Email esté activado. Esto evita que te llenen la base de datos de usuarios falsos o bots.
+
+Límites de Velocidad (Rate Limits): En la misma sección, comprueba que los límites de intentos de login estén activos. Esto protege a tus clientes de ataques que intentan adivinar sus contraseñas en user.php.
+
+
+4. La "Llave Maestra" en PHP (conexion.php)
+Este es el único punto donde el script de SQL no te protege. Como vimos, tu archivo conexion.php se conecta directamente como "Dios" (usuario postgres) y se salta todas las reglas de RLS que acabas de escribir.
+
+Peligro: Si alguien consigue ver el contenido de ese archivo PHP, tiene la contraseña real de tu base de datos (iNEG4koQOtdzF1Z4).
+
+Solución:
+
+Asegúrate de que tu hosting tenga desactivada la opción de "mostrar archivos" si hay un error.
+
+Si puedes, mueve la contraseña a un archivo .env fuera de la carpeta pública de tu web.

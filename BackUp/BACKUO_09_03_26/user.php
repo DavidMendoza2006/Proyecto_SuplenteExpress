@@ -22,47 +22,35 @@
   <div class="da1-auth-wrap" id="authView" style="display: none;">
     <div class="da1-auth-glow"></div>
     <div class="da1-auth-card">
-  <div class="da1-auth-logo">DA1<span>MOTORS</span></div>
-  
-  <div class="da1-auth-tabs" id="authTabs">
-    <button class="da1-auth-tab active" onclick="switchAuthTab('login')">Iniciar sesión</button>
-    <button class="da1-auth-tab" onclick="switchAuthTab('register')">Crear cuenta</button>
-  </div>
-
-  <div class="da1-auth-form active" id="formLogin">
-    <div class="da1-field">
-      <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="tu@email.com">
+      <div class="da1-auth-logo">DA1<span>MOTORS</span></div>
+      <div class="da1-auth-subtitle">Accede a tu cuenta</div>
+      <div class="da1-auth-tabs">
+        <button class="da1-auth-tab active" onclick="switchAuthTab('login')">Iniciar sesión</button>
+        <button class="da1-auth-tab" onclick="switchAuthTab('register')">Crear cuenta</button>
+      </div>
+      <div class="da1-auth-form active" id="formLogin">
+        <div class="da1-field">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="tu@email.com">
+        </div>
+        <div class="da1-field">
+          <label>Contraseña</label>
+          <input type="password" id="loginPass" placeholder="••••••••">
+        </div>
+        <button class="da1-auth-btn" onclick="handleLogin()">Iniciar sesión</button>
+      </div>
+      <div class="da1-auth-form" id="formRegister">
+        <div class="da1-form-row">
+          <div class="da1-field"><label>Nombre</label><input type="text" id="regNombre" placeholder="Usuario"></div>
+          <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Contraseña">
+          </div>
+        </div>
+        <div class="da1-field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
+        <div class="da1-field"><label>Contraseña</label><input type="password" id="regPass"
+            placeholder="Mínimo 8 caracteres"></div>
+        <button class="da1-auth-btn" onclick="handleRegister()">Crear cuenta</button>
+      </div>
     </div>
-    <div class="da1-field">
-      <label>Contraseña</label>
-      <input type="password" id="loginPass" placeholder="••••••••">
-      <a href="#" onclick="handleResetRequest()" style="font-size: 10px; color: var(--gray); text-decoration: none; margin-top: 8px; text-align: right; display: block;">
-        ¿Olvidó su contraseña?
-      </a>
-    </div>
-    <button class="da1-auth-btn" onclick="handleLogin()">Iniciar sesión</button>
-  </div>
-
-  <div class="da1-auth-form" id="formRegister">
-    <div class="da1-form-row">
-      <div class="da1-field"><label>Nombre</label><input type="text" id="regNombre" placeholder="Tu nombre"></div>
-      <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Tus apellidos"></div>
-    </div>
-    <div class="da1-field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
-    <div class="da1-field"><label>Contraseña</label><input type="password" id="regPass" placeholder="Mínimo 8 caracteres"></div>
-    <button class="da1-auth-btn" onclick="handleRegister()">Crear cuenta</button>
-  </div>
-
-  <div class="da1-auth-form" id="formUpdatePassword" style="display: none;">
-    <div class="da1-auth-subtitle">Configura tu nueva contraseña</div>
-    <div class="da1-field">
-      <label>Nueva Contraseña</label>
-      <input type="password" id="newPassword" placeholder="Mínimo 8 caracteres">
-    </div>
-    <button class="da1-auth-btn" onclick="handleUpdatePassword()">Guardar nueva clave</button>
-  </div>
-</div>
   </div>
 
   <div id="profileView" style="display:none;">

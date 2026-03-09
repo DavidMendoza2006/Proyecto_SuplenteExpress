@@ -167,27 +167,9 @@ function renderProfileDynamic() {
 }
 
 function switchAuthTab(tab) {
-  const tabsContainer = document.getElementById('authTabs');
-  const fLogin = document.getElementById('formLogin');
-  const fRegister = document.getElementById('formRegister');
-  const fUpdate = document.getElementById('formUpdatePassword');
-
-  if (tab === 'update-password') {
-    tabsContainer.style.display = 'none';
-    fLogin.classList.remove('active');
-    fRegister.classList.remove('active');
-    fUpdate.style.display = 'flex'; 
-  } else {
-    tabsContainer.style.display = 'flex';
-    fUpdate.style.display = 'none';
-    
-    document.querySelectorAll('.da1-auth-tab').forEach((t, i) => { 
-      t.classList.toggle('active', (tab === 'login') === (i === 0)); 
-    });
-    
-    fLogin.classList.toggle('active', tab === 'login');
-    fRegister.classList.toggle('active', tab === 'register');
-  }
+  document.querySelectorAll('.da1-auth-tab').forEach((t, i) => { t.classList.toggle('active', (tab === 'login') === (i === 0)); });
+  document.getElementById('formLogin').classList.toggle('active', tab === 'login');
+  document.getElementById('formRegister').classList.toggle('active', tab !== 'login');
 }
 
 function switchTab(tab) {
@@ -250,54 +232,6 @@ function showToast(msg, isError = false) {
   clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
-
-async function handleResetRequest() {
-  const email = document.getElementById('loginEmail').value.trim();
-
-  if (!email) {
-    showToast('Introduce tu email para enviarte el enlace', true);
-    return;
-  }
-
-  showToast('Enviando instrucciones al correo...');
-
-  const { data, error } = await supabaseApp.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + window.location.pathname + '?tab=update-password',
-  });
-
-  if (error) {
-    showToast(error.message, true);
-  } else {
-    showToast('¡Revisa tu bandeja de entrada!');
-  }
-}
-async function handleUpdatePassword() {
-  const newPass = document.getElementById('newPassword').value;
-
-  if (newPass.length < 8) {
-    showToast('La contraseña debe tener al menos 8 caracteres', true);
-    return;
-  }
-
-  const { data, error } = await supabaseApp.auth.updateUser({
-    password: newPass
-  });
-
-  if (error) {
-    showToast(error.message, true);
-  } else {
-    showToast('Contraseña actualizada. Ya puedes entrar.');
-    setTimeout(() => window.location.href = 'user.php?tab=login', 2000);
-  }
-}
-
-supabaseApp.auth.onAuthStateChange((event, session) => {
-  if (event === "PASSWORD_RECOVERY") {
-
-    switchAuthTab('update-password'); 
-    showToast("Configure su nueva contraseña de acceso.");
-  }
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   initPage();
