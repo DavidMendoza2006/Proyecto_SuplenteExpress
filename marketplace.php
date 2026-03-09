@@ -18,18 +18,18 @@
 <body>
 
     <?php include 'header.php'; ?>
-    <main class="da1-main" style="padding-top: 0;">
 
+    <main class="da1-main" style="padding-top: 0;">
         <section class="da1-hero" style="height: 380px;">
             <div class="da1-hero-bg-wrap">
-                <img src="./img/PaginaCars/banner.png" alt="Lifestyle Merch" class="da1-hero-bg"
+                <img src="./img/PaginaMarketplace/banner_marketplace.png" alt="Lifestyle Merch" class="da1-hero-bg"
                     style="object-position: center 60%; filter: grayscale(20%);">
                 <div class="da1-hero-overlay"
                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.5), #0a0a0a);"></div>
             </div>
             <div class="da1-hero-content" style="padding-top: 80px;">
                 <p class="da1-breadcrumb">
-                    <a href="index.html">Home</a> <span class="da1-breadcrumb-sep">/</span> <strong>Marketplace</strong>
+                    <a href="index.php">Home</a> <span class="da1-breadcrumb-sep">/</span> <strong>Marketplace</strong>
                 </p>
                 <h1 class="da1-hero-title">
                     <span class="da1-hero-underline">Lifestyle & Merch.</span><br>
@@ -45,44 +45,46 @@
                     <div class="col-lg-3">
                         <div class="da1-sidebar">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h4 class="da1-sidebar-title m-0"><i class="bi bi-funnel-fill me-2 text-danger"></i>
-                                    Filtros</h4>
-                                <button class="btn btn-link text-muted p-0 text-decoration-none"
-                                    style="font-size: 0.8rem;">Limpiar</button>
+                                <h4 class="da1-sidebar-title m-0"><i class="bi bi-funnel-fill me-2 text-danger"></i> Filtros</h4>
+                                <button class="btn btn-link text-muted p-0 text-decoration-none" id="clearFilters" style="font-size: 0.8rem;">Limpiar</button>
                             </div>
 
                             <div class="da1-filter-group mb-4">
                                 <h5 class="da1-filter-heading">Categoría</h5>
+
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="catHotWheels" checked>
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="catAll" checked>
+                                    <label class="form-check-label" for="catAll">Todos los productos</label>
+                                </div>
+
+                                <div class="form-check da1-check">
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="catHotWheels">
                                     <label class="form-check-label" for="catHotWheels">Hot Wheels / 1:64</label>
                                 </div>
+
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="catLlaveros">
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="catLlaveros">
                                     <label class="form-check-label" for="catLlaveros">Llaveros</label>
                                 </div>
+
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="catApparel">
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="catApparel">
                                     <label class="form-check-label" for="catApparel">Apparel (Ropa)</label>
-                                </div>
-                                <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="catAccesorios">
-                                    <label class="form-check-label" for="catAccesorios">Accesorios</label>
                                 </div>
                             </div>
 
                             <div class="da1-filter-group mb-4">
                                 <h5 class="da1-filter-heading">Marca</h5>
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="brandMattel">
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="brandMattel">
                                     <label class="form-check-label" for="brandMattel">Hot Wheels Premium</label>
                                 </div>
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="brandMiniGT">
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="brandMiniGT">
                                     <label class="form-check-label" for="brandMiniGT">Mini GT</label>
                                 </div>
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="checkbox" id="brandDA1">
+                                    <input class="form-check-input filter-checkbox" type="checkbox" id="brandDA1">
                                     <label class="form-check-label" for="brandDA1">DA1 Originals</label>
                                 </div>
                             </div>
@@ -90,11 +92,11 @@
                             <div class="da1-filter-group">
                                 <h5 class="da1-filter-heading">Disponibilidad</h5>
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="radio" name="stock" id="stockAll" checked>
+                                    <input class="form-check-input filter-radio" type="radio" name="stock" id="stockAll" checked>
                                     <label class="form-check-label" for="stockAll">Ver Todos</label>
                                 </div>
                                 <div class="form-check da1-check">
-                                    <input class="form-check-input" type="radio" name="stock" id="stockIn">
+                                    <input class="form-check-input filter-radio" type="radio" name="stock" id="stockIn">
                                     <label class="form-check-label" for="stockIn">En Stock</label>
                                 </div>
                             </div>
@@ -103,247 +105,30 @@
                     </div>
 
                     <div class="col-lg-9">
-
-                        <div
-                            class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-dark">
-                            <span class="text-muted fw-bold"
-                                style="font-family: 'Rajdhani'; letter-spacing: 1px;">Mostrando 4 resultados</span>
-                            <select class="form-select da1-sort-select w-auto">
-                                <option>Novedades</option>
-                                <option>Precio: Menor a Mayor</option>
-                                <option>Precio: Mayor a Menor</option>
+                        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-dark">
+                            <span class="text-muted fw-bold" id="productCount" style="font-family: 'Rajdhani'; letter-spacing: 1px;">Cargando productos...</span>
+                            <select class="form-select da1-sort-select w-auto" id="sortSelect">
+                                <option value="new">Novedades</option>
+                                <option value="asc">Precio: Menor a Mayor</option>
+                                <option value="desc">Precio: Mayor a Menor</option>
                             </select>
                         </div>
 
-                        <div class="da1-grid da1-grid-shop">
-
-                            <article class="da1-card">
-                                <div class="da1-card-carousel" style="height: 220px; background: #0a0a0a;">
-                                    <img src="./img/PaginaCars/coches/Chiron/full.png" alt="Hot Wheels Nissan"
-                                        class="w-100 h-100" style="object-fit: contain; padding: 20px;">
-                                    <span class="da1-card-tag bg-primary border-primary">1:64 Premium</span>
-                                </div>
-                                <div class="da1-card-body">
-                                    <div class="da1-card-brand text-muted">
-                                        <i class="bi bi-car-front-fill da1-brand-icon"></i>
-                                        <span>Hot Wheels Car Culture</span>
-                                    </div>
-                                    <h3 class="da1-card-name fs-5 mt-1">Nissan Skyline GT-R (R34)</h3>
-                                    <div class="da1-card-meta mt-2">
-                                        <span><i class="bi bi-layers-fill"></i> Metal/Metal</span>
-                                        <span><i class="bi bi-record-circle-fill"></i> Real Riders</span>
-                                    </div>
-                                    <div class="da1-card-footer mt-3">
-                                        <div class="da1-card-price">
-                                            <span class="da1-currency">€</span>
-                                            <span class="da1-amount text-white">14.99</span>
-                                        </div>
-                                        <div class="da1-card-actions">
-                                            <button class="da1-card-buy btn-add-cart"><i
-                                                    class="bi bi-cart-plus me-1"></i> Añadir</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="da1-card">
-                                <div class="da1-card-carousel" style="height: 220px; background: #0a0a0a;">
-                                    <img src="./img/PaginaCars/coches/Porsche 918 Spyder/full.png" alt="Llavero Carbono"
-                                        class="w-100 h-100" style="object-fit: contain; padding: 20px;">
-                                    <span class="da1-card-tag bg-danger border-danger">Accesorio</span>
-                                </div>
-                                <div class="da1-card-body">
-                                    <div class="da1-card-brand text-muted">
-                                        <i class="bi bi-gem da1-brand-icon"></i>
-                                        <span>DA1 Originals</span>
-                                    </div>
-                                    <h3 class="da1-card-name fs-5 mt-1">Llavero Fibra de Carbono Real</h3>
-                                    <div class="da1-card-meta mt-2">
-                                        <span><i class="bi bi-hash"></i> Grabado láser</span>
-                                    </div>
-                                    <div class="da1-card-footer mt-3">
-                                        <div class="da1-card-price">
-                                            <span class="da1-currency">€</span>
-                                            <span class="da1-amount text-white">29.90</span>
-                                        </div>
-                                        <div class="da1-card-actions">
-                                            <button class="da1-card-buy btn-add-cart"><i
-                                                    class="bi bi-cart-plus me-1"></i> Añadir</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="da1-card" style="opacity: 0.7;">
-                                <div class="da1-card-carousel" style="height: 220px; background: #0a0a0a;">
-                                    <img src="./img/PaginaCars/coches/Ferrari 812 Competizione/full.png"
-                                        alt="Hot Wheels Bugatti" class="w-100 h-100"
-                                        style="object-fit: contain; padding: 20px; filter: grayscale(100%);">
-                                    <span class="da1-card-tag da1-tag-sold">Agotado</span>
-                                </div>
-                                <div class="da1-card-body">
-                                    <div class="da1-card-brand text-muted">
-                                        <i class="bi bi-car-front-fill da1-brand-icon"></i>
-                                        <span>Hot Wheels Elite 64</span>
-                                    </div>
-                                    <h3 class="da1-card-name fs-5 mt-1">Bugatti Chiron Pur Sport</h3>
-                                    <div class="da1-card-meta mt-2">
-                                        <span><i class="bi bi-star-fill text-warning"></i> Edición Limitada</span>
-                                    </div>
-                                    <div class="da1-card-footer mt-3">
-                                        <div class="da1-card-price">
-                                            <span class="da1-currency">€</span>
-                                            <span
-                                                class="da1-amount text-muted text-decoration-line-through">24.50</span>
-                                        </div>
-                                        <div class="da1-card-actions">
-                                            <button class="btn btn-outline-secondary btn-sm" disabled>Sin Stock</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="da1-card">
-                                <div class="da1-card-carousel" style="height: 220px; background: #0a0a0a;">
-                                    <img src="./img/PaginaCars/coches/MclarenP1/full.png" alt="Gorra DA1"
-                                        class="w-100 h-100" style="object-fit: contain; padding: 20px;">
-                                    <span class="da1-card-tag bg-dark border-secondary">Apparel</span>
-                                </div>
-                                <div class="da1-card-body">
-                                    <div class="da1-card-brand text-muted">
-                                        <i class="bi bi-tag-fill da1-brand-icon"></i>
-                                        <span>DA1 Originals</span>
-                                    </div>
-                                    <h3 class="da1-card-name fs-5 mt-1">Gorra DA1MOTORS Edition</h3>
-                                    <div class="da1-card-meta mt-2">
-                                        <span><i class="bi bi-scissors"></i> Algodón Premium</span>
-                                        <span><i class="bi bi-check-circle"></i> Talla Única</span>
-                                    </div>
-                                    <div class="da1-card-footer mt-3">
-                                        <div class="da1-card-price">
-                                            <span class="da1-currency">€</span>
-                                            <span class="da1-amount text-white">35.00</span>
-                                        </div>
-                                        <div class="da1-card-actions">
-                                            <button class="da1-card-buy btn-add-cart"><i
-                                                    class="bi bi-cart-plus me-1"></i> Añadir</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
+                        <div class="da1-grid da1-grid-shop" id="shopGrid">
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
-
     </main>
 
-    <footer id="da1-footer">
+    <?php include 'footer.php'; ?>
 
-        <div class="footer-newsletter">
-            <div class="newsletter-copy">
-                <span class="newsletter-tag">Newsletter exclusivo</span>
-                <h3 class="newsletter-title">Primero en saber. Primero en comprar.</h3>
-                <p class="newsletter-subtitle">Nuevas llegadas, subastas privadas y ofertas solo para suscriptores.</p>
-            </div>
-            <div class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="tu@email.com">
-                <button class="newsletter-btn">Suscribirme</button>
-            </div>
-        </div>
-
-        <div class="footer-grid">
-            <div class="footer-col">
-                <a href="#" class="footer-brand"><span>DA1</span>MOTORS</a>
-                <p class="footer-desc">
-                    Especialistas en vehículos de alta gama y superdeportivos.
-                    Más de 847 vehículos vendidos en 38 países desde 2018.
-                    Autenticidad, discreción y resultados.
-                </p>
-                <div class="footer-seals">
-                    <span class="footer-seal"><i class="bi bi-shield-fill-check"></i> Verificado</span>
-                    <span class="footer-seal"><i class="bi bi-award-fill"></i> Premium</span>
-                    <span class="footer-seal"><i class="bi bi-globe2"></i> Internacional</span>
-                </div>
-            </div>
-            <div class="footer-col">
-                <p class="footer-col-title"><i class="bi bi-car-front-fill"></i> Vehículos</p>
-                <ul class="footer-links">
-                    <li><a href="#">Coches disponibles <span class="link-badge">New</span></a></li>
-                    <li><a href="#">Coches vendidos</a></li>
-                    <li><a href="#">MarketPlace</a></li>
-                    <li><a href="#">Comparador</a></li>
-                    <li><a href="#">Fichas técnicas</a></li>
-                    <li><a href="#">Vender mi coche</a></li>
-                    <li><a href="#">Matrículas privadas</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <p class="footer-col-title"><i class="bi bi-building-fill"></i> Empresa</p>
-                <ul class="footer-links">
-                    <li><a href="#">Sobre DA1MOTORS</a></li>
-                    <li><a href="#">Resultados &amp; Stats</a></li>
-                    <li><a href="#">Nuestro equipo</a></li>
-                    <li><a href="#">Prensa &amp; Media</a></li>
-                    <li><a href="#">Trabaja con nosotros <span class="link-badge">+3</span></a></li>
-                    <li><a href="#">Partners &amp; Marcas</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <p class="footer-col-title"><i class="bi bi-headset"></i> Contacto</p>
-                <div class="footer-contact-item">
-                    <i class="bi bi-geo-alt-fill"></i>
-                    <span>Calle Gran Vía 42, 28013 Madrid, España</span>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="bi bi-telephone-fill"></i>
-                    <a href="tel:+34900000000">+34 900 000 000</a>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="bi bi-envelope-fill"></i>
-                    <a href="mailto:info@da1motors.com">info@da1motors.com</a>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="bi bi-clock-fill"></i>
-                    <span>Lun–Sáb · 09:00 – 20:00</span>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="bi bi-whatsapp"></i>
-                    <a href="#">WhatsApp directo 24/7</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-social">
-            <span class="social-label">Síguenos</span>
-            <div class="social-links">
-                <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
-                <a href="#" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
-                <a href="#" class="social-btn" title="X / Twitter"><i class="bi bi-twitter-x"></i></a>
-                <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
-            </div>
-            <span class="social-tagline">"Where performance meets perfection."</span>
-        </div>
-
-        <div class="footer-legal">
-            <span class="footer-copy">
-                © 2026 <span>DA1MOTORS</span> · Todos los derechos reservados.
-            </span>
-            <div class="footer-legal-links">
-                <a href="#">Política de privacidad</a>
-                <a href="#">Aviso legal</a>
-                <a href="#">Cookies</a>
-                <a href="#">Términos de uso</a>
-            </div>
-        </div>
-
-    </footer>
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="./js/marketplace.js"></script>
 </body>
 
