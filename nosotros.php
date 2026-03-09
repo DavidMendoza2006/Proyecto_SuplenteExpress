@@ -100,6 +100,7 @@
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./js/user.js"></script>
   <script src="./js/nosotros.js"></script>
+    <script src="./js/chat.js"></script>
 </body>
 
 </html>

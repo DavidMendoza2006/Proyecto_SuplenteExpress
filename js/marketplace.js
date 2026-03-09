@@ -1,28 +1,12 @@
 document.addEventListener('DOMContentLoaded', async function () {
-
-    // 1. THEME TOGGLE (Modo Oscuro/Claro)
-    const toggle = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
-    const htmlEl = document.documentElement;
-
-    if (toggle) {
-        toggle.addEventListener('click', () => {
-            const isDark = htmlEl.getAttribute('data-theme') === 'dark';
-            htmlEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            if (icon) icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-        });
-    }
-
-    // 2. INICIALIZAR SUPABASE
-    const supabaseUrl = 'https://pmgliohbadapwffnixeu.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtZ2xpb2hiYWRhcHdmZm5peGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MzQwNTgsImV4cCI6MjA4ODIxMDA1OH0.b7xMDD9ZPJAaFOjW-bRstuPnkF-Mm7y9CCJ-F_Gzh8g';
+    const supabaseUrl = 'https://xqtxmceatjupoasnllot.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdHhtY2VhdGp1cG9hc25sbG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTQzOTgsImV4cCI6MjA4ODYzMDM5OH0.imFG8M-A73za3bVwwWfTLUkV_0n15N8kwx0tMqk53jo';
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let productsDB = [];
     const shopGrid = document.getElementById('shopGrid');
     const productCount = document.getElementById('productCount');
 
-    // 3. DESCARGAR DATOS DE SUPABASE
     async function fetchProductos() {
         if (!shopGrid) return;
 
@@ -49,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         filterProducts();
     }
 
-    // 4. FUNCIÓN PARA DIBUJAR TARJETAS
     function renderProducts(lista) {
         if (!shopGrid) return;
         shopGrid.innerHTML = '';
@@ -100,20 +83,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (productCount) productCount.textContent = `Mostrando ${lista.length} resultados`;
     }
 
-    // Helper para leer checks
     function isChecked(id) {
         const el = document.getElementById(id);
         return el ? el.checked : false;
     }
 
-    // 5. FUNCIÓN DE FILTRADO (ACTUALIZADA CON "TODOS")
     function filterProducts() {
         try {
             const catAll = isChecked('catAll');
 
-            // Recopilamos qué categorías están marcadas
             const activeCats = [];
-            // Si "Todos" está marcado, no filtramos por categoría (array vacío)
             if (!catAll) {
                 if (isChecked('catHotWheels')) activeCats.push("Hot Wheels / 1:64");
                 if (isChecked('catLlaveros')) activeCats.push("Llaveros");
@@ -129,19 +108,15 @@ document.addEventListener('DOMContentLoaded', async function () {
             const mustBeInStock = isChecked('stockIn');
 
             let filtrados = productsDB.filter(prod => {
-                // Lógica de Categoría: Si "Todos" es true o no hay ninguna marcada, catOk es true
                 let catOk = catAll || activeCats.length === 0 || activeCats.includes(prod.categoria);
 
-                // Lógica de Marcas
                 let brandOk = activeBrands.length === 0 || activeBrands.includes(prod.marca);
 
-                // Lógica de Stock
                 let stockOk = mustBeInStock ? prod.en_stock === true : true;
 
                 return catOk && brandOk && stockOk;
             });
 
-            // Ordenar
             const sortVal = document.getElementById('sortSelect')?.value || 'new';
             if (sortVal === 'asc') filtrados.sort((a, b) => parseFloat(a.precio_eur) - parseFloat(b.precio_eur));
             if (sortVal === 'desc') filtrados.sort((a, b) => parseFloat(b.precio_eur) - parseFloat(a.precio_eur));
@@ -152,32 +127,26 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // 6. EVENT LISTENERS Y LÓGICA DE COMPORTAMIENTO
 
-    // Comportamiento de "Todos"
     const catAllBtn = document.getElementById('catAll');
     if (catAllBtn) {
         catAllBtn.addEventListener('change', function () {
             if (this.checked) {
-                // Si marco "Todos", desmarco las demás
                 document.querySelectorAll('#catHotWheels, #catLlaveros, #catApparel, #catAccesorios').forEach(cb => cb.checked = false);
             }
             filterProducts();
         });
     }
 
-    // Comportamiento de categorías individuales
     document.querySelectorAll('#catHotWheels, #catLlaveros, #catApparel, #catAccesorios').forEach(cb => {
         cb.addEventListener('change', function () {
             if (this.checked && catAllBtn) {
-                // Si marco una categoría, desmarco "Todos"
                 catAllBtn.checked = false;
             }
             filterProducts();
         });
     });
 
-    // Otros filtros
     document.querySelectorAll('.filter-radio, #brandMattel, #brandMiniGT, #brandDA1').forEach(input => {
         input.addEventListener('change', filterProducts);
     });
@@ -198,7 +167,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // 7. LÓGICA DEL CARRITO
     const cartBadge = document.getElementById('cartBadge');
     let cartCount = 0;
 
@@ -222,8 +190,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             }, 2000);
         });
     }
-
-    // 🚀 INICIAR LA CONEXIÓN A SUPABASE
     await fetchProductos();
 
 });

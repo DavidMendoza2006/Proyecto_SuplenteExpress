@@ -22,16 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll(".da1-filter-chevron").forEach(c => c.classList.remove("rotated"));
   });
 
-  const toggle = document.getElementById('themeToggle');
-  const icon = document.getElementById('themeIcon');
-  const htmlEl = document.documentElement;
-
-  toggle.addEventListener('click', () => {
-    const isDark = htmlEl.getAttribute('data-theme') === 'dark';
-    htmlEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-  });
-
   document.querySelectorAll('.da1-card').forEach(card => {
     const track = card.querySelector('.da1-carousel-track');
     const slides = card.querySelectorAll('.da1-carousel-slide');

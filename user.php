@@ -265,6 +265,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="./js/user.js"></script>
+  <script src="./js/chat.js"></script>
 </body>
 
 </html>

@@ -7,18 +7,6 @@ let baseTotalInvested = 0;
 let userKpis = { pedidos: 0, favoritos: 0, gastado: 0 };
 
 async function initPage() {
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-  const htmlEl = document.documentElement;
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
-      htmlEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-    });
-  }
-
   const urlParams = new URLSearchParams(window.location.search);
   const requestedTab = urlParams.get('tab');
 
@@ -245,5 +233,31 @@ function showToast(msg, isError = false) {
   _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-document.addEventListener('DOMContentLoaded', initPage);
+document.addEventListener('DOMContentLoaded', () => {
+  initPage();
+
+  const toggle = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+  const htmlEl = document.documentElement;
+
+  const temaGuardado = localStorage.getItem('da1_theme');
+  if (temaGuardado) {
+    htmlEl.setAttribute('data-theme', temaGuardado);
+    if (icon) icon.className = temaGuardado === 'dark' ? 'bi bi-moon-stars-fill' : 'bi bi-sun-fill';
+  }
+
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+      const nuevoTema = isDark ? 'light' : 'dark';
+      
+      htmlEl.setAttribute('data-theme', nuevoTema);
+      localStorage.setItem('da1_theme', nuevoTema); 
+      
+      if (icon) icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+    });
+  }
+});
+
 

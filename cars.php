@@ -763,6 +763,7 @@
   <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="./js/user.js"></script>
   <script src="./js/cars.js"></script>
+  <script src="./js/chat.js"></script>
   <script src="./bootstrap/js/bootstrap.js"></script>
 </body>
 

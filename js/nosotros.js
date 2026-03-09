@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
-  const htmlEl = document.documentElement;
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
-      htmlEl.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-    });
-  }
-
   const heroImg = document.querySelector('.da1-parallax-img');
   window.addEventListener('scroll', () => {
     if(heroImg) {

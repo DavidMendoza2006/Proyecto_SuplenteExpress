@@ -80,19 +80,19 @@
             <i class="bi bi-person-circle"></i>
           </a>
 
-         <div class="da1-user-menu">
+          <div class="da1-user-menu">
             <a class="da1-user-item auth-guest" href="user.php?tab=login">
               <i class="bi bi-box-arrow-in-right"></i> Iniciar sesión
             </a>
             <a class="da1-user-item auth-guest" href="user.php?tab=register">
               <i class="bi bi-person-plus"></i> Registrarse
             </a>
-            
+
             <a class="da1-user-item auth-user" href="user.php" style="display: none;">
               <i class="bi bi-person-circle"></i> Mi Perfil
             </a>
             <div class="da1-user-divider auth-user" style="display: none;"></div>
-            
+
             <a class="da1-user-item auth-user" href="#" onclick="handleLogout(true); return false;" style="display: none;">
               <i class="bi bi-box-arrow-right"></i> Cerrar sesión
             </a>

@@ -124,17 +124,9 @@
     </main>
 
     <?php include 'footer.php'; ?>
-<<<<<<< HEAD
-
-    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-=======
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./js/user.js"></script>
->>>>>>> a45f38045cf6f7eaae1b74d2006387e9cf7644e9
     <script src="./js/marketplace.js"></script>
 </body>
 
