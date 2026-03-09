@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-$host = "aws-1-eu-west-1.pooler.supabase.com"; 
+$host = "aws-1-eu-north-1.pooler.supabase.com"; 
 
 $port = "5432";
 
 $dbname = "postgres";
 
-$user = "postgres.pmgliohbadapwffnixeu"; 
+$user = "postgres.xqtxmceatjupoasnllot"; 
 
-$password = "YoqlHWdlELZeC9do"; 
+$password = "iNEG4koQOtdzF1Z4"; 
 
 $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password;sslmode=require";
 
@@ -21,3 +21,4 @@ try {
     die(json_encode(["status" => "error", "message" => "Error BD: " . $e->getMessage()]));
 }
 ?>
+
