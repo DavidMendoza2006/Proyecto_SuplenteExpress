@@ -82,7 +82,7 @@
 
     <main class="da1-profile-wrap">
       <section class="da1-avatar-block">
-        <div class="da1-avatar-ring"><i class="bi bi-person-fill"></i></div>
+        <div class="da1-avatar-ring" id="avatarContainer"><i class="bi bi-person-fill"></i></div>
         <div class="da1-avatar-info">
           <div class="da1-avatar-name" id="profileName">—</div>
           <div class="da1-avatar-role" id="profileRole">CLIENTE PREMIUM</div>
