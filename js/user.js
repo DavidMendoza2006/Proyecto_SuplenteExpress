@@ -49,21 +49,32 @@ async function handleRegister() {
   const pass = document.getElementById('regPass')?.value;
 
   if (!nombre || !apellidos || !email || !pass) {
-    showToast('Rellena todos los campos', true); return;
+    showToast('Rellena todos los campos', true); 
+    return;
   }
 
-  showToast('Creando cuenta...', false);
+  if (pass.length < 8) {
+    showToast('La seguridad es lo primero: mínimo 8 caracteres', true);
+    return;
+  }
+
+  showToast('Creando cuenta VIP...', false);
+  
   const { data, error } = await supabaseApp.auth.signUp({
-    email: email, password: pass, options: { data: { nombre: nombre, apellidos: apellidos } }
+    email: email, 
+    password: pass, 
+    options: { 
+      data: { nombre: nombre, apellidos: apellidos } 
+    }
   });
 
-  if (error) { showToast(error.message, true); }
-  else {
-    showToast('¡Cuenta creada! Inicia sesión.', false);
+  if (error) { 
+    showToast(error.message, true); 
+  } else {
+    showToast('¡Cuenta creada! Revisa tu email para confirmar.', false);
     setTimeout(() => switchAuthTab('login'), 2000);
   }
 }
-
 async function handleLogin() {
   const email = document.getElementById('loginEmail').value.trim();
   const pass = document.getElementById('loginPass').value;
@@ -140,32 +151,41 @@ async function cargarPerfilReal() {
 }
 
 function renderProfileDynamic() {
-  document.getElementById('authView').style.display = 'none';
-  document.getElementById('profileView').style.display = 'block';
-  if (currentUser) {
-    document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || '');
-    document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase();
-    if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre;
-    if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || '';
+  document.getElementById('authView').style.display = 'none'; //
+  document.getElementById('profileView').style.display = 'block'; //
 
-    const fecha = new Date(currentUser.creado_en || Date.now());
-    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
+  if (currentUser) {
+    const tgl = document.getElementById('tgl2FA');
+    if (tgl) {
+      tgl.checked = (currentUser.f2a_activo === true || currentUser.f2a_activo === "true");
+    }
+
+    document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || ''); //
+    document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase(); //
+    
+    if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre; //
+    if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || ''; //
+
+    const fecha = new Date(currentUser.creado_en || Date.now()); //
+    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }); //
   }
+
   if (document.getElementById('cfgEmail')) {
     supabaseApp.auth.getSession().then(({ data }) => {
-      if (data.session) document.getElementById('cfgEmail').value = data.session.user.email;
+      if (data.session) document.getElementById('cfgEmail').value = data.session.user.email; //
     });
   }
 
-  if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0;
-  if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0;
-  if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0;
-  if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0;
+  // 6. Actualización de Badges y KPIs
+  if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0; //
+  if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0; //
+  if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0; //
+  if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0; //
 
-  switchTab('dashboard');
-  updatePrices();
+  // 7. Tab por defecto y precios
+  switchTab('dashboard'); //
+  updatePrices(); //
 }
-
 function switchAuthTab(tab) {
   const tabsContainer = document.getElementById('authTabs');
   const fLogin = document.getElementById('formLogin');
@@ -298,7 +318,199 @@ supabaseApp.auth.onAuthStateChange((event, session) => {
     showToast("Configure su nueva contraseña de acceso.");
   }
 });
+async function updateProfile() {
+  const nombre = document.getElementById('cfgNombre').value.trim();
+  const apellidos = document.getElementById('cfgApellidos').value.trim();
 
+  if (!nombre) {
+    showToast('El nombre es obligatorio', true);
+    return;
+  }
+
+  showToast('Sincronizando con DA1 Cloud...');
+
+  const { error } = await supabaseApp
+    .from('perfiles')
+    .update({ 
+      nombre: nombre, 
+      apellidos: apellidos 
+    })
+    .eq('id', currentUser.id); 
+
+  if (error) {
+    showToast('Error al guardar: ' + error.message, true);
+  } else {
+    currentUser.nombre = nombre;
+    currentUser.apellidos = apellidos;
+
+    const cache = JSON.parse(localStorage.getItem('da1_perfil_cache') || '{}');
+    cache.perfil = currentUser;
+    localStorage.setItem('da1_perfil_cache', JSON.stringify(cache));
+
+    renderProfileDynamic(); 
+    
+    showToast('¡Perfil actualizado correctamente!');
+  }
+}
+async function handleEmailUpdate() {
+  const nuevoEmail = document.getElementById('cfgEmail').value.trim();
+
+  const { data: { session } } = await supabaseApp.auth.getSession();
+  if (nuevoEmail === session.user.email) {
+    showToast('El email es el mismo que el actual', true);
+    return;
+  }
+
+  showToast('Enviando códigos de verificación...');
+
+  const { data, error } = await supabaseApp.auth.updateUser({ 
+    email: nuevoEmail 
+  });
+
+  if (error) {
+    showToast(error.message, true);
+  } else {
+    showToast('¡Petición enviada! Revisa tus bandejas de entrada para confirmar.');
+  }
+}
+async function toggle2FA() {
+  const isChecked = document.getElementById('tgl2FA').checked;
+  
+  showToast(isChecked ? 'Activando protección 2FA...' : 'Desactivando 2FA...');
+
+  const { error } = await supabaseApp
+    .from('perfiles')
+    .update({ f2a_activo: isChecked })
+    .eq('id', currentUser.id);
+
+  if (error) {
+    showToast('Error al actualizar seguridad', true);
+    document.getElementById('tgl2FA').checked = !isChecked;
+  } else {
+    currentUser.f2a_activo = isChecked;
+    showToast(isChecked ? '2FA habilitado en base de datos' : '2FA deshabilitado');
+  }
+}
+
+async function changePasswordFromSettings() {
+  const newPass = document.getElementById('newPassSettings').value;
+
+  if (newPass.length < 8) {
+    showToast('La contraseña debe tener al menos 8 caracteres', true);
+    return;
+  }
+
+  showToast('Actualizando credenciales...');
+
+  const { data, error } = await supabaseApp.auth.updateUser({
+    password: newPass
+  });
+
+  if (error) {
+    showToast(error.message, true);
+  } else {
+    showToast('¡Contraseña actualizada con éxito!');
+    document.getElementById('newPassSettings').value = ''; 
+  }
+}
+async function confirmDelete() {
+  const confirmacion = confirm("¿ESTÁS SEGURO? Esta acción es irreversible y perderás todos tus datos en DA1MOTORS.");
+  
+  if (confirmacion) {
+    showToast("Procesando eliminación definitiva...", true);
+
+    try {
+      const { data: { session } } = await supabaseApp.auth.getSession();
+      
+      if (!session) return;
+
+      const response = await fetch('eliminar_cuenta.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: session.user.id })
+      });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        await supabaseApp.auth.signOut();
+        localStorage.clear();
+        showToast("Cuenta eliminada. Gracias por haber formado parte de DA1.");
+        setTimeout(() => window.location.href = 'index.php', 2000);
+      } else {
+        showToast("Error de servidor: " + result.message, true);
+      }
+    } catch (error) {
+      showToast("Error en la conexión", true);
+    }
+  }
+}
+const stripe = Stripe('pk_test_51T96SRAwHprUZMBwHXYs8XUo4jmfe8ReqqvnfID1b2LHUv46sPgToSQcZWuRdHS5ORbIdxpTXxO4OXlky5GBR1Rz00jqb7hkdW'); 
+const elements = stripe.elements();
+const cardElement = elements.create('card', {
+    style: {
+        base: {
+            color: '#ffffff',
+            fontFamily: 'Rajdhani, sans-serif',
+            fontSize: '16px',
+            '::placeholder': { color: '#888888' },
+        }
+    }
+});
+
+async function abrirModalPago() {
+    showToast("Iniciando conexión segura...");
+    
+    try {
+        const response = await fetch('crear_setup_intent.php');
+        const { clientSecret } = await response.json();
+
+        cardElement.mount('#card-element');
+
+        document.getElementById('payment-form').onsubmit = async (e) => {
+            e.preventDefault();
+            showToast("Verificando tarjeta con Stripe...");
+
+            const { setupIntent, error } = await stripe.confirmCardSetup(clientSecret, {
+                payment_method: { card: cardElement }
+            });
+
+            if (error) {
+                showToast(error.message, true);
+            } else {
+                await vincularClienteStripe(setupIntent.payment_method);
+            }
+        };
+    } catch (err) {
+        showToast("Error de conexión con la pasarela", true);
+    }
+}
+async function vincularClienteStripe(paymentMethodId) {
+    showToast("Vinculando billetera DA1...");
+
+    const response = await fetch('api_pagos.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: currentUser.email, user_id: currentUser.id })
+    });
+
+    const result = await response.json();
+
+    if (result.status === 'success') {
+        const { error } = await supabaseApp
+            .from('perfiles')
+            .update({ stripe_customer_id: result.customer_id })
+            .eq('id', currentUser.id);
+
+        if (!error) {
+            showToast("¡Billetera configurada con éxito! 🏎️💳");
+            currentUser.stripe_customer_id = result.customer_id;
+            bootstrap.Modal.getInstance(document.getElementById('modalStripe')).hide();
+        }
+    } else {
+        showToast("Error en el registro de pago: " + result.message, true);
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
   initPage();
 

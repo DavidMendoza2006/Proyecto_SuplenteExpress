@@ -22,47 +22,47 @@
   <div class="da1-auth-wrap" id="authView" style="display: none;">
     <div class="da1-auth-glow"></div>
     <div class="da1-auth-card">
-  <div class="da1-auth-logo">DA1<span>MOTORS</span></div>
-  
-  <div class="da1-auth-tabs" id="authTabs">
-    <button class="da1-auth-tab active" onclick="switchAuthTab('login')">Iniciar sesión</button>
-    <button class="da1-auth-tab" onclick="switchAuthTab('register')">Crear cuenta</button>
-  </div>
+      <div class="da1-auth-logo">DA1<span>MOTORS</span></div>
 
-  <div class="da1-auth-form active" id="formLogin">
-    <div class="da1-field">
-      <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="tu@email.com">
-    </div>
-    <div class="da1-field">
-      <label>Contraseña</label>
-      <input type="password" id="loginPass" placeholder="••••••••">
-      <a href="#" onclick="handleResetRequest()" style="font-size: 10px; color: var(--gray); text-decoration: none; margin-top: 8px; text-align: right; display: block;">
-        ¿Olvidó su contraseña?
-      </a>
-    </div>
-    <button class="da1-auth-btn" onclick="handleLogin()">Iniciar sesión</button>
-  </div>
+      <div class="da1-auth-tabs" id="authTabs">
+        <button class="da1-auth-tab active" onclick="switchAuthTab('login')">Iniciar sesión</button>
+        <button class="da1-auth-tab" onclick="switchAuthTab('register')">Crear cuenta</button>
+      </div>
 
-  <div class="da1-auth-form" id="formRegister">
-    <div class="da1-form-row">
-      <div class="da1-field"><label>Nombre</label><input type="text" id="regNombre" placeholder="Tu nombre"></div>
-      <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Tus apellidos"></div>
-    </div>
-    <div class="da1-field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
-    <div class="da1-field"><label>Contraseña</label><input type="password" id="regPass" placeholder="Mínimo 8 caracteres"></div>
-    <button class="da1-auth-btn" onclick="handleRegister()">Crear cuenta</button>
-  </div>
+      <div class="da1-auth-form active" id="formLogin">
+        <div class="da1-field">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="tu@email.com">
+        </div>
+        <div class="da1-field">
+          <label>Contraseña</label>
+          <input type="password" id="loginPass" placeholder="••••••••">
+          <a href="#" onclick="handleResetRequest()" style="font-size: 10px; color: var(--gray); text-decoration: none; margin-top: 8px; text-align: right; display: block;">
+            ¿Olvidó su contraseña?
+          </a>
+        </div>
+        <button class="da1-auth-btn" onclick="handleLogin()">Iniciar sesión</button>
+      </div>
 
-  <div class="da1-auth-form" id="formUpdatePassword" style="display: none;">
-    <div class="da1-auth-subtitle">Configura tu nueva contraseña</div>
-    <div class="da1-field">
-      <label>Nueva Contraseña</label>
-      <input type="password" id="newPassword" placeholder="Mínimo 8 caracteres">
+      <div class="da1-auth-form" id="formRegister">
+        <div class="da1-form-row">
+          <div class="da1-field"><label>Nombre</label><input type="text" id="regNombre" placeholder="Tu nombre"></div>
+          <div class="da1-field"><label>Apellidos</label><input type="text" id="regApellidos" placeholder="Tus apellidos"></div>
+        </div>
+        <div class="da1-field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
+        <div class="da1-field"><label>Contraseña</label><input type="password" id="regPass" placeholder="Mínimo 8 caracteres"></div>
+        <button class="da1-auth-btn" onclick="handleRegister()">Crear cuenta</button>
+      </div>
+
+      <div class="da1-auth-form" id="formUpdatePassword" style="display: none;">
+        <div class="da1-auth-subtitle">Configura tu nueva contraseña</div>
+        <div class="da1-field">
+          <label>Nueva Contraseña</label>
+          <input type="password" id="newPassword" placeholder="Mínimo 8 caracteres">
+        </div>
+        <button class="da1-auth-btn" onclick="handleUpdatePassword()">Guardar nueva clave</button>
+      </div>
     </div>
-    <button class="da1-auth-btn" onclick="handleUpdatePassword()">Guardar nueva clave</button>
-  </div>
-</div>
   </div>
 
   <div id="profileView" style="display:none;">
@@ -183,23 +183,34 @@
               <div class="da1-field"><label>Nombre</label><input type="text" id="cfgNombre" value=""></div>
               <div class="da1-field"><label>Apellidos</label><input type="text" id="cfgApellidos" value=""></div>
             </div>
-            <div class="da1-form-row single">
-              <div class="da1-field"><label>Email</label><input type="email" id="cfgEmail" value="" readonly
-                  style="opacity:0.7; cursor:not-allowed;"></div>
+            <div class="da1-field">
+              <label>Email</label>
+              <div style="display: flex; gap: 10px;">
+                <input type="email" id="cfgEmail" value="" style="flex-grow: 1;">
+                <button class="da1-btn da1-btn-ghost" onclick="handleEmailUpdate()" style="padding: 0 15px;">
+                  <i class="bi bi-envelope-check"></i>
+                </button>
+              </div>
+              <small style="font-size: 10px; color: var(--gray); margin-top: 5px; display: block;">
+                Se enviará un código de verificación a ambas direcciones.
+              </small>
             </div>
-            <button class="da1-btn da1-btn-red" onclick="showToast('Perfil actualizado')" style="margin-top:8px;">
+            <button class="da1-btn da1-btn-red" onclick="updateProfile()" style="margin-top:8px;">
               <i class="bi bi-floppy-fill"></i> Guardar cambios
             </button>
           </article>
 
           <article class="da1-settings-block">
             <h2 class="da1-sblock-title"><i class="bi bi-wallet2"></i> Billetera y Pagos</h2>
-            <div class="da1-wallet-list"
-              style="min-height: 130px; display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px;">
-              <span style="color: var(--gray); font-size: 13px;">No hay métodos de pago guardados</span>
+
+            <div id="walletList" class="da1-wallet-list" style="min-height: 100px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; align-items: center; justify-content: center; border: 1px dashed rgba(255,255,255,0.1); border-radius: 8px; padding: 40px;">
+                <span style="color: var(--gray); font-size: 13px;">No hay métodos de pago guardados</span>
+              </div>
             </div>
-            <button class="da1-btn da1-btn-ghost" style="margin-top:16px;width:100%;justify-content:center;"
-              onclick="showToast('Añadir método próximamente...')">
+
+            <button class="da1-btn da1-btn-ghost" style="margin-top:16px; width:100%; justify-content:center;"
+              onclick="abrirModalPago()" data-bs-toggle="modal" data-bs-target="#modalStripe">
               <i class="bi bi-plus-lg"></i> Añadir método de pago
             </button>
           </article>
@@ -234,22 +245,29 @@
 
           <article class="da1-settings-block">
             <h2 class="da1-sblock-title"><i class="bi bi-shield-lock-fill"></i> Seguridad</h2>
+
             <div class="da1-toggle-row" style="margin-bottom:16px;">
               <div>
                 <div class="da1-toggle-name">Autenticación 2FA</div>
                 <div class="da1-toggle-desc">Capa extra de seguridad con Google Authenticator</div>
               </div>
-              <label class="da1-toggle"><input type="checkbox"><span class="da1-toggle-slider"></span></label>
+              <label class="da1-toggle">
+                <input type="checkbox" id="tgl2FA" onchange="toggle2FA()">
+                <span class="da1-toggle-slider"></span>
+              </label>
             </div>
+
             <div class="da1-form-row single">
-              <div class="da1-field"><label>Nueva contraseña</label><input type="password"
-                  placeholder="Mínimo 8 caracteres"></div>
+              <div class="da1-field">
+                <label>Nueva contraseña</label>
+                <input type="password" id="newPassSettings" placeholder="Mínimo 8 caracteres">
+              </div>
             </div>
-            <button class="da1-btn da1-btn-ghost" style="margin-top:8px;" onclick="showToast('Contraseña actualizada')">
+
+            <button class="da1-btn da1-btn-ghost" style="margin-top:8px;" onclick="changePasswordFromSettings()">
               <i class="bi bi-lock-fill"></i> Actualizar contraseña
             </button>
           </article>
-
           <article class="da1-settings-block full" style="padding:24px;">
             <h2 class="da1-sblock-title" style="color:#EF4444;border-bottom-color:rgba(239,68,68,.2);">
               <i class="bi bi-exclamation-triangle-fill" style="color:#EF4444;"></i> Zona de peligro
@@ -272,12 +290,46 @@
     <i class="bi bi-check-circle-fill"></i>
     <span id="toastMsg">Acción completada</span>
   </div>
+  <div class="modal fade" id="modalStripe" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background: #111; border: 1px solid #222; border-top: 4px solid #e8001c; color: white;">
+        <div class="modal-header" style="border-bottom: 1px solid #222;">
+          <h5 class="modal-title" style="font-family: 'Rajdhani'; letter-spacing: 2px; text-transform: uppercase;">
+            Vincular Nueva Tarjeta
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="padding: 24px;">
+          <form id="payment-form">
+            <div class="da1-field" style="margin-bottom: 20px;">
+              <label style="color: #888; font-size: 12px; margin-bottom: 10px; display: block;">Datos de la tarjeta (Cifrado Stripe)</label>
+              <div id="card-element" style="background: #0a0a0a; padding: 15px; border: 1px solid #333; border-radius: 4px;"></div>
+              <div id="card-errors" role="alert" style="color: #EF4444; font-size: 11px; margin-top: 10px; font-family: 'Inter';"></div>
+            </div>
+
+            <button id="submit-card" class="da1-auth-btn" style="width: 100%; margin-top: 10px;">
+              <i class="bi bi-shield-lock-fill"></i> Guardar Tarjeta de Forma Segura
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #222; justify-content: center;">
+          <p style="font-size: 10px; color: #555; text-align: center;">
+            <i class="bi bi-patch-check"></i> Conexión cifrada de grado militar. DA1MOTORS no almacena sus datos bancarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <?php include 'footer.php'; ?>
+  <script src="https://js.stripe.com/v3/"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="./js/user.js"></script>
   <script src="./js/chat.js"></script>
+
+
 </body>
 
 </html>
