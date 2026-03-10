@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 console.warn(`Error parseando meta_info del producto ID ${prod.id}`);
             }
 
-            let isStock = prod.en_stock !== false && prod.en_stock !== 'false'; // Maneja string o boolean
+            let isStock = prod.en_stock !== false && prod.en_stock !== 'false';
 
             let btnHTML = isStock
                 ? `<button class="da1-card-buy btn-add-cart"><i class="bi bi-cart-plus me-1"></i> Añadir</button>`
