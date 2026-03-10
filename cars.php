@@ -43,16 +43,9 @@
           <div class="da1-filter-panel" id="filter-marca">
             <label><input type="checkbox" id="chkAllMarca" checked> <strong style="color: #fff;">All Brands</strong></label>
             <div style="height:1px; background:var(--da1-grey-border, #2a2a2a); margin:4px 0;"></div>
-            <label><input type="checkbox" class="chk-marca" value="Ferrari"> Ferrari</label>
-            <label><input type="checkbox" class="chk-marca" value="Lamborghini"> Lamborghini</label>
-            <label><input type="checkbox" class="chk-marca" value="McLaren"> McLaren</label>
-            <label><input type="checkbox" class="chk-marca" value="Bugatti"> Bugatti</label>
-            <label><input type="checkbox" class="chk-marca" value="Pagani"> Pagani</label>
-            <label><input type="checkbox" class="chk-marca" value="Koenigsegg"> Koenigsegg</label>
-            <label><input type="checkbox" class="chk-marca" value="Mercedes-Benz"> Mercedes-Benz</label>
-            <label><input type="checkbox" class="chk-marca" value="Aston Martin"> Aston Martin</label>
-            <label><input type="checkbox" class="chk-marca" value="Porsche"> Porsche</label>
-            <label><input type="checkbox" class="chk-marca" value="Rolls-Royce"> Rolls-Royce</label>
+
+            <div id="dynamicBrandList"></div>
+
           </div>
         </div>
 
@@ -65,11 +58,8 @@
           <div class="da1-filter-panel" id="filter-year">
             <label><input type="checkbox" id="chkAllYear" checked> <strong style="color: #fff;">All years</strong></label>
             <div style="height:1px; background:var(--da1-grey-border, #2a2a2a); margin:4px 0;"></div>
-            <label><input type="checkbox" class="chk-year" value="2020-2026"> 2020 - 2026</label>
-            <label><input type="checkbox" class="chk-year" value="2015-2019"> 2015 - 2019</label>
-            <label><input type="checkbox" class="chk-year" value="2010-2014"> 2010 - 2014</label>
-            <label><input type="checkbox" class="chk-year" value="2000-2009"> 2000 - 2009</label>
-            <label><input type="checkbox" class="chk-year" value="1947-1999"> Clásicos (-1999)</label>
+
+            <div id="dynamicYearList"></div>
           </div>
         </div>
 
@@ -82,10 +72,8 @@
           <div class="da1-filter-panel" id="filter-price">
             <label><input type="checkbox" id="chkAllPrice" checked> <strong style="color: #fff;">All price options</strong></label>
             <div style="height:1px; background:var(--da1-grey-border, #2a2a2a); margin:4px 0;"></div>
-            <label><input type="checkbox" class="chk-price" value="0-500000"> Hasta 500K</label>
-            <label><input type="checkbox" class="chk-price" value="500000-1000000"> 500K - 1M</label>
-            <label><input type="checkbox" class="chk-price" value="1000000-3000000"> 1M - 3M</label>
-            <label><input type="checkbox" class="chk-price" value="3000000-99999999"> +3M</label>
+
+            <div id="dynamicPriceList"></div>
           </div>
         </div>
 
@@ -98,11 +86,8 @@
           <div class="da1-filter-panel" id="filter-type">
             <label><input type="checkbox" id="chkAllTipo" checked> <strong style="color: #fff;">All body types</strong></label>
             <div style="height:1px; background:var(--da1-grey-border, #2a2a2a); margin:4px 0;"></div>
-            <label><input type="checkbox" class="chk-tipo" value="Coupé"> Coupé</label>
-            <label><input type="checkbox" class="chk-tipo" value="Roadster"> Roadster</label>
-            <label><input type="checkbox" class="chk-tipo" value="SUV Sport"> SUV Sport</label>
-            <label><input type="checkbox" class="chk-tipo" value="Convertible"> Convertible</label>
-            <label><input type="checkbox" class="chk-tipo" value="Hypercar"> Hypercar</label>
+
+            <div id="dynamicTypeList"></div>
           </div>
         </div>
 
@@ -115,13 +100,8 @@
           <div class="da1-filter-panel" id="filter-specs">
             <label><input type="checkbox" id="chkAllSpecs" checked> <strong style="color: #fff;">All specifications</strong></label>
             <div style="height:1px; background:var(--da1-grey-border, #2a2a2a); margin:4px 0;"></div>
-            <label><input type="checkbox" class="chk-specs" value="+500 CV"> +500 CV</label>
-            <label><input type="checkbox" class="chk-specs" value="+800 CV"> +800 CV</label>
-            <label><input type="checkbox" class="chk-specs" value="+1000 CV"> +1000 CV</label>
-            <label><input type="checkbox" class="chk-specs" value="AWD"> AWD (Tracción Total)</label>
-            <label><input type="checkbox" class="chk-specs" value="RWD"> RWD (Tracción Trasera)</label>
-            <label><input type="checkbox" class="chk-specs" value="Eléctrico"> Eléctrico</label>
-            <label><input type="checkbox" class="chk-specs" value="Híbrido"> Híbrido</label>
+
+            <div id="dynamicSpecsList"></div>
           </div>
         </div>
 
