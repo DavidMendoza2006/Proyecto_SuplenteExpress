@@ -131,6 +131,10 @@
 
     <script src="./js/user.js"></script>
     <script src="./js/marketplace.js"></script>
+    <script src="./js/chat.js"></script>
+</body>
+
+</html>s
 </body>
 
 </html>
