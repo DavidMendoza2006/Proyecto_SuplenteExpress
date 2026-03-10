@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', async function () {
-
-  // ==========================================
-  // 1. SUPABASE SETUP
-  // ==========================================
   const supabaseUrl = 'https://xqtxmceatjupoasnllot.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdHhtY2VhdGp1cG9hc25sbG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTQzOTgsImV4cCI6MjA4ODYzMDM5OH0.imFG8M-A73za3bVwwWfTLUkV_0n15N8kwx0tMqk53jo';
 
@@ -23,23 +19,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     { allChk: 'chkAllSpecs', chkClass: 'chk-specs', label: 'val-specs', defaultTxt: 'All specifications' }
   ];
 
-  // ==========================================
-  // 2. FETCH DATOS Y CONSTRUCCIÓN DE INTERFAZ
-  // ==========================================
   async function fetchCars() {
     try {
       const { data, error } = await supabase.from('vehiculos').select('*').eq('activo', true);
       if (error) throw error;
       carsDB = data || [];
 
-      // ⚡ Construimos TODAS las listas dinámicamente
+
       buildBrandFilters(carsDB);
       buildYearFilters(carsDB);
       buildTypeFilters(carsDB);
       buildSpecsFilters(carsDB);
       buildPriceFilters();
 
-      // Reconectar eventos después de crear el HTML
       attachFilterListeners();
 
       const urlParams = new URLSearchParams(window.location.search);
@@ -62,7 +54,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
 
-  // --- FUNCIONES CONSTRUCTORAS DE FILTROS ---
   function buildBrandFilters(coches) {
     const container = document.getElementById('dynamicBrandList');
     if (!container) return;
@@ -140,9 +131,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     container.innerHTML = ranges.map(r => `<label><input type="checkbox" class="chk-price" value="${r.val}"> <span style="color: #fff;">${r.label}</span></label>`).join('');
   }
 
-  // ==========================================
-  // 3. LÓGICA DE CLICS Y TEXTOS INTELIGENTES
-  // ==========================================
   function attachFilterListeners() {
     filterGroups.forEach(group => {
       const chkAll = document.getElementById(group.allChk);
@@ -197,9 +185,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
 
-  // ==========================================
-  // 4. MOTOR DE FILTRADO AVANZADO Y RENDERIZADO
-  // ==========================================
   function filterCars() {
     const selBrands = Array.from(document.querySelectorAll('.chk-marca:checked')).map(cb => cb.value);
     const selTypes = Array.from(document.querySelectorAll('.chk-tipo:checked')).map(cb => cb.value);
@@ -208,13 +193,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     const selSpecs = Array.from(document.querySelectorAll('.chk-specs:checked')).map(cb => cb.value);
 
     let filtered = carsDB.filter(car => {
-      // 1. Filtros básicos
       if (car.estado !== currentTab) return false;
       if (selBrands.length > 0 && !selBrands.includes(car.marca)) return false;
       if (selTypes.length > 0 && !selTypes.includes(car.tipo)) return false;
       if (selYears.length > 0 && !selYears.includes(car.ano.toString())) return false;
 
-      // 2. Filtro Precio
       if (selPrices.length > 0) {
         const price = parseFloat(car.precio_eur);
         const match = selPrices.some(range => {
@@ -224,7 +207,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (!match) return false;
       }
 
-      // 3. Filtro Inteligente de Especificaciones
       if (selSpecs.length > 0) {
         let specsArr = [];
         try { specsArr = typeof car.specs === 'string' ? JSON.parse(car.specs) : car.specs; } catch (e) { }
@@ -234,7 +216,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         const selTraction = selSpecs.filter(s => ['AWD', 'RWD', 'FWD'].includes(s));
         const selFuel = selSpecs.filter(s => !s.includes('CV') && !['AWD', 'RWD', 'FWD'].includes(s));
 
-        // A) POTENCIA
         if (selPower.length > 0) {
           let carCV = 0;
           const cvString = specsArr.find(s => s && /cv/i.test(s.toString()));
@@ -246,13 +227,11 @@ document.addEventListener('DOMContentLoaded', async function () {
           if (carCV < minThreshold) return false;
         }
 
-        // B) TRACCIÓN
         if (selTraction.length > 0) {
           const matchTraction = selTraction.some(t => specsArr.some(s => s && s.toString().toLowerCase().includes(t.toLowerCase())));
           if (!matchTraction) return false;
         }
 
-        // C) COMBUSTIBLE
         if (selFuel.length > 0) {
           const matchFuel = selFuel.some(f => specsArr.some(s => s && s.toString().toLowerCase().includes(f.toLowerCase())));
           if (!matchFuel) return false;
@@ -262,7 +241,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       return true;
     });
 
-    // Ordenación Final
     if (currentSort === 'asc') filtered.sort((a, b) => parseFloat(a.precio_eur) - parseFloat(b.precio_eur));
     if (currentSort === 'desc') filtered.sort((a, b) => parseFloat(b.precio_eur) - parseFloat(a.precio_eur));
     if (currentSort === 'year') filtered.sort((a, b) => b.ano - a.ano);
@@ -287,8 +265,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       let slidesHTML = '';
       let dotsHTML = '';
-      const maxPhotos = 2; // Full e Interior
-
+      const maxPhotos = 2; 
       if (imgs && imgs.length > 0) {
         for (let i = 0; i < Math.min(imgs.length, maxPhotos); i++) {
           slidesHTML += `<div class="da1-carousel-slide"><img src="${imgs[i].url}?v=3" data-pos="${imgs[i].pos}" alt="${car.modelo}"></div>`;
@@ -346,9 +323,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     initCardUI();
   }
 
-  // ==========================================
-  // 5. INTERFAZ: VISUALES Y LISTENERS GLOBALES
-  // ==========================================
   function initCardUI() {
     document.querySelectorAll('.da1-card').forEach(card => {
       const track = card.querySelector('.da1-carousel-track');
@@ -470,13 +444,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   });
 
-  // 🚀 ARRANCAR
   fetchCars();
 });
 
-// ==========================================
-// 6. ESTADÍSTICAS Y GRÁFICOS (Inferior)
-// ==========================================
 (function () {
   const lineData = [
     { year: '2018', val: 120 }, { year: '2019', val: 210 }, { year: '2020', val: 175 },

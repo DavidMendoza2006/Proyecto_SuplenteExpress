@@ -16,21 +16,21 @@ async function initPage() {
 
   try {
     const { data: { session } } = await supabaseApp.auth.getSession();
-    
+
     const guestItems = document.querySelectorAll('.auth-guest');
     const userItems = document.querySelectorAll('.auth-user');
 
     if (session) {
       guestItems.forEach(el => el.style.display = 'none');
-      userItems.forEach(el => el.style.display = 'flex'); 
-      
+      userItems.forEach(el => el.style.display = 'flex');
+
       if (document.getElementById('profileView')) {
         await cargarPerfilReal();
       }
     } else {
       guestItems.forEach(el => el.style.display = 'flex');
       userItems.forEach(el => el.style.display = 'none');
-      
+
       if (document.getElementById('authView')) {
         document.getElementById('authView').style.display = 'flex';
         document.getElementById('profileView').style.display = 'none';
@@ -49,7 +49,7 @@ async function handleRegister() {
   const pass = document.getElementById('regPass')?.value;
 
   if (!nombre || !apellidos || !email || !pass) {
-    showToast('Rellena todos los campos', true); 
+    showToast('Rellena todos los campos', true);
     return;
   }
 
@@ -59,17 +59,17 @@ async function handleRegister() {
   }
 
   showToast('Creando cuenta VIP...', false);
-  
+
   const { data, error } = await supabaseApp.auth.signUp({
-    email: email, 
-    password: pass, 
-    options: { 
-      data: { nombre: nombre, apellidos: apellidos } 
+    email: email,
+    password: pass,
+    options: {
+      data: { nombre: nombre, apellidos: apellidos }
     }
   });
 
-  if (error) { 
-    showToast(error.message, true); 
+  if (error) {
+    showToast(error.message, true);
   } else {
     showToast('¡Cuenta creada! Revisa tu email para confirmar.', false);
     setTimeout(() => switchAuthTab('login'), 2000);
@@ -127,23 +127,23 @@ async function cargarPerfilReal() {
     currentUser = dataGuardada.perfil;
     userKpis = dataGuardada.kpis;
     baseTotalInvested = Number(dataGuardada.kpis.gastado || 0);
-    renderProfileDynamic(); 
+    renderProfileDynamic();
   }
 
   try {
     const response = await fetch('api_perfil.php');
     if (!response.ok) throw new Error("Fallo PHP");
-    
+
     const data = await response.json();
     if (data.status === 'success') {
-      
+
       localStorage.setItem('da1_perfil_cache', JSON.stringify(data));
 
       currentUser = data.perfil;
       userKpis = data.kpis;
       baseTotalInvested = Number(data.kpis.gastado || 0);
-      
-      renderProfileDynamic(); 
+
+      renderProfileDynamic();
     }
   } catch (error) {
     console.error("Error comprobando novedades:", error);
@@ -160,29 +160,29 @@ function renderProfileDynamic() {
       tgl.checked = (currentUser.f2a_activo === true || currentUser.f2a_activo === "true");
     }
 
-    document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || ''); 
-    document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase(); 
-    
-    if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre; //
-    if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || ''; 
+    document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || '');
+    document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase();
+
+    if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre; 
+    if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || '';
 
     const fecha = new Date(currentUser.creado_en || Date.now())
-    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }); //
+    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }); 
   }
 
   if (document.getElementById('cfgEmail')) {
     supabaseApp.auth.getSession().then(({ data }) => {
-      if (data.session) document.getElementById('cfgEmail').value = data.session.user.email; //
+      if (data.session) document.getElementById('cfgEmail').value = data.session.user.email; 
     });
   }
 
-  if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0; //
-  if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0; //
-  if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0; //
-  if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0; //
+  if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0; 
+  if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0;
+  if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0;
+  if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0; 
 
-  switchTab('dashboard'); 
-  updatePrices(); 
+  switchTab('dashboard');
+  updatePrices();
 }
 function switchAuthTab(tab) {
   const tabsContainer = document.getElementById('authTabs');
@@ -194,15 +194,15 @@ function switchAuthTab(tab) {
     tabsContainer.style.display = 'none';
     fLogin.classList.remove('active');
     fRegister.classList.remove('active');
-    fUpdate.style.display = 'flex'; 
+    fUpdate.style.display = 'flex';
   } else {
     tabsContainer.style.display = 'flex';
     fUpdate.style.display = 'none';
-    
-    document.querySelectorAll('.da1-auth-tab').forEach((t, i) => { 
-      t.classList.toggle('active', (tab === 'login') === (i === 0)); 
+
+    document.querySelectorAll('.da1-auth-tab').forEach((t, i) => {
+      t.classList.toggle('active', (tab === 'login') === (i === 0));
     });
-    
+
     fLogin.classList.toggle('active', tab === 'login');
     fRegister.classList.toggle('active', tab === 'register');
   }
@@ -248,7 +248,7 @@ function updatePrices() {
 let _toastTimer;
 function showToast(msg, isError = false) {
   let t = document.getElementById('toast');
-  
+
   if (!t) {
     t = document.createElement('div');
     t.className = 'da1-toast';
@@ -262,9 +262,9 @@ function showToast(msg, isError = false) {
   t.style.borderLeftColor = isError ? '#EF4444' : 'var(--da1-red, #e8001c)';
   i.className = isError ? 'bi bi-exclamation-circle-fill' : 'bi bi-check-circle-fill';
   i.style.color = isError ? '#EF4444' : 'var(--da1-red, #e8001c)';
-  
+
   setTimeout(() => t.classList.add('show'), 10);
-  
+
   clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
 }
@@ -312,7 +312,7 @@ async function handleUpdatePassword() {
 supabaseApp.auth.onAuthStateChange((event, session) => {
   if (event === "PASSWORD_RECOVERY") {
 
-    switchAuthTab('update-password'); 
+    switchAuthTab('update-password');
     showToast("Configure su nueva contraseña de acceso.");
   }
 });
@@ -329,11 +329,11 @@ async function updateProfile() {
 
   const { error } = await supabaseApp
     .from('perfiles')
-    .update({ 
-      nombre: nombre, 
-      apellidos: apellidos 
+    .update({
+      nombre: nombre,
+      apellidos: apellidos
     })
-    .eq('id', currentUser.id); 
+    .eq('id', currentUser.id);
 
   if (error) {
     showToast('Error al guardar: ' + error.message, true);
@@ -345,8 +345,8 @@ async function updateProfile() {
     cache.perfil = currentUser;
     localStorage.setItem('da1_perfil_cache', JSON.stringify(cache));
 
-    renderProfileDynamic(); 
-    
+    renderProfileDynamic();
+
     showToast('¡Perfil actualizado correctamente!');
   }
 }
@@ -361,8 +361,8 @@ async function handleEmailUpdate() {
 
   showToast('Enviando códigos de verificación...');
 
-  const { data, error } = await supabaseApp.auth.updateUser({ 
-    email: nuevoEmail 
+  const { data, error } = await supabaseApp.auth.updateUser({
+    email: nuevoEmail
   });
 
   if (error) {
@@ -373,7 +373,7 @@ async function handleEmailUpdate() {
 }
 async function toggle2FA() {
   const isChecked = document.getElementById('tgl2FA').checked;
-  
+
   showToast(isChecked ? 'Activando protección 2FA...' : 'Desactivando 2FA...');
 
   const { error } = await supabaseApp
@@ -408,18 +408,18 @@ async function changePasswordFromSettings() {
     showToast(error.message, true);
   } else {
     showToast('¡Contraseña actualizada con éxito!');
-    document.getElementById('newPassSettings').value = ''; 
+    document.getElementById('newPassSettings').value = '';
   }
 }
 async function confirmDelete() {
   const confirmacion = confirm("¿ESTÁS SEGURO? Esta acción es irreversible y perderás todos tus datos en DA1MOTORS.");
-  
+
   if (confirmacion) {
     showToast("Procesando eliminación definitiva...", true);
 
     try {
       const { data: { session } } = await supabaseApp.auth.getSession();
-      
+
       if (!session) return;
 
       const response = await fetch('eliminar_cuenta.php', {
@@ -446,119 +446,135 @@ async function confirmDelete() {
 let stripe, elements, cardElement;
 
 if (typeof Stripe !== 'undefined') {
-    stripe = Stripe('pk_test_51T96SRAwHprUZMBwHXYs8XUo4jmfe8ReqqvnfID1b2LHUv46sPgToSQcZWuRdHS5ORbIdxpTXxO4OXlky5GBR1Rz00jqb7hkdW'); 
-    elements = stripe.elements();
-    cardElement = elements.create('card', {
-        style: {
-            base: {
-                color: '#ffffff',
-                fontFamily: 'Rajdhani, sans-serif',
-                fontSize: '16px',
-                '::placeholder': { color: '#888888' },
-            }
-        }
-    });
+  stripe = Stripe('pk_test_51T96SRAwHprUZMBwHXYs8XUo4jmfe8ReqqvnfID1b2LHUv46sPgToSQcZWuRdHS5ORbIdxpTXxO4OXlky5GBR1Rz00jqb7hkdW');
+  elements = stripe.elements();
+  cardElement = elements.create('card', {
+    style: {
+      base: {
+        color: '#ffffff',
+        fontFamily: 'Rajdhani, sans-serif',
+        fontSize: '16px',
+        '::placeholder': { color: '#888888' },
+      }
+    }
+  });
 }
 
 async function abrirModalPago() {
-    showToast("Iniciando conexión segura...");
-    
-    try {
-        const response = await fetch('crear_setup_intent.php');
-        const { clientSecret } = await response.json();
+  showToast("Iniciando conexión segura...");
 
-        cardElement.mount('#card-element');
+  try {
+    const response = await fetch('crear_setup_intent.php');
+    const { clientSecret } = await response.json();
 
-        document.getElementById('payment-form').onsubmit = async (e) => {
-            e.preventDefault();
-            showToast("Verificando tarjeta con Stripe...");
+    cardElement.mount('#card-element');
 
-            const { setupIntent, error } = await stripe.confirmCardSetup(clientSecret, {
-                payment_method: { card: cardElement }
-            });
+    document.getElementById('payment-form').onsubmit = async (e) => {
+      e.preventDefault();
+      showToast("Verificando tarjeta con Stripe...");
 
-            if (error) {
-                showToast(error.message, true);
-            } else {
-                await vincularClienteStripe(setupIntent.payment_method);
-            }
-        };
-    } catch (err) {
-        showToast("Error de conexión con la pasarela", true);
-    }
+      const { setupIntent, error } = await stripe.confirmCardSetup(clientSecret, {
+        payment_method: { card: cardElement }
+      });
+
+      if (error) {
+        showToast(error.message, true);
+      } else {
+        await vincularClienteStripe(setupIntent.payment_method);
+      }
+    };
+  } catch (err) {
+    showToast("Error de conexión con la pasarela", true);
+  }
 }
 async function vincularClienteStripe(paymentMethodId) {
-    showToast("Vinculando billetera DA1...");
+  showToast("Vinculando billetera DA1...");
 
-    const response = await fetch('api_pagos.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: currentUser.email, user_id: currentUser.id })
+  const response = await fetch('api_pagos.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: currentUser.email, user_id: currentUser.id })
+  });
+
+  const result = await response.json();
+
+  if (result.status === 'success') {
+    const { error } = await supabaseApp
+      .from('perfiles')
+      .update({ stripe_customer_id: result.customer_id })
+      .eq('id', currentUser.id);
+
+    if (!error) {
+      showToast("¡Billetera configurada con éxito!");
+      currentUser.stripe_customer_id = result.customer_id;
+      bootstrap.Modal.getInstance(document.getElementById('modalStripe')).hide();
+    }
+  } else {
+    showToast("Error en el registro de pago: " + result.message, true);
+  }
+}
+async function suscribirNewsletter() {
+  const emailInput = document.getElementById('newsEmail');
+  const email = emailInput.value.trim();
+
+  if (!email) {
+    showToast("Por favor, introduce tu email.", true);
+    return;
+  }
+
+  showToast("Procesando suscripción VIP...");
+
+  try {
+    const { error } = await supabaseApp
+      .from('newsletter')
+      .insert([{
+        email: email,
+        activo: true,
+        fuente: 'Footer Web'
+      }]);
+
+    if (error && error.code === '23505') {
+      showToast("Ya perteneces a nuestra lista VIP.", true);
+      emailInput.value = '';
+      return;
+    } else if (error) {
+      showToast("Error al guardar en base de datos.", true);
+      return;
+    }
+
+    const response = await fetch('api_newsletter.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
     });
 
     const result = await response.json();
 
     if (result.status === 'success') {
-        const { error } = await supabaseApp
-            .from('perfiles')
-            .update({ stripe_customer_id: result.customer_id })
-            .eq('id', currentUser.id);
-
-        if (!error) {
-            showToast("¡Billetera configurada con éxito! 🏎️💳");
-            currentUser.stripe_customer_id = result.customer_id;
-            bootstrap.Modal.getInstance(document.getElementById('modalStripe')).hide();
-        }
+      showToast("¡Suscrito! Revisa tu bandeja de entrada.");
+      emailInput.value = '';
     } else {
-        showToast("Error en el registro de pago: " + result.message, true);
+      showToast("Error enviando el correo: " + result.message, true);
     }
+  } catch (error) {
+    showToast("Error de conexión con el servidor.", true);
+  }
 }
-async function suscribirNewsletter() {
-    const emailInput = document.getElementById('newsEmail');
-    const email = emailInput.value.trim();
+async function loginConGoogle() {
+  try {
+    const { data, error } = await supabaseApp.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin + '/Proyecto_SuplenteExpress/user.php'
+      }
+    });
 
-    if (!email) {
-        showToast("Por favor, introduce tu email.", true);
-        return;
-    }
+    if (error) throw error;
 
-    showToast("Procesando suscripción VIP...");
-
-    try {
-        const { error } = await supabaseApp
-            .from('newsletter')
-            .insert([{ 
-                email: email,
-                activo: true, 
-                fuente: 'Footer Web' 
-            }]);
-
-        if (error && error.code === '23505') {
-            showToast("Ya perteneces a nuestra lista VIP.", true);
-            emailInput.value = '';
-            return;
-        } else if (error) {
-            showToast("Error al guardar en base de datos.", true);
-            return;
-        }
-
-        const response = await fetch('api_newsletter.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email })
-        });
-
-        const result = await response.json();
-
-        if (result.status === 'success') {
-            showToast("¡Suscrito! Revisa tu bandeja de entrada.");
-            emailInput.value = ''; 
-        } else {
-            showToast("Error enviando el correo: " + result.message, true);
-        }
-    } catch (error) {
-        showToast("Error de conexión con el servidor.", true);
-    }
+  } catch (error) {
+    console.error("Error con Google:", error);
+    showToast("Error al conectar con Google.", true);
+  }
 }
 document.addEventListener('DOMContentLoaded', () => {
   initPage();
@@ -575,13 +591,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (toggle) {
     toggle.addEventListener('click', (e) => {
-      e.preventDefault(); 
+      e.preventDefault();
       const isDark = htmlEl.getAttribute('data-theme') === 'dark';
       const nuevoTema = isDark ? 'light' : 'dark';
-      
+
       htmlEl.setAttribute('data-theme', nuevoTema);
-      localStorage.setItem('da1_theme', nuevoTema); 
-      
+      localStorage.setItem('da1_theme', nuevoTema);
+
       if (icon) icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
     });
   }

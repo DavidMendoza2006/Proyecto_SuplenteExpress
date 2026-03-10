@@ -28,6 +28,13 @@
         <button class="da1-auth-tab active" onclick="switchAuthTab('login')">Iniciar sesión</button>
         <button class="da1-auth-tab" onclick="switchAuthTab('register')">Crear cuenta</button>
       </div>
+      <div class="d-flex flex-column align-items-center justify-content-center mt-4 mb-3">
+        <span class="text-muted mb-3 fw-bold" style="font-size: 0.9rem; letter-spacing: 1px;">O ENTRA EN LA PISTA CON</span>
+
+        <button type="button" onclick="loginConGoogle()" class="da1-btn-google">
+          <i class="bi bi-google"></i>Google
+        </button>
+      </div>
 
       <div class="da1-auth-form active" id="formLogin">
         <div class="da1-field">

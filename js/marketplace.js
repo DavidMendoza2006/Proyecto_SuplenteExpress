@@ -12,9 +12,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // 2. INICIALIZAR SUPABASE CON LAS NUEVAS CREDENCIALES
-    const supabaseUrl = 'https://xqtxmceatjupoasnllot.supabase.co'; // NUEVA URL
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdHhtY2VhdGp1cG9hc25sbG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTQzOTgsImV4cCI6MjA4ODYzMDM5OH0.imFG8M-A73za3bVwwWfTLUkV_0n15N8kwx0tMqk53jo'; // NUEVA KEY
+    const supabaseUrl = 'https://xqtxmceatjupoasnllot.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdHhtY2VhdGp1cG9hc25sbG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTQzOTgsImV4cCI6MjA4ODYzMDM5OH0.imFG8M-A73za3bVwwWfTLUkV_0n15N8kwx0tMqk53jo';
 
     if (!window.supabase) {
         console.error("ERROR: Librería de Supabase no encontrada. Verifica que esté incluida en el PHP.");
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const shopGrid = document.getElementById('shopGrid');
     const productCount = document.getElementById('productCount');
 
-    // 3. DESCARGAR DATOS DE SUPABASE
+
     async function fetchProductos() {
         if (!shopGrid) return;
 
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // 4. FUNCIÓN PARA DIBUJAR TARJETAS
     function renderProducts(lista) {
         if (!shopGrid) return;
         shopGrid.innerHTML = '';
@@ -123,13 +121,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (productCount) productCount.textContent = `Mostrando ${lista.length} resultados`;
     }
 
-    // Helper para leer checks
     function isChecked(id) {
         const el = document.getElementById(id);
         return el ? el.checked : false;
     }
 
-    // 5. FUNCIÓN DE FILTRADO
+
     function filterProducts() {
         try {
             const catAll = isChecked('catAll');
@@ -152,8 +149,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             let filtrados = productsDB.filter(prod => {
                 let catOk = catAll || activeCats.length === 0 || activeCats.includes(prod.categoria);
                 let brandOk = activeBrands.length === 0 || activeBrands.includes(prod.marca);
-
-                // Asegurarse de que en_stock se trate como booleano
                 let productInStock = prod.en_stock === true || prod.en_stock === 'true';
                 let stockOk = mustBeInStock ? productInStock : true;
 
@@ -170,7 +165,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // 6. EVENT LISTENERS
     const catAllBtn = document.getElementById('catAll');
     if (catAllBtn) {
         catAllBtn.addEventListener('change', function () {
@@ -212,20 +206,17 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // 7. CONEXIÓN AL CARRITO GLOBAL
     if (shopGrid) {
         shopGrid.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn-add-cart');
             if (!btn) return;
             e.preventDefault();
 
-            // Buscar datos del producto
             const card = btn.closest('.da1-card');
             const productName = card.querySelector('.da1-card-name').textContent;
             const prodData = productsDB.find(p => p.nombre === productName);
 
             if (prodData && typeof window.addToCartGlobal === 'function') {
-                // Usar la función global que definimos en cartGlobal.js
                 window.addToCartGlobal({
                     id: prodData.id,
                     name: prodData.nombre,

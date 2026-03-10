@@ -24,7 +24,6 @@
     min-height: 100vh;
 }
 
-/* Modificación del Grid base para la tienda (3 columnas) */
 .da1-grid-shop {
     grid-template-columns: repeat(3, 1fr) !important;
 }
@@ -41,7 +40,6 @@
     }
 }
 
-/* Sidebar Filtros */
 .da1-sidebar {
     background: var(--mk-sidebar-bg);
     border: 1px solid var(--mk-border);
@@ -96,7 +94,6 @@
     box-shadow: 0 0 0 3px rgba(232, 0, 28, 0.25);
 }
 
-/* Header de la tienda */
 .da1-sort-select {
     background-color: var(--mk-sidebar-bg);
     border: 1px solid var(--mk-border);
@@ -114,7 +111,6 @@
     box-shadow: none;
 }
 
-/* Botón Carrito en Navbar */
 .da1-cart-btn {
     background: transparent;
     border: 1px solid var(--mk-border);
