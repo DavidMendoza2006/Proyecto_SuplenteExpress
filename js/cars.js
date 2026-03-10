@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   ];
 
   // ==========================================
-  // 2. FETCH DATOS Y CONSTRUCCIÓN DE INTERFAZ 100% DINÁMICA
+  // 2. FETCH DATOS Y CONSTRUCCIÓN DE INTERFAZ
   // ==========================================
   async function fetchCars() {
     try {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       buildYearFilters(carsDB);
       buildTypeFilters(carsDB);
       buildSpecsFilters(carsDB);
-      buildPriceFilters(); // El precio usa rangos fijos lógicos
+      buildPriceFilters();
 
       // Reconectar eventos después de crear el HTML
       attachFilterListeners();
@@ -62,12 +62,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
 
-<<<<<<< HEAD
-
-  function renderCars(lista) {
-    if (!carsGrid) return;
-    carsGrid.innerHTML = '';
-=======
   // --- FUNCIONES CONSTRUCTORAS DE FILTROS ---
   function buildBrandFilters(coches) {
     const container = document.getElementById('dynamicBrandList');
@@ -75,39 +69,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     const unicas = [...new Set(coches.map(c => c.marca).filter(Boolean))].sort();
     container.innerHTML = unicas.map(m => `<label><input type="checkbox" class="chk-marca" value="${m}"> <span style="color: #fff;">${m}</span></label>`).join('');
   }
->>>>>>> 883c1499a15f182cc08d9235a54710488b0f2871
 
   function buildYearFilters(coches) {
     const container = document.getElementById('dynamicYearList');
     if (!container) return;
-    // Extraemos años únicos y ordenamos de más nuevo a más viejo
     const unicos = [...new Set(coches.map(c => c.ano).filter(Boolean))].sort((a, b) => b - a);
     container.innerHTML = unicos.map(y => `<label><input type="checkbox" class="chk-year" value="${y}"> <span style="color: #fff;">${y}</span></label>`).join('');
   }
 
-<<<<<<< HEAD
-    // 1. RUTA BASE DE TU BÚNKER EN SUPABASE STORAGE
-    // ¡IMPORTANTE! Cambia 'TU_BUCKET' por el nombre de tu bucket de imágenes
-    const supabaseStorageBase = 'https://xqtxmceatjupoasnllot.supabase.co/storage/v1/object/public/TU_BUCKET/';
-
-    let htmlString = "";
-    lista.forEach(car => {
-      let imgs = [];
-      try { imgs = typeof car.imagenes === 'string' ? JSON.parse(car.imagenes) : car.imagenes; } catch (e) { }
-
-      let slidesHTML = '';
-      let dotsHTML = '';
-      if (imgs && imgs.length > 0) {
-        imgs.forEach((imgObj, i) => {
-          // 2. CONSTRUCCIÓN INTELIGENTE DE LA URL DE LA IMAGEN
-          let finalImgUrl = imgObj.url.startsWith('http') ? imgObj.url : supabaseStorageBase + imgObj.url;
-
-          slidesHTML += `<div class="da1-carousel-slide"><img src="${finalImgUrl}" data-pos="${imgObj.pos}" alt="${car.modelo}"></div>`;
-          dotsHTML += `<span class="da1-dot-item ${i === 0 ? 'active' : ''}"></span>`;
-        });
-      } else {
-        slidesHTML = `<div class="da1-carousel-slide"><div class="da1-slide-placeholder">${car.modelo}</div></div>`;
-=======
   function buildTypeFilters(coches) {
     const container = document.getElementById('dynamicTypeList');
     if (!container) return;
@@ -119,7 +88,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const container = document.getElementById('dynamicSpecsList');
     if (!container) return;
 
-    // Definimos los grupos fijos y lógicos que quieres mostrar
     const specsGroups = [
       {
         title: "POTENCIA",
@@ -146,60 +114,17 @@ document.addEventListener('DOMContentLoaded', async function () {
           { val: "Híbrido", label: "Híbrido" },
           { val: "Eléctrico", label: "Eléctrico" }
         ]
->>>>>>> 883c1499a15f182cc08d9235a54710488b0f2871
       }
     ];
 
     let html = '';
-
-<<<<<<< HEAD
-      htmlString += `
-          <article class="da1-card" data-reveal>
-            <div class="da1-card-carousel">
-              <div class="da1-carousel-track">${slidesHTML}</div>
-              <button class="da1-car-prev"><i class="bi bi-chevron-left"></i></button>
-              <button class="da1-car-next"><i class="bi bi-chevron-right"></i></button>
-              <div class="da1-dots">${dotsHTML}</div>
-              ${badgeSold}
-            </div>
-            <div class="da1-card-body">
-              <div class="da1-card-brand">
-                <i class="bi bi-shield-fill da1-brand-icon"></i>
-                <span>${car.marca}</span>
-                ${badgeDiscount}
-              </div>
-              <h3 class="da1-card-name">${car.modelo}</h3>
-              <p class="da1-card-year">${car.ano}</p>
-              <div class="da1-card-meta">
-                <span><i class="bi bi-speedometer2"></i> ${formatNum(car.kilometros)} km</span>
-                <span><i class="bi bi-fuel-pump"></i> ${car.combustible}</span>
-              </div>
-              <div class="da1-card-footer">
-                <div class="da1-card-price">
-                  <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
-                  <span class="da1-amount" data-aed="${formatNum(aed)}" data-eur="${formatNum(eur)}" data-usd="${formatNum(usd)}">${formatNum(eur)}</span>
-                </div>
-                <div class="da1-card-actions">
-                  <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
-                  <button class="da1-card-buy">${isSold ? 'Ver Ficha' : 'Contactar'}</button>
-                </div>
-              </div>
-            </div>
-          </article>`;
-=======
-    // Dibujamos cada grupo con un pequeño título separador
     specsGroups.forEach((group, index) => {
-      // Añadimos un pequeño margen superior a todos menos al primero para que respire
       const marginTop = index === 0 ? '0' : '15px';
-
       html += `<div style="margin-top: ${marginTop}; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; color: #666; letter-spacing: 1px;">${group.title}</div>`;
-
       group.items.forEach(item => {
         html += `<label style="display:block; margin-bottom:4px;"><input type="checkbox" class="chk-specs" value="${item.val}"> <span style="color: #fff;">${item.label}</span></label>`;
       });
->>>>>>> 883c1499a15f182cc08d9235a54710488b0f2871
     });
-
     container.innerHTML = html;
   }
 
@@ -215,9 +140,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     container.innerHTML = ranges.map(r => `<label><input type="checkbox" class="chk-price" value="${r.val}"> <span style="color: #fff;">${r.label}</span></label>`).join('');
   }
 
-<<<<<<< HEAD
-
-=======
   // ==========================================
   // 3. LÓGICA DE CLICS Y TEXTOS INTELIGENTES
   // ==========================================
@@ -261,7 +183,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       if (!chkAll || !labelEl) return;
 
       let checkedVals = Array.from(checkboxes).filter(c => c.checked).map(c => {
-        // Limpiar texto para el panel superior (ej. quitar etiquetas si las hubiera)
         return c.nextElementSibling ? c.nextElementSibling.textContent.trim() : c.value;
       });
 
@@ -277,12 +198,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   // ==========================================
-  // 4. MOTOR DE FILTRADO AVANZADO (ACTUALIZADO)
+  // 4. MOTOR DE FILTRADO AVANZADO Y RENDERIZADO
   // ==========================================
-  // ==========================================
-  // 4. MOTOR DE FILTRADO AVANZADO (LÓGICA MATEMÁTICA Y COMBINADA)
-  // ==========================================
->>>>>>> 883c1499a15f182cc08d9235a54710488b0f2871
   function filterCars() {
     const selBrands = Array.from(document.querySelectorAll('.chk-marca:checked')).map(cb => cb.value);
     const selTypes = Array.from(document.querySelectorAll('.chk-tipo:checked')).map(cb => cb.value);
@@ -313,41 +230,36 @@ document.addEventListener('DOMContentLoaded', async function () {
         try { specsArr = typeof car.specs === 'string' ? JSON.parse(car.specs) : car.specs; } catch (e) { }
         if (car.combustible) specsArr.push(car.combustible);
 
-        // Separar los filtros que el usuario ha marcado en las 3 categorías
         const selPower = selSpecs.filter(s => s.includes('CV'));
         const selTraction = selSpecs.filter(s => ['AWD', 'RWD', 'FWD'].includes(s));
         const selFuel = selSpecs.filter(s => !s.includes('CV') && !['AWD', 'RWD', 'FWD'].includes(s));
 
-        // A) POTENCIA: Lógica matemática "Mayor o igual que..."
+        // A) POTENCIA
         if (selPower.length > 0) {
           let carCV = 0;
-          // Buscar en el array algo que tenga "CV" y sacar su número (el regex evita que "V12" nos engañe)
           const cvString = specsArr.find(s => s && /cv/i.test(s.toString()));
           if (cvString) {
             const matchNum = cvString.toString().match(/(\d+)\s*cv/i);
             if (matchNum) carCV = parseInt(matchNum[1], 10);
           }
-
-          // Si el usuario marcó +500 y +700, le valen los coches de >= 500. 
           const minThreshold = Math.min(...selPower.map(p => parseInt(p.match(/(\d+)/)[1], 10)));
-
           if (carCV < minThreshold) return false;
         }
 
-        // B) TRACCIÓN: Debe coincidir alguna de las marcadas
+        // B) TRACCIÓN
         if (selTraction.length > 0) {
           const matchTraction = selTraction.some(t => specsArr.some(s => s && s.toString().toLowerCase().includes(t.toLowerCase())));
           if (!matchTraction) return false;
         }
 
-        // C) COMBUSTIBLE: Debe coincidir alguno de los marcados
+        // C) COMBUSTIBLE
         if (selFuel.length > 0) {
           const matchFuel = selFuel.some(f => specsArr.some(s => s && s.toString().toLowerCase().includes(f.toLowerCase())));
           if (!matchFuel) return false;
         }
       }
 
-      return true; // Si ha superado todas las barreras matemáticas, se muestra
+      return true;
     });
 
     // Ordenación Final
@@ -386,7 +298,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         slidesHTML = `<div class="da1-carousel-slide"><div class="da1-slide-placeholder">${car.modelo}</div></div>`;
       }
 
-      // Volvemos a generar los botones y puntos si hay más de 1 foto
       const showControls = imgs && imgs.length > 1;
       const prevBtnHTML = showControls ? `<button class="da1-car-prev" aria-label="prev"><i class="bi bi-chevron-left"></i></button>` : '';
       const nextBtnHTML = showControls ? `<button class="da1-car-next" aria-label="next"><i class="bi bi-chevron-right"></i></button>` : '';
@@ -439,7 +350,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   // 5. INTERFAZ: VISUALES Y LISTENERS GLOBALES
   // ==========================================
   function initCardUI() {
-    // 1. Lógica del carrusel manual recuperada
     document.querySelectorAll('.da1-card').forEach(card => {
       const track = card.querySelector('.da1-carousel-track');
       const slides = card.querySelectorAll('.da1-carousel-slide');
@@ -461,7 +371,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       if (dots) dots.forEach((d, i) => d.addEventListener('click', (e) => { e.stopPropagation(); goTo(i); }));
     });
 
-    // 2. Efecto aparición al hacer scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -476,7 +385,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-    // 3. Conversor de monedas
     const currencyOrder = ['eur', 'usd', 'aed'];
     document.querySelectorAll('.da1-card-cur').forEach(btn => {
       let idx = 0;
