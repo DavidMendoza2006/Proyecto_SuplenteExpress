@@ -1,5 +1,9 @@
+<?php 
+
+  $current_page = basename($_SERVER['PHP_SELF']); 
+?>
+
 <link rel="icon" type="image/png" href="./img/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="./bootstrap-icons/bootstrap-icons.css">
@@ -21,7 +25,7 @@
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
 
         <li class="nav-item da1-mega-parent">
-          <a class="nav-link da1-link active" href="cars.php">
+          <a class="nav-link da1-link <?php echo ($current_page == 'cars.php') ? 'active' : ''; ?>" href="cars.php">
             CARS <i class="bi bi-chevron-down da1-chevron"></i>
           </a>
 
@@ -56,11 +60,11 @@
           </div>
         </li>
 
-        <li class="nav-item"><a class="nav-link da1-link" href="marketplace.php">MarketPlace</a></li>
+        <li class="nav-item"><a class="nav-link da1-link <?php echo ($current_page == 'marketplace.php') ? 'active' : ''; ?>" href="marketplace.php">MarketPlace</a></li>
 
-        <li class="nav-item"><a class="nav-link da1-link" href="nosotros.php">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link da1-link <?php echo ($current_page == 'nosotros.php') ? 'active' : ''; ?>" href="nosotros.php">Nosotros</a></li>
 
-        <li class="nav-item"><a class="nav-link da1-link" href="contacto.php">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link da1-link <?php echo ($current_page == 'contacto.php') ? 'active' : ''; ?>" href="contacto.php">Contacto</a></li>
 
         <li class="nav-item d-flex align-items-center">
           <button class="da1-theme-toggle" id="themeToggle" title="Cambiar modo">
@@ -78,7 +82,7 @@
         </li>
 
         <li class="nav-item da1-user-parent">
-          <a class="nav-link da1-link da1-user-btn" href="user.php">
+          <a class="nav-link da1-link da1-user-btn <?php echo ($current_page == 'user.php') ? 'active' : ''; ?>" href="user.php">
             <i class="bi bi-person-circle"></i>
           </a>
 

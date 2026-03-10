@@ -113,9 +113,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
 
-  // ==========================================
-  // 4. RENDERIZADO DE TARJETAS
-  // ==========================================
+
   function renderCars(lista) {
     if (!carsGrid) return;
     carsGrid.innerHTML = '';
@@ -124,6 +122,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       carsGrid.innerHTML = `<div class="col-12 text-center py-5 text-muted w-100" style="grid-column: 1 / -1;">No se encontraron vehículos con esta combinación de filtros.</div>`;
       return;
     }
+
+    // 1. RUTA BASE DE TU BÚNKER EN SUPABASE STORAGE
+    // ¡IMPORTANTE! Cambia 'TU_BUCKET' por el nombre de tu bucket de imágenes
+    const supabaseStorageBase = 'https://xqtxmceatjupoasnllot.supabase.co/storage/v1/object/public/TU_BUCKET/';
 
     let htmlString = "";
     lista.forEach(car => {
@@ -134,7 +136,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       let dotsHTML = '';
       if (imgs && imgs.length > 0) {
         imgs.forEach((imgObj, i) => {
-          slidesHTML += `<div class="da1-carousel-slide"><img src="${imgObj.url}" data-pos="${imgObj.pos}" alt="${car.modelo}"></div>`;
+          // 2. CONSTRUCCIÓN INTELIGENTE DE LA URL DE LA IMAGEN
+          let finalImgUrl = imgObj.url.startsWith('http') ? imgObj.url : supabaseStorageBase + imgObj.url;
+
+          slidesHTML += `<div class="da1-carousel-slide"><img src="${finalImgUrl}" data-pos="${imgObj.pos}" alt="${car.modelo}"></div>`;
           dotsHTML += `<span class="da1-dot-item ${i === 0 ? 'active' : ''}"></span>`;
         });
       } else {
@@ -149,47 +154,45 @@ document.addEventListener('DOMContentLoaded', async function () {
       const badgeDiscount = car.descuento ? `<span class="da1-card-badge da1-badge-new">${car.descuento}</span>` : '';
 
       htmlString += `
-            <article class="da1-card" data-reveal>
-              <div class="da1-card-carousel">
-                <div class="da1-carousel-track">${slidesHTML}</div>
-                <button class="da1-car-prev"><i class="bi bi-chevron-left"></i></button>
-                <button class="da1-car-next"><i class="bi bi-chevron-right"></i></button>
-                <div class="da1-dots">${dotsHTML}</div>
-                ${badgeSold}
+          <article class="da1-card" data-reveal>
+            <div class="da1-card-carousel">
+              <div class="da1-carousel-track">${slidesHTML}</div>
+              <button class="da1-car-prev"><i class="bi bi-chevron-left"></i></button>
+              <button class="da1-car-next"><i class="bi bi-chevron-right"></i></button>
+              <div class="da1-dots">${dotsHTML}</div>
+              ${badgeSold}
+            </div>
+            <div class="da1-card-body">
+              <div class="da1-card-brand">
+                <i class="bi bi-shield-fill da1-brand-icon"></i>
+                <span>${car.marca}</span>
+                ${badgeDiscount}
               </div>
-              <div class="da1-card-body">
-                <div class="da1-card-brand">
-                  <i class="bi bi-shield-fill da1-brand-icon"></i>
-                  <span>${car.marca}</span>
-                  ${badgeDiscount}
+              <h3 class="da1-card-name">${car.modelo}</h3>
+              <p class="da1-card-year">${car.ano}</p>
+              <div class="da1-card-meta">
+                <span><i class="bi bi-speedometer2"></i> ${formatNum(car.kilometros)} km</span>
+                <span><i class="bi bi-fuel-pump"></i> ${car.combustible}</span>
+              </div>
+              <div class="da1-card-footer">
+                <div class="da1-card-price">
+                  <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
+                  <span class="da1-amount" data-aed="${formatNum(aed)}" data-eur="${formatNum(eur)}" data-usd="${formatNum(usd)}">${formatNum(eur)}</span>
                 </div>
-                <h3 class="da1-card-name">${car.modelo}</h3>
-                <p class="da1-card-year">${car.ano}</p>
-                <div class="da1-card-meta">
-                  <span><i class="bi bi-speedometer2"></i> ${formatNum(car.kilometros)} km</span>
-                  <span><i class="bi bi-fuel-pump"></i> ${car.combustible}</span>
-                </div>
-                <div class="da1-card-footer">
-                  <div class="da1-card-price">
-                    <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
-                    <span class="da1-amount" data-aed="${formatNum(aed)}" data-eur="${formatNum(eur)}" data-usd="${formatNum(usd)}">${formatNum(eur)}</span>
-                  </div>
-                  <div class="da1-card-actions">
-                    <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
-                    <button class="da1-card-buy">${isSold ? 'Ver Ficha' : 'Contactar'}</button>
-                  </div>
+                <div class="da1-card-actions">
+                  <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+                  <button class="da1-card-buy">${isSold ? 'Ver Ficha' : 'Contactar'}</button>
                 </div>
               </div>
-            </article>`;
+            </div>
+          </article>`;
     });
 
     carsGrid.innerHTML = htmlString;
     initCardUI();
   }
 
-  // ==========================================
-  // 5. MOTOR DE FILTRADO AVANZADO
-  // ==========================================
+
   function filterCars() {
     // Recoger valores de los arrays marcados
     const selBrands = Array.from(document.querySelectorAll('.chk-marca:checked')).map(cb => cb.value);

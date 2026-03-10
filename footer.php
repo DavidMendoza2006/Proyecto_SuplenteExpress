@@ -14,8 +14,8 @@
             <p class="newsletter-subtitle">Nuevas llegadas, subastas privadas y ofertas solo para suscriptores.</p>
         </div>
         <div class="newsletter-form">
-            <input type="email" class="newsletter-input" placeholder="tu@email.com">
-            <button class="newsletter-btn">Suscribirme</button>
+            <input type="email" id="newsEmail" class="newsletter-input" placeholder="tu@email.com">
+            <button class="newsletter-btn" onclick="suscribirNewsletter()">Suscribirme</button>
         </div>
     </div>
 

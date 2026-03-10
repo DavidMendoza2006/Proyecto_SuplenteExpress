@@ -168,6 +168,11 @@
   <script src="./js/cartGlobal.js"></script>
   <script src="./js/user.js"></script>
   <script src="./js/cars.js"></script>
+
+  <script src="./js/chat.js"></script>
+</body>
+
+</html>
 </body>
 
 </html>

@@ -513,6 +513,53 @@ async function vincularClienteStripe(paymentMethodId) {
         showToast("Error en el registro de pago: " + result.message, true);
     }
 }
+async function suscribirNewsletter() {
+    const emailInput = document.getElementById('newsEmail');
+    const email = emailInput.value.trim();
+
+    if (!email) {
+        showToast("Por favor, introduce tu email.", true);
+        return;
+    }
+
+    showToast("Procesando suscripción VIP...");
+
+    try {
+        const { error } = await supabaseApp
+            .from('newsletter')
+            .insert([{ 
+                email: email,
+                activo: true, 
+                fuente: 'Footer Web' 
+            }]);
+
+        if (error && error.code === '23505') {
+            showToast("Ya perteneces a nuestra lista VIP.", true);
+            emailInput.value = '';
+            return;
+        } else if (error) {
+            showToast("Error al guardar en base de datos.", true);
+            return;
+        }
+
+        const response = await fetch('api_newsletter.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            showToast("¡Suscrito! Revisa tu bandeja de entrada.");
+            emailInput.value = ''; 
+        } else {
+            showToast("Error enviando el correo: " + result.message, true);
+        }
+    } catch (error) {
+        showToast("Error de conexión con el servidor.", true);
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
   initPage();
 
