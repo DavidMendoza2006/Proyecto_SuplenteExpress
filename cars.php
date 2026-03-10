@@ -10,7 +10,7 @@
   <link href="./css/carsMain.css" rel="stylesheet">
   <link href="./css/carsGrid.css" rel="stylesheet">
   <link href="./css/estadis.css" rel="stylesheet">
-  <title>Cars | DA1MOTORS</title>
+  <title>Cars - DA1MOTORS</title>
 </head>
 
 <body>

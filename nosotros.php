@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre Nosotros | DA1MOTORS</title>
+  <title>Sobre Nosotros - DA1MOTORS</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@
         </div>
         <div class="col-lg-6 offset-lg-1 order-1 order-lg-2 mb-5 mb-lg-0 reveal-right">
           <div class="da1-image-box">
-            <img src="./img/PaginaCars/coches/Chiron/interiror.png" alt="Interior Lujo" class="img-fluid">
+            <img src="./img/PaginaCars/coches/Chiron/interior.png" alt="Interior Lujo" class="img-fluid">
             <div class="da1-image-accent"></div>
           </div>
         </div>
