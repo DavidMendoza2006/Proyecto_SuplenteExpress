@@ -151,8 +151,8 @@ async function cargarPerfilReal() {
 }
 
 function renderProfileDynamic() {
-  document.getElementById('authView').style.display = 'none'; //
-  document.getElementById('profileView').style.display = 'block'; //
+  document.getElementById('authView').style.display = 'none';
+  document.getElementById('profileView').style.display = 'block';
 
   if (currentUser) {
     const tgl = document.getElementById('tgl2FA');
@@ -160,13 +160,13 @@ function renderProfileDynamic() {
       tgl.checked = (currentUser.f2a_activo === true || currentUser.f2a_activo === "true");
     }
 
-    document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || ''); //
-    document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase(); //
+    document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || ''); 
+    document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase(); 
     
     if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre; //
-    if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || ''; //
+    if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || ''; 
 
-    const fecha = new Date(currentUser.creado_en || Date.now()); //
+    const fecha = new Date(currentUser.creado_en || Date.now())
     document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }); //
   }
 
@@ -176,15 +176,13 @@ function renderProfileDynamic() {
     });
   }
 
-  // 6. Actualización de Badges y KPIs
   if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0; //
   if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0; //
   if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0; //
   if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0; //
 
-  // 7. Tab por defecto y precios
-  switchTab('dashboard'); //
-  updatePrices(); //
+  switchTab('dashboard'); 
+  updatePrices(); 
 }
 function switchAuthTab(tab) {
   const tabsContainer = document.getElementById('authTabs');
@@ -445,18 +443,22 @@ async function confirmDelete() {
     }
   }
 }
-const stripe = Stripe('pk_test_51T96SRAwHprUZMBwHXYs8XUo4jmfe8ReqqvnfID1b2LHUv46sPgToSQcZWuRdHS5ORbIdxpTXxO4OXlky5GBR1Rz00jqb7hkdW'); 
-const elements = stripe.elements();
-const cardElement = elements.create('card', {
-    style: {
-        base: {
-            color: '#ffffff',
-            fontFamily: 'Rajdhani, sans-serif',
-            fontSize: '16px',
-            '::placeholder': { color: '#888888' },
+let stripe, elements, cardElement;
+
+if (typeof Stripe !== 'undefined') {
+    stripe = Stripe('pk_test_51T96SRAwHprUZMBwHXYs8XUo4jmfe8ReqqvnfID1b2LHUv46sPgToSQcZWuRdHS5ORbIdxpTXxO4OXlky5GBR1Rz00jqb7hkdW'); 
+    elements = stripe.elements();
+    cardElement = elements.create('card', {
+        style: {
+            base: {
+                color: '#ffffff',
+                fontFamily: 'Rajdhani, sans-serif',
+                fontSize: '16px',
+                '::placeholder': { color: '#888888' },
+            }
         }
-    }
-});
+    });
+}
 
 async function abrirModalPago() {
     showToast("Iniciando conexión segura...");

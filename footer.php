@@ -5,10 +5,6 @@
 <link rel="stylesheet" href="./css/nosotros.css">
 <link rel="stylesheet" href="./css/batman.css">
 
-<div class="da1-toast" id="toast">
-    <i class="bi bi-check-circle-fill"></i>
-    <span id="toastMsg">Acción completada</span>
-</div>
 <footer id="da1-footer">
 
     <div class="footer-newsletter">
