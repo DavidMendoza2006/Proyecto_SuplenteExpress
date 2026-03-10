@@ -37,7 +37,7 @@
                 <p class="da1-mega-title">Available Cars</p>
                 <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Mercedes-Benz<span class="da1-badge">4</span></a>
                 <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Aston Martin<span class="da1-badge">2</span></a>
-                <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span class="da1-badge">22</span></a>
+                <a href="cars.php?marca=Ferrari" class="da1-mega-brand-item"><span class="da1-dot"></span>Ferrari<span class="da1-badge">22</span></a>
                 <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Bugatti<span class="da1-badge">3</span></a>
                 <a href="#" class="da1-mega-brand-item"><span class="da1-dot"></span>Brabus<span class="da1-badge">3</span></a>
               </div>

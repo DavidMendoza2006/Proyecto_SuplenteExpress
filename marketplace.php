@@ -22,7 +22,7 @@
     <main class="da1-main" style="padding-top: 0;">
         <section class="da1-hero" style="height: 380px;">
             <div class="da1-hero-bg-wrap">
-                <img src="./img/PaginaMarketplace/banner_marketplace.png" alt="Lifestyle Merch" class="da1-hero-bg"
+                <img src="https://xqtxmceatjupoasnllot.supabase.co/storage/v1/object/public/Imagenes/Marketplace/banner_marketplace.png" alt="Lifestyle Merch" class="da1-hero-bg"
                     style="object-position: center 60%; filter: grayscale(20%);">
                 <div class="da1-hero-overlay"
                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.5), #0a0a0a);"></div>
@@ -124,8 +124,11 @@
     </main>
 
     <?php include 'footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./js/cartGlobal.js"></script>
+
     <script src="./js/user.js"></script>
     <script src="./js/marketplace.js"></script>
 </body>
