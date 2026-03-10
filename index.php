@@ -21,8 +21,8 @@
         <section class="position-relative overflow-hidden hero-section">
 
             <video class="position-absolute top-0 start-0 w-100 h-100 hero-video" autoplay muted loop playsinline
-                poster="img/PaginaIndex/ferrari458.png">
-                <source src="videos/index/Ferrari 458.mp4" type="video/mp4">
+                poster="https://xqtxmceatjupoasnllot.supabase.co/storage/v1/object/public/Imagenes/Index/ferrari458.png">
+                <source src="https://xqtxmceatjupoasnllot.supabase.co/storage/v1/object/public/Videos/Index/Ferrari%20458.mp4" type="video/mp4">
             </video>
 
             <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
@@ -57,7 +57,7 @@
         <section class="position-relative overflow-hidden about-section">
 
 
-            <img src="./img/PaginaIndex/huayraR.png" alt=""
+            <img src="https://xqtxmceatjupoasnllot.supabase.co/storage/v1/object/public/Imagenes/Index/huayraR.png" alt=""
                 class="position-absolute top-0 start-0 w-100 h-100 about-img" aria-hidden="true">
 
             <div class="position-absolute top-0 start-0 w-100 about-fog-top"></div>
