@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  concesionario-web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor 
+    env_file:
+      - .env
