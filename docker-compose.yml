@@ -1,11 +1,12 @@
 version: '3.8'
 services:
-  concesionario-web:
+  da1motors-web:
+    container_name: da1motors-app
     build: .
     ports:
       - "8080:80"
     volumes:
       - .:/var/www/html
-      - /var/www/html/vendor 
+      - /var/www/html/vendor
     env_file:
       - .env
