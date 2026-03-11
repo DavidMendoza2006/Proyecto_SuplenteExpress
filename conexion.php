@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-$host = getenv('DB_HOST');
+$host = getenv('DB_HOST'); 
 $port = getenv('DB_PORT');
 $dbname = getenv('DB_NAME');
-$user = getenv('DB_USER');
-$password = getenv('DB_PASSWORD');
+$user = getenv('DB_USER'); 
+$password = getenv('DB_PASSWORD'); 
 
 $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password;sslmode=require";
 
@@ -16,7 +16,4 @@ try {
 } catch (PDOException $e) {
     die(json_encode(["status" => "error", "message" => "Error BD: " . $e->getMessage()]));
 }
-<<<<<<< HEAD
 ?>
-=======
->>>>>>> c900e3bb40d5ec944bb2dbd40cc48122ddb6155a
