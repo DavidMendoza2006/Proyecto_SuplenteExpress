@@ -134,7 +134,7 @@
     <script src="./js/chat.js"></script>
 </body>
 
-</html>s
+</html>
 </body>
 
 </html>
