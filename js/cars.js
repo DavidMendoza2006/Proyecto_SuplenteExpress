@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function () {
-  const supabaseUrl = 'https://xqtxmceatjupoasnllot.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdHhtY2VhdGp1cG9hc25sbG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTQzOTgsImV4cCI6MjA4ODYzMDM5OH0.imFG8M-A73za3bVwwWfTLUkV_0n15N8kwx0tMqk53jo';
+  const supabaseUrl = window.DA1_ENV.SUPABASE_URL;
+  const supabaseKey = window.DA1_ENV.SUPABASE_ANON_KEY;
 
   if (!window.supabase) return console.error("Supabase no cargado.");
   const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       let slidesHTML = '';
       let dotsHTML = '';
-      const maxPhotos = 2; 
+      const maxPhotos = 2;
       if (imgs && imgs.length > 0) {
         for (let i = 0; i < Math.min(imgs.length, maxPhotos); i++) {
           slidesHTML += `<div class="da1-carousel-slide"><img src="${imgs[i].url}?v=3" data-pos="${imgs[i].pos}" alt="${car.modelo}"></div>`;
