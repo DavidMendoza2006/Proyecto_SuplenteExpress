@@ -309,11 +309,60 @@ async function handleUpdatePassword() {
   }
 }
 
-supabaseApp.auth.onAuthStateChange((event, session) => {
+supabaseApp.auth.onAuthStateChange(async (event, session) => {
   if (event === "PASSWORD_RECOVERY") {
-
     switchAuthTab('update-password');
     showToast("Configure su nueva contraseña de acceso.");
+    return;
+  }
+
+  if (event === "SIGNED_IN" && session) {
+    try {
+      await fetch('iniciar_sesion_php.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: session.user.id })
+      });
+    } catch (e) { console.warn("Error sync PHP", e); }
+  }
+
+  if (session && session.user) {
+    const user = session.user;
+    const nombreCompleto = user.user_metadata?.full_name || user.user_metadata?.name || '';
+    const avatarUrl = user.user_metadata?.avatar_url || user.user_metadata?.picture || '';
+
+    setTimeout(() => {
+      const authView = document.getElementById('authView');
+      const profileView = document.getElementById('profileView');
+      if (authView) authView.style.display = 'none';
+      if (profileView) profileView.style.display = 'block';
+
+      const avatarContainer = document.getElementById('avatarContainer');
+      if (avatarContainer && avatarUrl) {
+        avatarContainer.innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+      }
+
+      const profileName = document.getElementById('profileName');
+      if (profileName && nombreCompleto && profileName.textContent === '—') {
+        profileName.textContent = nombreCompleto;
+      }
+
+      if (nombreCompleto) {
+        const partes = nombreCompleto.split(' ');
+        const inputNombre = document.getElementById('cfgNombre');
+        const inputApellidos = document.getElementById('cfgApellidos');
+        const inputEmail = document.getElementById('cfgEmail');
+        
+        if (inputNombre && !inputNombre.value) inputNombre.value = partes[0];
+        if (inputApellidos && !inputApellidos.value) inputApellidos.value = partes.slice(1).join(' ');
+        
+        if (inputEmail) {
+            inputEmail.value = user.email;
+            inputEmail.readOnly = true;
+            inputEmail.style.opacity = "0.6";
+        }
+      }
+    }, 800);
   }
 });
 async function updateProfile() {
