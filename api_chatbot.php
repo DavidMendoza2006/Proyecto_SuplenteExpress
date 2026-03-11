@@ -11,8 +11,21 @@ if (empty($historial)) {
     exit;
 }
 
-$apiKey = getenv('GEMINI_API_KEY');
-$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=' . $apiKey;
+$apiKey = getenv('GEMINI_API_KEY') ?: $_SERVER['GEMINI_API_KEY'] ?? '';
+
+// Lector de rescate para el Docker local (Busca directamente en tu archivo .env)
+if (empty($apiKey) && file_exists(__DIR__ . '/.env')) {
+    $lineas = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lineas as $linea) {
+        if (strpos(trim($linea), '#') === 0) continue;
+        $partes = explode('=', $linea, 2);
+        if (count($partes) == 2 && trim($partes[0]) === 'GEMINI_API_KEY') {
+            $apiKey = trim(trim($partes[1]), '"\'');
+        }
+    }
+}
+
+$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . $apiKey;
 
 $contents = [];
 foreach ($historial as $msg) {
@@ -39,10 +52,17 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($datos));
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 $respuestaGoogle = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Sacamos el código de error
+$curlError = curl_error($ch);
+curl_close($ch);
 
 if ($respuestaGoogle === false) {
-    echo json_encode(['error' => 'Error cURL: ' . curl_error($ch)]);
+    echo json_encode(['error' => 'Fallo de conexión cURL: ' . $curlError]);
+} else if ($httpCode >= 400) {
+    echo json_encode([
+        'error' => 'Google devolvió un error HTTP ' . $httpCode,
+        'detalles_google' => json_decode($respuestaGoogle, true)
+    ]);
 } else {
     echo $respuestaGoogle;
 }
-curl_close($ch);
