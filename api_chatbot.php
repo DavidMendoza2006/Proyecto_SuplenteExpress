@@ -11,33 +11,63 @@ if (empty($historial)) {
     exit;
 }
 
-// 1. CARGA DE API KEY (Prioridad absoluta al .env con tu nueva clave ...UQ0o)
+// =========================================================================
+// 1. CARGA DE API KEY (Lectura perfecta del .env local y Render)
+// =========================================================================
 $apiKey = '';
 $env_paths = [__DIR__ . '/.env', '/etc/secrets/.env']; 
 
+// Primero busca físicamente en los archivos .env
 foreach ($env_paths as $path) {
     if (file_exists($path)) {
         $lineas = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         foreach ($lineas as $linea) {
-            if (strpos(trim($linea), '#') === 0) continue;
+            if (strpos(trim($linea), '#') === 0) continue; // Ignora los comentarios
             $partes = explode('=', $linea, 2);
             if (count($partes) == 2 && trim($partes[0]) === 'GEMINI_API_KEY') {
                 $apiKey = trim(trim($partes[1]), '"\'');
-                break 2;
+                break 2; // Detiene la búsqueda al encontrarla
             }
         }
     }
 }
 
+// Si no hay archivo .env, busca en las variables de entorno del sistema (para Render)
 if (empty($apiKey)) {
     $apiKey = getenv('GEMINI_API_KEY') ?: $_SERVER['GEMINI_API_KEY'] ?? '';
 }
 
-// 2. CONFIGURACIÓN DEL MODELO (Usamos gemini-1.5-flash-latest para evitar el 404)
-// URL configurada con el nombre de modelo más estándar
-$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . $apiKey;
-// 3. PREPARACIÓN DEL CONTENIDO
+// Seguro contra fallos: Si sigue vacía, avisa al chat
+if (empty($apiKey)) {
+    echo json_encode([
+        "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: API Key no encontrada en el sistema."]]]]]
+    ]);
+    exit;
+}
+
+// =========================================================================
+// 2. CONFIGURACIÓN DEL MODELO (Estable y compatible con llaves nuevas)
+// =========================================================================
+// Usamos gemini-2.0-flash en v1beta, el estándar actual sin restricciones
+$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' . $apiKey;
+
+// =========================================================================
+// 3. PREPARACIÓN DEL CONTENIDO (Inyectado para evitar errores de formato)
+// =========================================================================
 $contents = [];
+
+// Le inyectamos su personalidad sin usar parámetros conflictivos
+$contents[] = [
+    "role" => "user",
+    "parts" => [["text" => "INSTRUCCIONES DE COMPORTAMIENTO: A partir de ahora eres el asistente VIP de DA1MOTORS, un concesionario de hiperdeportivos. Eres muy profesional, lujoso y vas directo al grano. Responde de forma breve y nunca repitas tu saludo inicial."]]
+];
+
+$contents[] = [
+    "role" => "model",
+    "parts" => [["text" => "Entendido. Acepto mi rol como asistente VIP de DA1MOTORS. ¿En qué puedo ayudar al cliente?"]]
+];
+
+// Añadimos la conversación real
 foreach ($historial as $msg) {
     $contents[] = [
         "role" => $msg['role'] === 'ai' ? 'model' : 'user',
@@ -45,17 +75,13 @@ foreach ($historial as $msg) {
     ];
 }
 
-// Estructura oficial v1beta: usamos system_instruction (con guion bajo)
 $datos = [
-    "contents" => $contents,
-    "system_instruction" => [
-        "parts" => [
-            ["text" => "Eres el asistente VIP de DA1MOTORS. Profesional, lujoso y directo. Responde de forma muy breve. No te repitas."]
-        ]
-    ]
+    "contents" => $contents
 ];
 
+// =========================================================================
 // 4. EJECUCIÓN CON CURL
+// =========================================================================
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
@@ -65,16 +91,27 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 
 $respuestaGoogle = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curlError = curl_error($ch);
 curl_close($ch);
 
+// =========================================================================
 // 5. RESPUESTA AL FRONTEND
+// =========================================================================
+if ($respuestaGoogle === false) {
+    echo json_encode([
+        "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: Fallo interno de red cURL ($curlError)"]]]]]
+    ]);
+    exit;
+}
+
 $resDecoded = json_decode($respuestaGoogle, true);
 
 if ($httpCode === 200 && isset($resDecoded['candidates'][0]['content']['parts'][0]['text'])) {
+    // Éxito total
     echo $respuestaGoogle;
 } else {
-    // Si falla el modelo -latest, intentamos el nombre base como último recurso
-    $errorMsg = "Control DA1: Error de Satélite ($httpCode)";
+    // Si Google da error, lo sacamos por el chat limpiamente
+    $errorMsg = "DA1 Control: Error de Satélite ($httpCode)";
     if (isset($resDecoded['error']['message'])) {
         $errorMsg = "DA1 Control: " . $resDecoded['error']['message'];
     }
