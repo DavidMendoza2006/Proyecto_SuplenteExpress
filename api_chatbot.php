@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 
 $input = json_decode(file_get_contents('php://input'), true);
@@ -11,13 +11,13 @@ if (empty($historial)) {
     exit;
 }
 
-$apiKey = 'AIzaSyBH7DMQtXne1CuQL5XjOldyGu2k3AXLDC8'; 
+$apiKey = getenv('GEMINI_API_KEY');
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=' . $apiKey;
 
 $contents = [];
 foreach ($historial as $msg) {
     $contents[] = [
-        "role" => $msg['role'] === 'ai' ? 'model' : 'user', 
+        "role" => $msg['role'] === 'ai' ? 'model' : 'user',
         "parts" => [["text" => $msg['text']]]
     ];
 }
@@ -36,7 +36,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($datos));
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 $respuestaGoogle = curl_exec($ch);
 
@@ -46,4 +46,3 @@ if ($respuestaGoogle === false) {
     echo $respuestaGoogle;
 }
 curl_close($ch);
-?>

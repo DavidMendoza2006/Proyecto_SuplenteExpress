@@ -1,7 +1,14 @@
-<?php 
+<?php
 
-  $current_page = basename($_SERVER['PHP_SELF']); 
+$current_page = basename($_SERVER['PHP_SELF']);
 ?>
+
+<script>
+  window.DA1_ENV = {
+    SUPABASE_URL: "<?php echo getenv('SUPABASE_URL'); ?>",
+    SUPABASE_ANON_KEY: "<?php echo getenv('SUPABASE_ANON_KEY'); ?>"
+  };
+</script>
 
 <link rel="icon" type="image/png" href="./img/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">

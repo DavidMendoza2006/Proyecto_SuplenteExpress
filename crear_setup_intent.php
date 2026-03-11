@@ -1,13 +1,13 @@
 <?php
 require_once('vendor/autoload.php');
 
-\Stripe\Stripe::setApiKey('sk_test_51T96SRAwHprUZMBwd6ZOBC4wIPPyEFp0VLdSahaSmYLTrl6VJx54QRvWkKhhvjoMPu1l8EEsdq1Lo4m0fEQIuWUU00S3iRR13Y');
+\Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
 header('Content-Type: application/json');
 
 try {
     $setupIntent = \Stripe\SetupIntent::create([
-        'usage' => 'off_session', 
+        'usage' => 'off_session',
     ]);
 
     echo json_encode([

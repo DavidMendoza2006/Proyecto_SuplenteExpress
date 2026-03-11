@@ -1,5 +1,5 @@
-const supabaseUrl = 'https://xqtxmceatjupoasnllot.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdHhtY2VhdGp1cG9hc25sbG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNTQzOTgsImV4cCI6MjA4ODYzMDM5OH0.imFG8M-A73za3bVwwWfTLUkV_0n15N8kwx0tMqk53jo';
+const supabaseUrl = window.DA1_ENV.SUPABASE_URL;
+const supabaseKey = window.DA1_ENV.SUPABASE_ANON_KEY;
 const supabaseApp = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 let currentUser = null;
@@ -163,23 +163,23 @@ function renderProfileDynamic() {
     document.getElementById('profileName').textContent = currentUser.nombre + ' ' + (currentUser.apellidos || '');
     document.getElementById('heroRef').textContent = 'DA1 — ' + currentUser.nombre.toUpperCase();
 
-    if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre; 
+    if (document.getElementById('cfgNombre')) document.getElementById('cfgNombre').value = currentUser.nombre;
     if (document.getElementById('cfgApellidos')) document.getElementById('cfgApellidos').value = currentUser.apellidos || '';
 
     const fecha = new Date(currentUser.creado_en || Date.now())
-    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' }); 
+    document.getElementById('profileSince').textContent = 'Miembro desde ' + fecha.toLocaleDateString('es-ES', { month: 'long', year: 'numeric' });
   }
 
   if (document.getElementById('cfgEmail')) {
     supabaseApp.auth.getSession().then(({ data }) => {
-      if (data.session) document.getElementById('cfgEmail').value = data.session.user.email; 
+      if (data.session) document.getElementById('cfgEmail').value = data.session.user.email;
     });
   }
 
-  if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0; 
+  if (document.getElementById('pedidosBadge')) document.getElementById('pedidosBadge').textContent = userKpis.pedidos || 0;
   if (document.getElementById('favBadge')) document.getElementById('favBadge').textContent = userKpis.favoritos || 0;
   if (document.getElementById('kpi-pedidos')) document.getElementById('kpi-pedidos').textContent = userKpis.pedidos || 0;
-  if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0; 
+  if (document.getElementById('kpi-favs')) document.getElementById('kpi-favs').textContent = userKpis.favoritos || 0;
 
   switchTab('dashboard');
   updatePrices();

@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-
 $data = json_decode(file_get_contents('php://input'), true);
 $email = $data['email'] ?? '';
 
@@ -10,9 +9,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-
-$resend_api_key = 're_Vff72JjB_2ZgCoj9jTgwM46U9CGjiZPYG';
-
+$resend_api_key = getenv('RESEND_API_KEY');
 
 $html_content = '
     <div style="background-color: #0a0a0a; color: #ffffff; padding: 40px; border-top: 5px solid #e8001c; text-align: center; font-family: sans-serif;">
@@ -24,7 +21,6 @@ $html_content = '
     </div>
 ';
 
-
 $ch = curl_init('https://api.resend.com/emails');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
@@ -33,7 +29,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json'
 ]);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
-    'from' => 'VIP DA1MOTORS <onboarding@resend.dev>', 
+    'from' => 'VIP DA1MOTORS <onboarding@resend.dev>',
     'to' => [$email],
     'subject' => 'Acceso a la Carta VIP - DA1MOTORS',
     'html' => $html_content
@@ -48,4 +44,3 @@ if (isset($res_data['id'])) {
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Fallo al enviar correo']);
 }
-?>
