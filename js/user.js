@@ -352,14 +352,14 @@ supabaseApp.auth.onAuthStateChange(async (event, session) => {
         const inputNombre = document.getElementById('cfgNombre');
         const inputApellidos = document.getElementById('cfgApellidos');
         const inputEmail = document.getElementById('cfgEmail');
-        
+
         if (inputNombre && !inputNombre.value) inputNombre.value = partes[0];
         if (inputApellidos && !inputApellidos.value) inputApellidos.value = partes.slice(1).join(' ');
-        
+
         if (inputEmail) {
-            inputEmail.value = user.email;
-            inputEmail.readOnly = true;
-            inputEmail.style.opacity = "0.6";
+          inputEmail.value = user.email;
+          inputEmail.readOnly = true;
+          inputEmail.style.opacity = "0.6";
         }
       }
     }, 800);
@@ -614,7 +614,7 @@ async function loginConGoogle() {
     const { data, error } = await supabaseApp.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin + '/Proyecto_SuplenteExpress/user.php'
+        redirectTo: window.location.origin + '/user.php'
       }
     });
 
