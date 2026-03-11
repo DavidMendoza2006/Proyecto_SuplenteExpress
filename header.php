@@ -1,33 +1,16 @@
 <?php
+
 $current_page = basename($_SERVER['PHP_SELF']);
 
 
-$env_file_local = __DIR__ . '/.env';
-$env_file_render = '/etc/secrets/.env'; 
-
-$env_file = file_exists($env_file_render) ? $env_file_render : (file_exists($env_file_local) ? $env_file_local : null);
-
-if ($env_file) {
-  $lineas = file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-  foreach ($lineas as $linea) {
-    if (strpos(trim($linea), '#') === 0) continue;
-    $partes = explode('=', $linea, 2);
-    if (count($partes) == 2) {
-      $_ENV[trim($partes[0])] = trim(trim($partes[1]), '"\'');
-    }
-  }
-}
-
-function obtenerVarEnv($key)
-{
-  return $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key) ?? '';
-}
 ?>
+
+
 
 <script>
   window.DA1_ENV = {
-    SUPABASE_URL: "<?php echo obtenerVarEnv('SUPABASE_URL'); ?>",
-    SUPABASE_ANON_KEY: "<?php echo obtenerVarEnv('SUPABASE_ANON_KEY'); ?>"
+    SUPABASE_URL: "<?php echo getenv('SUPABASE_URL'); ?>",
+    SUPABASE_ANON_KEY: "<?php echo getenv('SUPABASE_ANON_KEY'); ?>"
   };
 </script>
 
