@@ -21,4 +21,3 @@ try {
     die(json_encode(["status" => "error", "message" => "Error BD: " . $e->getMessage()]));
 }
 ?>
-
