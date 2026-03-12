@@ -1,7 +1,5 @@
 <?php
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
 
 $input = json_decode(file_get_contents('php://input'), true);
 $historial = $input['historial'] ?? [];
@@ -11,37 +9,16 @@ if (empty($historial)) {
     exit;
 }
 
-$apiKey = '';
-$env_paths = [__DIR__ . '/.env', '/etc/secrets/.env']; 
-
-// Primero busca físicamente en los archivos .env
-foreach ($env_paths as $path) {
-    if (file_exists($path)) {
-        $lineas = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($lineas as $linea) {
-            if (strpos(trim($linea), '#') === 0) continue; // Ignora los comentarios
-            $partes = explode('=', $linea, 2);
-            if (count($partes) == 2 && trim($partes[0]) === 'GEMINI_API_KEY') {
-                $apiKey = trim(trim($partes[1]), '"\'');
-                break 2; // Detiene la búsqueda al encontrarla
-            }
-        }
-    }
-}
-
-if (empty($apiKey)) {
-    $apiKey = getenv('GEMINI_API_KEY') ?: $_SERVER['GEMINI_API_KEY'] ?? '';
-}
+$apiKey = getenv('GEMINI_API_KEY') ?: $_SERVER['GEMINI_API_KEY'] ?? '';
 
 if (empty($apiKey)) {
     echo json_encode([
-        "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: API Key no encontrada en el sistema."]]]]]
+        "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: API Key no encontrada en el contenedor."]]]]]
     ]);
     exit;
 }
 
-$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' . $apiKey;
-
+$url = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=' . $apiKey;
 
 $contents = [];
 
@@ -66,7 +43,6 @@ $datos = [
     "contents" => $contents
 ];
 
-
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
@@ -79,10 +55,9 @@ $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $curlError = curl_error($ch);
 curl_close($ch);
 
-
 if ($respuestaGoogle === false) {
     echo json_encode([
-        "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: Fallo interno de red cURL ($curlError)"]]]]]
+        "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: Fallo de red interno ($curlError)"]]]]]
     ]);
     exit;
 }
@@ -96,7 +71,7 @@ if ($httpCode === 200 && isset($resDecoded['candidates'][0]['content']['parts'][
     if (isset($resDecoded['error']['message'])) {
         $errorMsg = "DA1 Control: " . $resDecoded['error']['message'];
     }
-    
+
     echo json_encode([
         "candidates" => [[
             "content" => [
