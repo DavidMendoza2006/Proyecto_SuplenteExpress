@@ -11,9 +11,6 @@ if (empty($historial)) {
     exit;
 }
 
-// =========================================================================
-// 1. CARGA DE API KEY (Lectura perfecta del .env local y Render)
-// =========================================================================
 $apiKey = '';
 $env_paths = [__DIR__ . '/.env', '/etc/secrets/.env']; 
 
@@ -32,12 +29,10 @@ foreach ($env_paths as $path) {
     }
 }
 
-// Si no hay archivo .env, busca en las variables de entorno del sistema (para Render)
 if (empty($apiKey)) {
     $apiKey = getenv('GEMINI_API_KEY') ?: $_SERVER['GEMINI_API_KEY'] ?? '';
 }
 
-// Seguro contra fallos: Si sigue vacía, avisa al chat
 if (empty($apiKey)) {
     echo json_encode([
         "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: API Key no encontrada en el sistema."]]]]]
@@ -45,18 +40,11 @@ if (empty($apiKey)) {
     exit;
 }
 
-// =========================================================================
-// 2. CONFIGURACIÓN DEL MODELO (Estable y compatible con llaves nuevas)
-// =========================================================================
-// Usamos gemini-2.0-flash en v1beta, el estándar actual sin restricciones
 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' . $apiKey;
 
-// =========================================================================
-// 3. PREPARACIÓN DEL CONTENIDO (Inyectado para evitar errores de formato)
-// =========================================================================
+
 $contents = [];
 
-// Le inyectamos su personalidad sin usar parámetros conflictivos
 $contents[] = [
     "role" => "user",
     "parts" => [["text" => "INSTRUCCIONES DE COMPORTAMIENTO: A partir de ahora eres el asistente VIP de DA1MOTORS, un concesionario de hiperdeportivos. Eres muy profesional, lujoso y vas directo al grano. Responde de forma breve y nunca repitas tu saludo inicial."]]
@@ -67,7 +55,6 @@ $contents[] = [
     "parts" => [["text" => "Entendido. Acepto mi rol como asistente VIP de DA1MOTORS. ¿En qué puedo ayudar al cliente?"]]
 ];
 
-// Añadimos la conversación real
 foreach ($historial as $msg) {
     $contents[] = [
         "role" => $msg['role'] === 'ai' ? 'model' : 'user',
@@ -79,9 +66,7 @@ $datos = [
     "contents" => $contents
 ];
 
-// =========================================================================
-// 4. EJECUCIÓN CON CURL
-// =========================================================================
+
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
@@ -94,9 +79,7 @@ $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $curlError = curl_error($ch);
 curl_close($ch);
 
-// =========================================================================
-// 5. RESPUESTA AL FRONTEND
-// =========================================================================
+
 if ($respuestaGoogle === false) {
     echo json_encode([
         "candidates" => [["content" => ["parts" => [["text" => "DA1 Control: Fallo interno de red cURL ($curlError)"]]]]]
@@ -107,10 +90,8 @@ if ($respuestaGoogle === false) {
 $resDecoded = json_decode($respuestaGoogle, true);
 
 if ($httpCode === 200 && isset($resDecoded['candidates'][0]['content']['parts'][0]['text'])) {
-    // Éxito total
     echo $respuestaGoogle;
 } else {
-    // Si Google da error, lo sacamos por el chat limpiamente
     $errorMsg = "DA1 Control: Error de Satélite ($httpCode)";
     if (isset($resDecoded['error']['message'])) {
         $errorMsg = "DA1 Control: " . $resDecoded['error']['message'];
