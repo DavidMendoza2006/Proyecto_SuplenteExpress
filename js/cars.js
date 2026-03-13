@@ -311,8 +311,19 @@ document.addEventListener('DOMContentLoaded', async function () {
                   <span class="da1-currency" data-aed="AED" data-eur="€" data-usd="$">€</span>
                   <span class="da1-amount" data-aed="${formatNum(aed)}" data-eur="${formatNum(eur)}" data-usd="${formatNum(usd)}">${formatNum(eur)}</span>
                 </div>
-                <div class="da1-card-actions">
+                <div class="da1-card-actions d-flex align-items-center gap-2">
                   <button class="da1-card-cur" title="Cambiar moneda"><i class="bi bi-arrow-left-right"></i></button>
+                  
+                  <button class="btn btn-outline-secondary btn-sm text-white btn-descargar-ficha" 
+                          data-marca="${car.marca}" 
+                          data-modelo="${car.modelo}" 
+                          data-ano="${car.ano}" 
+                          data-precio="${formatNum(eur)}" 
+                          data-km="${formatNum(car.kilometros)}" 
+                          data-motor="${car.combustible}">
+                    <i class="bi bi-file-earmark-pdf text-danger"></i> Ficha
+                  </button>
+
                   <button class="da1-card-buy">${isSold ? 'Ver Ficha' : 'Contactar'}</button>
                 </div>
               </div>
@@ -376,6 +387,85 @@ document.addEventListener('DOMContentLoaded', async function () {
           symbolEl.textContent = symbolEl.getAttribute('data-' + cur);
           amountEl.classList.remove('switching');
         }, 150);
+      });
+    });
+    document.querySelectorAll('.btn-descargar-ficha').forEach(btn => {
+      if(btn.dataset.listener) return; 
+      btn.dataset.listener = "true";
+
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const targetBtn = e.currentTarget;
+        const { jsPDF } = window.jspdf;
+
+        const coche = {
+          marca: targetBtn.dataset.marca,
+          modelo: targetBtn.dataset.modelo,
+          ano: targetBtn.dataset.ano,
+          precio: targetBtn.dataset.precio,
+          km: targetBtn.dataset.km,
+          motor: targetBtn.dataset.motor
+        };
+
+        const htmlOriginal = targetBtn.innerHTML;
+        targetBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span>';
+        targetBtn.disabled = true;
+
+        try {
+          const promptIA = `Actúa como el director técnico de DA1MOTORS. Escribe una ficha técnica breve, profesional y lujosa (SIN formato markdown, SIN asteriscos, solo texto plano) para el siguiente vehículo: ${coche.marca} ${coche.modelo} (Año: ${coche.ano}, Motor: ${coche.motor}, Kilómetros: ${coche.km} km, Precio: ${coche.precio}€). Incluye una breve introducción persuasiva y lista sus prestaciones técnicas. Máximo 150 palabras.`;
+
+          const response = await fetch('./api_chatbot.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              historial: [{ role: 'user', text: promptIA }]
+            })
+          });
+
+          const data = await response.json();
+
+          if (!data.candidates || !data.candidates[0].content.parts[0].text) {
+            throw new Error("Respuesta inválida de la IA");
+          }
+
+          let textoFicha = data.candidates[0].content.parts[0].text.replace(/\*/g, '');
+
+          const doc = new jsPDF();
+          const margen = 20;
+
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(22);
+          doc.setTextColor(220, 53, 69); 
+          doc.text("DA1MOTORS", margen, 20);
+
+          doc.setFontSize(16);
+          doc.setTextColor(40, 40, 40);
+          doc.text(`Ficha Técnica: ${coche.marca} ${coche.modelo}`, margen, 30);
+
+          doc.setLineWidth(0.5);
+          doc.setDrawColor(200, 200, 200);
+          doc.line(margen, 35, 190, 35);
+
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(11);
+          doc.setTextColor(60, 60, 60);
+          
+          const lineasTexto = doc.splitTextToSize(textoFicha, 170);
+          doc.text(lineasTexto, margen, 45);
+
+          doc.setFontSize(9);
+          doc.setTextColor(150, 150, 150);
+          doc.text(`Generado automáticamente - DA1MOTORS VIP Assistant - ${new Date().toLocaleDateString()}`, margen, doc.internal.pageSize.height - 10);
+
+          doc.save(`Ficha_${coche.marca}_${coche.modelo.replace(/\s+/g, '_')}.pdf`);
+
+        } catch (error) {
+          console.error("Error al generar PDF:", error);
+          alert("DA1 Control: Los servidores satélite están ocupados. Intente generar la ficha más tarde.");
+        } finally {
+          targetBtn.innerHTML = htmlOriginal;
+          targetBtn.disabled = false;
+        }
       });
     });
   }
